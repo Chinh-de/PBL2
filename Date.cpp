@@ -6,21 +6,21 @@ Date::Date(string Y, string M, string D)
 Date::~Date()
 { }
 
-string Date::GetYear(){
+string Date::getYear(){
     return this->Year;
 }
-string Date::GetMonth(){
+string Date::getMonth(){
     return this->Month;
 }
-string Date::GetDay(){
+string Date::getDay(){
     return this->Day;
 }
-void Date::SetYear(string Y){
+void Date::setYear(string Y){
     this->Year = Y;
 }
-void Date::SetMonth(string M){
+void Date::setMonth(string M){
     this->Month = M;
 }
-void Date::SetDay(string D){
+void Date::setDay(string D){
     this->Year = D;
 }

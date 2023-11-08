@@ -10,10 +10,10 @@ class Date{
         Date(string, string, string);
         ~Date();
     public:
-        string GetYear();
-        string GetMonth();
-        string GetDay();
-        void SetYear(string);
-        void SetMonth(string);
-        void SetDay(string);
+        string getYear();
+        string getMonth();
+        string getDay();
+        void setYear(string);
+        void setMonth(string);
+        void setDay(string);
 };

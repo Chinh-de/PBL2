@@ -12,39 +12,39 @@ void Person::Show()
     else cout << "Nu ;";
     cout << " email: " << Email << "; Dia chi: " << Address; 
 }
-int Person::GetID(){
+int Person::getID(){
     return this->ID;
 }
-void Person::SetID(int id){
+void Person::setID(int id){
     this->ID = id;
 }
-string Person::GetName(){
+string Person::getName(){
     return this->Name;
 }
-void Person::SetName(string n){
+void Person::setName(string n){
     this->Name = n;
 }
-string Person::GetPhone(){
+string Person::getPhone(){
     return this->Phone;
 }
-void Person::SetPhone(string p){
+void Person::setPhone(string p){
     this->Phone = p;
 }
-string Person::GetEmail(){
+string Person::getEmail(){
     return this->Email;
 }
-void Person::SetEmail(string e){
+void Person::setEmail(string e){
     this->Email = e;
 }
-bool Person::GetGender(){
+bool Person::getGender(){
     return this->Gender;
 }
-void Person::SetGender(bool g){
+void Person::setGender(bool g){
     this->Gender = g;
 }
-string Person::GetAddress(){
+string Person::getAddress(){
     return this->Address;
 }
-void Person::SetAddress(string a){
+void Person::setAddress(string a){
     this->Address = a;
 }
