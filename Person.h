@@ -12,24 +12,23 @@ enum Gender
 class Person{
     protected:
         int ID;
-        string name, phone, email;
-        bool gender;
-        string address;
+        string Name, Phone, Email;
+        bool Gender;
+        string Address;
     public:
-        Person(int = 0, string = "", string "", string = "", Gender = male, string = "");
+        Person(int = 0, string = "", string = "", string = "", bool = true, string = "");
         ~Person();
         void Show();
-        int getID();
-        void setID(int);
-        string getname();
-        void setname(string);
-        string getphone();
-        void setphone(string);
-        string getemail();
-        void setemail(string);
-        Gender getgender();
-        void setgender(Gender);
-        string getaddress();
-        void setaddress(string);
-        
+        int GetID();
+        void SetID(int);
+        string GetName();
+        void SetName(string);
+        string GetPhone();
+        void SetPhone(string);
+        string GetEmail();
+        void SetEmail(string);
+        bool GetGender();
+        void SetGender(bool);
+        string GetAddress();
+        void SetAddress(string);
 };
