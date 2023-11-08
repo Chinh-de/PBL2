@@ -1,74 +1,50 @@
 #include "Person.h"
-Person::Person(int ID, string name, string phoneNumber, string email, Gender gender, string address)
-    :ID(ID), name(name), phone(phoneNumber), email(email), gender(gender), address(address)
+Person::Person(int ID, string name, string phoneNumber, string email, bool gender, string address)
+    :ID(ID), Name(name), Phone(phoneNumber), Email(email), Gender(gender), Address(address)
 { }
-
-Person::void Show()
+Person::~Person()
+{ }
+void Person::Show()
 {
-    cout << "; Ten: " << this->name << "; So Dien Thoai: " << this->phone;
+    cout << "; Ten: " << this->Name << "; So Dien Thoai: " << this->Phone;
     cout << "; Gioi tinh: ";
-    if(this->gender == male) cout << "Nam ;";
-    if(this->gender == female)cout << "Nu ;";
-    if(this->gender == orther)cout << "Khac ;";
-    cout << " email: " << email << "; Dia chi: " << address; 
+    if(this->Gender) cout << "Nam ;";
+    else cout << "Nu ;";
+    cout << " email: " << Email << "; Dia chi: " << Address; 
 }
-
-Person:: int getID()
-{
+int Person::GetID(){
     return this->ID;
 }
-
-Person:: void setID(int newID)
-{
-    this->ID = newID;
+void Person::SetID(int id){
+    this->ID = id;
 }
-
-Person:: string getname()
-{
-    return this->name;
+string Person::GetName(){
+    return this->Name;
 }
-
-Person:: void setname(string newName)
-{
-    this->name = newname;
+void Person::SetName(string n){
+    this->Name = n;
 }
-
-Person:: string getphone()
-{    
-    return this->phone;
+string Person::GetPhone(){
+    return this->Phone;
 }
-
-Person:: void setphone(string newPhone)
-{
-    this->phone = newPhone;
+void Person::SetPhone(string p){
+    this->Phone = p;
 }
-
-Person:: string getemail()
-{
-    return this->email;
+string Person::GetEmail(){
+    return this->Email;
 }
-
-Person:: void setemail(string newEmail)
-{
-    this->email = newEmail;
+void Person::SetEmail(string e){
+    this->Email = e;
 }
-
-Person:: Gender getgender()
-{
-    return this->gender;
+bool Person::GetGender(){
+    return this->Gender;
 }
-
-Person:: void setgender(Gender newGender)
-{
-    this->gender = newGender;
+void Person::SetGender(bool g){
+    this->Gender = g;
 }
-
-Person:: string getaddress()
-{
-    return this->address;
+string Person::GetAddress(){
+    return this->Address;
 }
-
-Person:: void setaddress(string newAddress)
-{
-    this->address = newAddress;
+void Person::SetAddress(string a){
+    this->Address = a;
 }

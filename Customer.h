@@ -1,9 +1,8 @@
 #include "Person.h"
-class Customer :: proteced Person
+class Customer : protected Person
 {
     public:
-        Customer(int = 0, string = "", string = "", string = "", Gender = male, string = "");           
+        Customer(int = 0, string = "", string = "", string = "", bool = 0, string = "");           
         ~Customer();
-        void Show();
-        
+        void Show();     
 };
