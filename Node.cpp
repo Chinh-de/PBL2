@@ -1,7 +1,7 @@
 #include "Node.h"
 template <typename T>
 Node<T>::Node()
-    : next(nullptr))
+    : next(nullptr)
 { }
 
 template <typename T>

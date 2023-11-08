@@ -2,7 +2,7 @@
 template <typename T>
 list<T>::list()
 {
-    head = nullptr;
+    this->head = nullptr;
 }
 template <typename T>
 list<T>::~list()
