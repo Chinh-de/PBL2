@@ -1,5 +1,5 @@
 #include "Employee.h"
-Employee::Empolyee(int ID, string name, string phoneNumber, string email, Gender gender, string address, unsigned int salary, Position positon)
+Employee::Employee(int ID, string name, string phoneNumber, string email, bool gender, string address, unsigned int salary, Position positon)
     :Person(ID, name, phoneNumber, email, gender, address)
 {
     this->salary = salary;
@@ -7,26 +7,26 @@ Employee::Empolyee(int ID, string name, string phoneNumber, string email, Gender
 }
 Employee::~Employee()
 { }
-Employee:: void Show()
+void Employee::Show()
 {
     cout<< "Ma Nhan vien: " << this->ID << "; ";
     this->Person::Show();
     cout<< "; Luong: " << this->salary << "; ";
 }
-Employee::unsigned int getsalary()
+unsigned int Employee::getsalary()
 {
     return this->salary;
 }
-Employee::void setID(unsigned int newSalary)
+void Employee::setsalary(unsigned int newSalary)
 {
     this->salary = newSalary;
 }
 
-Employee::Position getposition()
+Position Employee::getposition()
 {
     return this->position;
 }
-Employee::void setpositon(Position newPositon)
+void Employee::setpositon(Position newPosition)
 {
     this->position = newPosition;
 }
