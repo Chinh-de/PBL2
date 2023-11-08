@@ -1,13 +1,12 @@
 #include <iostream>
 #include <string>
-#include "product.h"
+#include "list.h"
 using namespace std;
 
 int main(){
-    product p1;
-    p1.show();
-    string p2 = p1.get_product_name();
-    cout << p2 << endl;
-
+    list<string> l;
+    l.add("ngu");
+    l.remove("ngu2");
+    l.display;
     return 0;
 }

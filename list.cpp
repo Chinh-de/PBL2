@@ -32,7 +32,7 @@ void list<T>::remove(const T& removeData)
     Node<T>* tempNode = this->head;
     Node<T>* prev = nullptr;
     //tim phan tu can xoa
-    while(tempNode->data != removeData && tempNode != nullptr)
+    while(tempNode != nullptr && tempNode->data != removeData)
     {
         prev = tempNode;
         tempNode = tempNode->next;
@@ -59,6 +59,5 @@ void list<T>::display()
         cout << tempNode->data << endl;
         tempNode = tempNode->next;
     }
-    delete tempNode;
 }
 
