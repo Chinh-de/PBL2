@@ -1,14 +1,6 @@
 #include <iostream>
 using namespace std;
 #include <string>
-
-enum Gender 
-{
-    male,
-    female,
-    other
-};
-
 class Person{
     protected:
         int ID;
