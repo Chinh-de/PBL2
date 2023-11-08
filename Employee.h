@@ -14,9 +14,9 @@ class Employee : protected Person
         Employee(int = 0, string = "", string = "", string = "", bool = 0, string = "", unsigned int = 0, Position = manager);           
         ~Employee();
         void Show();
-        unsigned int getsalary();
-        void setsalary(unsigned int);   
-        Position getposition();
-        void setpositon(Position);     
+        unsigned int getSalary();
+        void setSalary(unsigned int);   
+        Position getPosition();
+        void setPositon(Position);     
 };
 

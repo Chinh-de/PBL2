@@ -26,6 +26,57 @@ void product::show(){
     << "O cung: " << this->hard_disk << endl
     << "GPU: " << this->GPU << endl;
 }
-string product::get_product_name(){
+string product::getProductName(){
     return this->name;
+}
+string product::getProductId(){
+    return this->product_id;
+}
+unsigned int product::getPrice(){
+    return this->price;
+}
+unsigned int product::getImportPrice(){
+    return this->import_price;
+}
+string product::getCPU(){
+    return this->CPU;
+}
+string product::getRAM(){
+    return this->RAM;
+}
+string product::getScreen(){
+    return this->screen;
+}
+string product::getHardDisk(){
+    return this->hard_disk;
+}
+string product::getGPU(){
+    return this->GPU;
+}
+void product::setProductName(string n){
+    this->name = n;
+}
+void product::setProductId(string id){
+    this->product_id = id;
+}
+void product::setPrice(unsigned int p){
+    this->price = p;
+}
+void product::setImportPrice(unsigned int p){
+    this->import_price = p;
+}
+void product::setCPU(string c){
+    this->CPU = c;
+}
+void product::setRAM(string r){
+    this->RAM = r;
+}
+void product::setScreen(string s){
+    this->screen = s;
+}
+void product::setHardDisk(string h){
+    this->hard_disk = h;
+}
+void product::setGPU(string g){
+    this->GPU = g;
 }

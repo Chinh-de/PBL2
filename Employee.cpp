@@ -13,20 +13,20 @@ void Employee::Show()
     this->Person::Show();
     cout<< "; Luong: " << this->salary << "; ";
 }
-unsigned int Employee::getsalary()
+unsigned int Employee::getSalary()
 {
     return this->salary;
 }
-void Employee::setsalary(unsigned int newSalary)
+void Employee::setSalary(unsigned int newSalary)
 {
     this->salary = newSalary;
 }
 
-Position Employee::getposition()
+Position Employee::getPosition()
 {
     return this->position;
 }
-void Employee::setpositon(Position newPosition)
+void Employee::setPositon(Position newPosition)
 {
     this->position = newPosition;
 }
