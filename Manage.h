@@ -4,7 +4,7 @@ using namespace std;
 class Manage{
     protected:
         virtual void Add() = 0;
-        virtual void List() = 0;
+        virtual void Display() = 0;
         virtual void Update() = 0;
-        virtual void Delete() = 0;
+        virtual void Remove() = 0;
 };

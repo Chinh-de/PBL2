@@ -2,7 +2,7 @@
 enum Position 
 {
     manager = 1,
-    salesperson = 2
+    salesperson = 0
 };
 
 class Employee : protected Person
