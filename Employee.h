@@ -15,7 +15,7 @@ class Employee : protected Person
         ~Employee();
         void Show();
         unsigned int getSalary();
-        void setSalary(unsigned int);   
+        void setSalary(unsigned int);
         Position getPosition();
         void setPositon(Position);     
 };

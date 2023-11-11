@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "list.h"
+#include "list.cpp"
 using namespace std;
 
 class product {
@@ -15,8 +15,8 @@ class product {
         string hard_disk;
         string GPU;
     private:    
-        int amount;
-        list<string> seri;
+        int numberOf;
+        list<string> serial;
     public:
         product();
         ~product();
@@ -30,7 +30,7 @@ class product {
         string getScreen();
         string getHardDisk();
         string getGPU();
-        int getamount();
+        int getNumberOf();
         void setProductName(string);
         void setProductId(string);
         void setPrice(unsigned int);
@@ -40,5 +40,7 @@ class product {
         void setScreen(string);
         void setHardDisk(string);
         void setGPU(string);
-        void setamount(int);
+        void setNumberOf(int);
+        void addSerial(string);
+        void removeSerial(string);
 };

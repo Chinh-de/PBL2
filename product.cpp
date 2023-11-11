@@ -53,6 +53,10 @@ string product::getHardDisk(){
 string product::getGPU(){
     return this->GPU;
 }
+int product::getNumberOf()
+{
+    return this->numberOf;
+}
 void product::setProductName(string n){
     this->name = n;
 }
@@ -80,3 +84,17 @@ void product::setHardDisk(string h){
 void product::setGPU(string g){
     this->GPU = g;
 }
+void product::setNumberOf(int newNumberOf)
+{
+    this->numberOf = newNumberOf;
+}
+void product::addSerial(string newSerial)
+{
+    serial.add(newSerial);
+}
+void removeSerial(string rSerial)
+{
+    serial.remove(rSerial);
+}
+
+
