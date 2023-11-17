@@ -1,7 +1,8 @@
 #include "Employee.h"
 #include "list.cpp"
+#include "Manage.h"
 
-class EmpManage {
+class EmpManage : public Manage<Employee> {
     protected:
         list<Employee> Emp;
     public:
