@@ -15,7 +15,6 @@ class Employee : public Person
         ~Employee();
         void Show();
         friend ostream& operator<<(ostream&, const Employee&);
-        bool operator!=(const Employee&);
         unsigned int getSalary();
         void setSalary(unsigned int);
         Position getPosition();

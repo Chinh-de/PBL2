@@ -22,9 +22,6 @@ ostream& operator<<(ostream& o, const Employee& e){
     delete p;
     return o;
 }
-bool Employee::operator!=(const Employee& e){
-    return (this->ID != e.ID);
-}
 unsigned int Employee::getSalary()
 {
     return this->salary;
