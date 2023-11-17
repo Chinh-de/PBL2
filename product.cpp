@@ -2,16 +2,26 @@
 
 product::product(){
     //Random ma san pham
-    cout << "Ten san pham: "; cin >> this->name;
-    cout << "Ten gia nhap: "; cin >> this->import_price;
-    cout << "Ten san ban: "; cin >> this->price;
-    cout << "Nhap thong so:" << endl
-    << "CPU: "; cin >> this->CPU;
-    cout << "RAM: "; cin >> this->RAM;
-    cout << "Man hinh: "; cin >> this->screen;
-    cout << "O cung: "; cin >> this->hard_disk;
-    cout << "GPU: "; cin >> this->GPU;
-
+    // cout << "Ten san pham: "; cin >> this->name;
+    // cout << "Ten san ban: "; cin >> this->price;
+    // cout << "Nhap thong so:" << endl
+    // << "CPU: "; cin >> this->CPU;
+    // cout << "RAM: "; cin >> this->RAM;
+    // cout << "Man hinh: "; cin >> this->screen;
+    // cout << "O cung: "; cin >> this->hard_disk;
+    // cout << "GPU: "; cin >> this->GPU;
+    this->product_id = NULL;
+    this->name = NULL;
+    this->price = 0;
+    this->CPU = NULL;
+    this->RAM = NULL;
+    this->GPU = NULL;
+    this->hard_disk = NULL;
+    this->screen = NULL;
+    this->quantity = 0;
+    this->OS = NULL;
+    list<string> newserial;
+    serial = newserial;
 }
 product::~product()
 { }
@@ -53,9 +63,13 @@ string product::getHardDisk(){
 string product::getGPU(){
     return this->GPU;
 }
-int product::getNumberOf()
+string product::getOS()
 {
-    return this->numberOf;
+    return this->OS;
+}
+int product::getQuantity()
+{
+    return this->quantity;
 }
 void product::setProductName(string n){
     this->name = n;
@@ -66,9 +80,7 @@ void product::setProductId(string id){
 void product::setPrice(unsigned int p){
     this->price = p;
 }
-void product::setImportPrice(unsigned int p){
-    this->import_price = p;
-}
+
 void product::setCPU(string c){
     this->CPU = c;
 }
@@ -84,9 +96,12 @@ void product::setHardDisk(string h){
 void product::setGPU(string g){
     this->GPU = g;
 }
-void product::setNumberOf(int newNumberOf)
+void product::setOS(string newOS){
+    this->OS = newOS;
+}
+void product::setQuantity(int newQuantity)
 {
-    this->numberOf = newNumberOf;
+    this->quantity = newQuantity;
 }
 void product::addSerial(string newSerial)
 {

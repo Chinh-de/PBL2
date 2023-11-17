@@ -8,14 +8,14 @@ class product {
         string product_id;
         string name;
         unsigned int price;
-        unsigned int import_price;
+        string screen;
         string CPU;
         string RAM;
-        string screen;
         string hard_disk;
         string GPU;
-    private:    
-        int numberOf;
+        string OS;
+    private:
+        int quantity;
         list<string> serial;
     public:
         product();
@@ -30,7 +30,8 @@ class product {
         string getScreen();
         string getHardDisk();
         string getGPU();
-        int getNumberOf();
+        string getOS();
+        int getQuantity();
         void setProductName(string);
         void setProductId(string);
         void setPrice(unsigned int);
@@ -40,7 +41,8 @@ class product {
         void setScreen(string);
         void setHardDisk(string);
         void setGPU(string);
-        void setNumberOf(int);
+        void setOS(string);
+        void setQuantity(int);
         void addSerial(string);
         void removeSerial(string);
 };

@@ -1,9 +1,10 @@
 #include "product.h"
-
 class order : public product
-{
-    int invoice_ID;
-    int amount;
-
-
-}
+{  
+    private:
+        int purchase_quantity;
+        list<string> serial;
+    public:
+        unsigned int total();
+        //them phuong thuc
+};

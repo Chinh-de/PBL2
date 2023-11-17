@@ -6,9 +6,15 @@ using namespace std;
 class invoice : 
 {
     private:
-        string invoice_id;
+        string invoice_ID;
         int total;
-        list<order> serial;
+        int employeeID;
+        int customerID;
+        //list<>
+
+
+
+        list<order> ;
         //chi khai bao thong tin lien quan khong khai doi tuong
 
 
