@@ -14,10 +14,16 @@ void Employee::Show()
     cout<< "; Luong: " << this->salary << "; ";
 }
 ostream& operator<<(ostream& o, const Employee& e){
+    Person *p = new Employee();
+    *p = e;
     o << "Ma Nhan vien: " << e.ID << "; ";
-    e.Person::Show();
+    p->Show();
     o << "; Luong: " << e.salary << "; ";
+    delete p;
     return o;
+}
+bool Employee::operator!=(const Employee& e){
+    return (this->ID != e.ID);
 }
 unsigned int Employee::getSalary()
 {
