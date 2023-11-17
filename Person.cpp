@@ -10,7 +10,7 @@ void Person::Show()
     cout << "; Gioi tinh: ";
     if(this->Gender) cout << "Nam ;";
     else cout << "Nu ;";
-    cout << " email: " << Email << "; Dia chi: " << Address; 
+    cout << " email: " << this->Email << "; Dia chi: " << this->Address; 
 }
 int Person::getID(){
     return this->ID;

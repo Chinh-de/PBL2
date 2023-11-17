@@ -4,12 +4,12 @@ EmpManage::EmpManage()
 { }
 EmpManage::~EmpManage()
 { }
-void EmpManage::Add(){
-    this->Emp.Add();
+void EmpManage::add(const& Employee e) {
+    this->Emp.add(e);
 }
-void EmpManage::Remove(){
-    this->Emp.Remove;
+void EmpManage::remove(const& Employee e){
+    this->Emp.remove(e);
 }
-void EmpManage::Dispay(){
-    this->Emp.display;
+void EmpManage::display(){
+    this->Emp.display();
 }

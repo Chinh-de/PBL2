@@ -1,5 +1,5 @@
 #include "Employee.h"
-#include "list.h"
+#include "list.cpp"
 
 class EmpManage : Manage {
     protected:
@@ -7,8 +7,8 @@ class EmpManage : Manage {
     public:
         EmpManage();
         ~EmpManage();
-        void Add();
-        void Remove();
-        void Update();
-        void Dispay();
+        void add(const& Employee);
+        void remove(const& Employee);
+        void update();
+        void display();
 };

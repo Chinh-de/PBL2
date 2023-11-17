@@ -13,6 +13,12 @@ void Employee::Show()
     this->Person::Show();
     cout<< "; Luong: " << this->salary << "; ";
 }
+ostream& operator<<(ostream& o, const Employee& e){
+    o << "Ma Nhan vien: " << e.ID << "; ";
+    e.Person::Show();
+    o << "; Luong: " << e.salary << "; ";
+    return o;
+}
 unsigned int Employee::getSalary()
 {
     return this->salary;
