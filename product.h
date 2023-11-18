@@ -55,9 +55,9 @@ protected:
     unsigned int price;
     unsigned int import_price;
     string CPU;
-    string RAM;
+    int RAM;
     string screen;
-    string hard_disk;
+    int hard_disk;
     string GPU;
 
 private:
@@ -73,9 +73,9 @@ public:
     unsigned int getPrice();
     unsigned int getImportPrice();
     string getCPU();
-    string getRAM();
+    int getRAM();
     string getScreen();
-    string getHardDisk();
+    int getHardDisk();
     string getGPU();
     int getNumberOf();
     void setProductName(string);
@@ -83,9 +83,9 @@ public:
     void setPrice(unsigned int);
     void setImportPrice(unsigned int);
     void setCPU(string);
-    void setRAM(string);
+    void setRAM(int);
     void setScreen(string);
-    void setHardDisk(string);
+    void setHardDisk(int);
     void setGPU(string);
     void setNumberOf(int);
     void addSerial(string);

@@ -48,3 +48,6 @@ string Person::getAddress(){
 void Person::setAddress(string a){
     this->Address = a;
 }
+bool Person::operator!=(const Person& p){
+    return (this->ID != p.ID);
+}

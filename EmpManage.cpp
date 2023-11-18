@@ -4,12 +4,15 @@ EmpManage::EmpManage()
 { }
 EmpManage::~EmpManage()
 { }
-void EmpManage::add(const& Employee e) {
+void EmpManage::add(const Employee& e) {
     this->Emp.add(e);
 }
-void EmpManage::remove(const& Employee e){
+void EmpManage::remove(const Employee& e){
     this->Emp.remove(e);
 }
 void EmpManage::display(){
     this->Emp.display();
+}
+void EmpManage::update(){
+    cout << "123";
 }

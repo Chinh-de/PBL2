@@ -23,4 +23,5 @@ class Person{
         void setGender(bool);
         string getAddress();
         void setAddress(string);
+        bool operator!=(const Person&);
 };
