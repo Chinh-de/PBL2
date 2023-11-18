@@ -41,13 +41,13 @@ unsigned int product::getImportPrice(){
 string product::getCPU(){
     return this->CPU;
 }
-string product::getRAM(){
+int product::getRAM(){
     return this->RAM;
 }
 string product::getScreen(){
     return this->screen;
 }
-string product::getHardDisk(){
+int product::getHardDisk(){
     return this->hard_disk;
 }
 string product::getGPU(){
@@ -72,13 +72,13 @@ void product::setImportPrice(unsigned int p){
 void product::setCPU(string c){
     this->CPU = c;
 }
-void product::setRAM(string r){
+void product::setRAM(int r){
     this->RAM = r;
 }
 void product::setScreen(string s){
     this->screen = s;
 }
-void product::setHardDisk(string h){
+void product::setHardDisk(int h){
     this->hard_disk = h;
 }
 void product::setGPU(string g){
