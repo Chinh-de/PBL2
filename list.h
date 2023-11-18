@@ -1,7 +1,17 @@
 #include <iostream>
-#include "Node.cpp"
 using namespace std;
 
+template <typename T>
+class Node
+{
+    public:
+        T data;
+        Node* next;
+    public:
+        Node();
+        Node(T);
+        ~Node();    
+};
 template <typename T>
 class list
 {

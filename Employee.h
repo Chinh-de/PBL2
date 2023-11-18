@@ -5,7 +5,7 @@ enum Position
     salesperson = 0
 };
 
-class Employee : protected Person
+class Employee : public Person
 {
     protected:
         unsigned int salary;
@@ -14,6 +14,7 @@ class Employee : protected Person
         Employee(int = 0, string = "", string = "", string = "", bool = 0, string = "", unsigned int = 0, Position = manager);           
         ~Employee();
         void Show();
+        friend ostream& operator<<(ostream&, const Employee&);
         unsigned int getSalary();
         void setSalary(unsigned int);
         Position getPosition();
