@@ -77,10 +77,12 @@ void product::setProductName(string n){
 void product::setProductId(string id){
     this->product_id = id;
 }
+void product::setImportPrice(unsigned int p){
+    this->import_price = p;
+}
 void product::setPrice(unsigned int p){
     this->price = p;
 }
-
 void product::setCPU(string c){
     this->CPU = c;
 }
@@ -103,13 +105,14 @@ void product::setQuantity(int newQuantity)
 {
     this->quantity = newQuantity;
 }
+void setNum
 void product::addSerial(string newSerial)
 {
     serial.add(newSerial);
 }
-void removeSerial(string rSerial)
+void product::removeSerial(string rSerial)
 {
-    serial.remove(rSerial);
+    this->serial.remove(rSerial);
 }
 
 
