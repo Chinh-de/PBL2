@@ -2,9 +2,12 @@
 class order : public product
 {  
     private:
-        int purchase_quantity;
-        list<string> serial;
+        unsigned total;
     public:
-        unsigned int total();
-        //them phuong thuc
+        order();
+        ~order();
+        void updateTotal();
+        unsigned int getTotal();
+        friend ostream& operator<<(ostream&, const order&);
+
 };

@@ -14,10 +14,19 @@ class invoice :
         unsigned int total;
         Date date;
         list<order> listOfOrder;
-        //chi khai bao thong tin lien quan khong khai doi tuong
     public:
         invoice();
         ~invoice();
-
-
+        void updateTotal();
+        int getInvoiceID();
+        int getEmployeeID();
+        int getCustomerID();
+        unsigned int getTotal();
+        Date getDate();
+        void setInvoieID(int&);
+        void setEmployeeID(int&);
+        void setCustomerID(int&);
+        void setDate(string&, string&, string&);
+        void addOrder(order&);
+        void removeOrder(string&);
 };

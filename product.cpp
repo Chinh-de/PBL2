@@ -10,7 +10,7 @@ product::product(){
     // cout << "Man hinh: "; cin >> this->screen;
     // cout << "O cung: "; cin >> this->hard_disk;
     // cout << "GPU: "; cin >> this->GPU;
-    this->product_id = NULL;
+    this->productID = NULL;
     this->name = NULL;
     this->price = 0;
     this->CPU = NULL;
@@ -20,8 +20,8 @@ product::product(){
     this->screen = NULL;
     this->quantity = 0;
     this->OS = NULL;
-    list<string> newserial;
-    serial = newserial;
+   // list<string> nullserial;
+    //serial = nullserial; không cần thiết vì nó tự gọi hàm dựng
 }
 product::~product()
 { }
@@ -39,8 +39,8 @@ void product::show(){
 string product::getProductName(){
     return this->name;
 }
-string product::getProductId(){
-    return this->product_id;
+string product::getproductID(){
+    return this->productID;
 }
 unsigned int product::getPrice(){
     return this->price;
@@ -74,8 +74,8 @@ int product::getQuantity()
 void product::setProductName(string n){
     this->name = n;
 }
-void product::setProductId(string id){
-    this->product_id = id;
+void product::setproductID(string id){
+    this->productID = id;
 }
 void product::setImportPrice(unsigned int p){
     this->import_price = p;
@@ -106,11 +106,11 @@ void product::setQuantity(int newQuantity)
     this->quantity = newQuantity;
 }
 void setNum
-void product::addSerial(string newSerial)
+void product::addSerial(string& newSerial)
 {
     serial.add(newSerial);
 }
-void product::removeSerial(string rSerial)
+void product::removeSerial(string& rSerial)
 {
     this->serial.remove(rSerial);
 }

@@ -24,4 +24,6 @@ class list
         void remove(const T&);
         void display();
         //void update();
+        template <typename V>
+        void traverseList(void (*action)(const V&)) const; 
 };
