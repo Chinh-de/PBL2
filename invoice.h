@@ -1,4 +1,6 @@
-//##
+#include "list.cpp"
+#include "order.h"
+#include "Date.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -6,17 +8,16 @@ using namespace std;
 class invoice : 
 {
     private:
-        string invoice_ID;
-        int total;
+        int invoiceID;
         int employeeID;
         int customerID;
-        //list<>
-
-
-
-        list<order> ;
+        unsigned int total;
+        Date date;
+        list<order> listOfOrder;
         //chi khai bao thong tin lien quan khong khai doi tuong
-
+    public:
+        invoice();
+        ~invoice();
 
 
 };
