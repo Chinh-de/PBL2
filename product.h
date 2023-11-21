@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include "list.cpp"
+#pragma once
 using namespace std;
 
 class product
@@ -24,8 +25,10 @@ class product
         product();
         ~product();
         void show();
-        string getProductName();
-        string getproductID();
+        friend ostream& operator<<(ostream&, const product&);
+        bool operator!=(const product&);
+        string getName();
+        string getID();
         unsigned int getPrice();
         unsigned int getImportPrice();
         string getCPU();
@@ -33,9 +36,10 @@ class product
         string getScreen();
         int getHardDisk();
         string getGPU();
+        string getOS();
         int getQuantity();
-        void setProductName(string);
-        void setproductID(string);
+        void setName(string);
+        void setID(string);
         void setPrice(unsigned int);
         void setImportPrice(unsigned int);
         void setCPU(string);
@@ -45,6 +49,6 @@ class product
         void setGPU(string);
         void setOS(string);
         void setQuantity(int);
-        void addSerial(string&);
-        void removeSerial(string&);
+        void addSerial(string);
+        void removeSerial(string);
 };

@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-class invoice : 
+class invoice
 {
     private:
         int invoiceID;
@@ -17,16 +17,19 @@ class invoice :
     public:
         invoice();
         ~invoice();
+        void show();
+        friend ostream& operator<<(ostream&, const invoice&);
+        bool operator!=(const invoice&);
         void updateTotal();
         int getInvoiceID();
         int getEmployeeID();
         int getCustomerID();
         unsigned int getTotal();
         Date getDate();
-        void setInvoieID(int&);
-        void setEmployeeID(int&);
-        void setCustomerID(int&);
-        void setDate(string&, string&, string&);
-        void addOrder(order&);
-        void removeOrder(string&);
+        void setInvoieID(int);
+        void setEmployeeID(int);
+        void setCustomerID(int);
+        void setDate(string, string, string);
+        void addOrder(order);
+        void removeOrder(string);
 };

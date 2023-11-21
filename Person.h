@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include <string>
+#pragma once
 class Person{
     protected:
         int ID;
