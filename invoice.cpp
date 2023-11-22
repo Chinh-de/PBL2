@@ -32,10 +32,10 @@ bool invoice::operator!=(const invoice& i){
 void invoice::updateTotal()
 {
   this->total = 0;
-  Node<order>* tempNode = this->listOfOrder.head;
+  Node<order>* tempNode = this->listOfOrder.getHead();
     while (tempNode != nullptr) 
     {
-        this->total += tempNode->data.getTotal;
+        this->total += tempNode->data.getTotal();
         tempNode = tempNode->next;
     }
 }
@@ -66,55 +66,46 @@ Date invoice::getDate()
     return this->date;
 }
 
-<<<<<<< HEAD
 void invoice::setInvoiceID(int& ID)
-=======
-void invoice::setInvoieID(int ID)
->>>>>>> aaa9f08726ef2e39cdf76386995a22d7f113c249
 {
     this->invoiceID = ID;
 }
 
-void invoice::setEmployeeID(int ID)
+void invoice::setEmployeeID(int& ID)
 {
     this->employeeID = ID;
 }
         
-void invoice::setCustomerID(int ID)
+void invoice::setCustomerID(int& ID)
 {
     this->customerID = ID;
 }
 
-void invoice::setDate(string year, string month, string day)
+void invoice::setDate(string& year, string& month, string& day)
 {
     this->date.setYear(year);
     this->date.setMonth(month);
     this->date.setDay(day);
 }
 
-void invoice::addOrder(order o)
+void invoice::addOrder(order& o)
 {
     this->listOfOrder.add(o);
 }
 
-<<<<<<< HEAD
 void invoice::removeOrder(const string& ID)
 {
-    Node<order>* tempNode = this->listOfOrder.head;
-    while (tempNode != nullptr) 
+    Node<order>* tempNode = this->listOfOrder.getHead();
+     while (tempNode != nullptr) 
     {
-        if (tempNode->data.getproductID == ID) break;
+        if (tempNode->data.getID() == ID) {
+            listOfOrder.remove(tempNode->data);
+            break;
+        }
         tempNode = tempNode->next;
     }
     if (tempNode != nullptr) 
-        cout << "Chua co san pham nay trong gio hang";
-    else listOfOrder.remove(rOrder);
+        listOfOrder.remove(tempNode->data);
+    else cout << "Chua co san pham nay trong gio hang";
+
 }
-=======
-// void invoice::removeOrder(productID)
-// {
-//     order rOrder;
-//     //duyet qua listOfOder tim phan tu
-//     listOfOrder.remove(rOrder);
-// }
->>>>>>> aaa9f08726ef2e39cdf76386995a22d7f113c249

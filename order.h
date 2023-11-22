@@ -10,5 +10,5 @@ class order : public product
         void updateTotal();
         unsigned int getTotal();
         friend ostream& operator<<(ostream&, const order&);
-        bool operator!=(const order&);
+        bool operator!=(const order&) const;
 };

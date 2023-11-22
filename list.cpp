@@ -14,6 +14,7 @@ Node<T>::~Node()
 {
     this->next = nullptr;
 }
+
 template <typename T>
 list<T>::list()
 {
@@ -27,6 +28,11 @@ list<T>::~list()
         head = head->next;
         delete temp;
     }
+}
+template <typename T>
+Node<T>* list<T>::getHead() const
+{
+    return this->head;
 }
 template <typename T>
 void list<T>::add(const T& addData)

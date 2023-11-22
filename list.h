@@ -20,6 +20,7 @@ class list
     public:
         list();
         ~list();
+        Node<T>* getHead() const;
         void add(const T&);
         void remove(const T&);
         void display();

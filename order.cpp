@@ -2,7 +2,7 @@
 
 order::order()
 {
-    // this->productID = 0;
+    //this->productID = "";
     // this->name = "";
     // this->price = 0;
     // this->quantity = 0;
@@ -31,9 +31,10 @@ ostream& operator<<(ostream& o, const order& _order)
     return o;
 }
 
-bool order::operator!=(const order& order)
-{
-    return this->productID != order.getproductID();
+bool order::operator!=(const order& other) const {
+    
+    return this->getID() != other.getID();
 }
+
 
 

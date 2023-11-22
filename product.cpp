@@ -17,10 +17,7 @@ product::product(){
     this->RAM = 0;
     this->GPU = "";
     this->hard_disk = 0;
-<<<<<<< HEAD
     this->import_price = 0;
-=======
->>>>>>> aaa9f08726ef2e39cdf76386995a22d7f113c249
     this->screen = "";
     this->quantity = 0;
     this->OS = "";
@@ -39,16 +36,12 @@ void product::show(){
     << "Man hinh: " << this->screen << endl
     << "O cung: " << this->hard_disk << "GB" << endl
     << "GPU: " << this->GPU << endl;
-<<<<<<< HEAD
     cout << "so luong con: " << getQuantity() << " may";
-=======
-    // this->serial.display();
->>>>>>> aaa9f08726ef2e39cdf76386995a22d7f113c249
 }
 ostream& operator<<(ostream& o, const product& p){
     o << "Ten san pham: " << p.name << endl
-    << "Ten gia nhap: " << p.import_price << endl
-    << "Ten san ban: " << p.price << endl
+    << "Gia nhap: " << p.import_price << endl
+   // << "Ten san ban: " << p.price << endl
     << "Thong so:" << endl
     << "CPU: " << p.CPU << endl
     << "RAM: " << p.RAM << endl
@@ -64,7 +57,8 @@ bool product::operator!=(const product& p){
 string product::getName(){
     return this->name;
 }
-string product::getID(){
+string product::getID() const
+{
     return this->productID;
 }
 unsigned int product::getPrice(){
@@ -130,22 +124,16 @@ void product::setQuantity(int newQuantity)
 {
     this->quantity = newQuantity;
 }
-<<<<<<< HEAD
 void product::addSerial(string& newSerial)
 {
     this->serial.add(newSerial);
     this->setQuantity (this->getQuantity() + 1);
-=======
-void product::addSerial(string newSerial)
-{
-    this->serial.add(newSerial);
->>>>>>> aaa9f08726ef2e39cdf76386995a22d7f113c249
 }
-void product::removeSerial(string rSerial)
+void product::removeSerial(string& rSerial)
 {
     this->serial.remove(rSerial);
     this->setQuantity(this->getQuantity() - 1);
-
 }
+
 
 

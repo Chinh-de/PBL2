@@ -28,7 +28,7 @@ class product
         friend ostream& operator<<(ostream&, const product&);
         bool operator!=(const product&);
         string getName();
-        string getID();
+        string getID() const;
         unsigned int getPrice();
         unsigned int getImportPrice();
         string getCPU();
@@ -49,6 +49,6 @@ class product
         void setGPU(string);
         void setOS(string);
         void setQuantity(int);
-        void addSerial(string);
-        void removeSerial(string);
+        void addSerial(string&);
+        void removeSerial(string&);
 };
