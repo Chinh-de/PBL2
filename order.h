@@ -1,4 +1,5 @@
 #include "product.h"
+using namespace std;
 class order : public product
 {  
     private:
@@ -9,5 +10,5 @@ class order : public product
         void updateTotal();
         unsigned int getTotal();
         friend ostream& operator<<(ostream&, const order&);
-
+        bool operator!=(const order&);
 };

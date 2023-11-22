@@ -33,6 +33,7 @@ class product
         string getScreen();
         int getHardDisk();
         string getGPU();
+        string getOS();
         int getQuantity();
         void setProductName(string);
         void setproductID(string);

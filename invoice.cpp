@@ -13,7 +13,13 @@ invoice::~invoice()
 
 void invoice::updateTotal()
 {
-  //code thêm hàm duyệt list  
+  this->total = 0;
+  Node<order>* tempNode = this->listOfOrder.head;
+    while (tempNode != nullptr) 
+    {
+        this->total += tempNode->data.getTotal;
+        tempNode = tempNode->next;
+    }
 }
 
 int invoice::getInvoiceID()
@@ -42,7 +48,7 @@ Date invoice::getDate()
     return this->date;
 }
 
-void invoice::setInvoieID(int& ID)
+void invoice::setInvoiceID(int& ID)
 {
     this->invoiceID = ID;
 }
@@ -69,9 +75,15 @@ void invoice::addOrder(order&)
     this->listOfOrder.add(order);
 }
 
-void invoice::removeOrder(productID)
+void invoice::removeOrder(const string& ID)
 {
-    order rOrder;
-    //duyet qua listOfOder tim phan tu
-    listOfOrder.remove(rOrder);
+    Node<order>* tempNode = this->listOfOrder.head;
+    while (tempNode != nullptr) 
+    {
+        if (tempNode->data.getproductID == ID) break;
+        tempNode = tempNode->next;
+    }
+    if (tempNode != nullptr) 
+        cout << "Chua co san pham nay trong gio hang";
+    else listOfOrder.remove(rOrder);
 }

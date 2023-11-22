@@ -75,13 +75,3 @@ void list<T>::display()
     }
 }
 
-template <typename T, typename V>
-void list<T,V>::traverseList(void (*action)(const V&)) const
-{
-    Node<T>* tempNode = this->head
-    while (tempNode != nullptr) 
-    {
-        action(tempNode->data);
-        tempNode = tempNode->next;
-    }
-}

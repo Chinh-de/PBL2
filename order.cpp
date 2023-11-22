@@ -13,7 +13,7 @@ order::order()
 order::~order()
 {   }
 
-unsigned int order::updateTotal()
+void order::updateTotal()
 {
     this->total = this->quantity * this->price;
 }
@@ -30,5 +30,9 @@ ostream& operator<<(ostream& o, const order& _order)
     return o;
 }
 
+bool order::operator!=(const order& order)
+{
+    return this->productID != order.getproductID();
+}
 
 
