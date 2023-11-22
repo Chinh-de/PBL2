@@ -17,7 +17,7 @@ ostream& operator<<(ostream& o, const Employee& e){
     Person *p = new Employee();
     *p = e;
     o << "Ma Nhan vien: " << e.ID << "; ";
-    p->Show();
+    p->Person::Show();
     o << "; Luong: " << e.salary << "; ";
     delete p;
     return o;

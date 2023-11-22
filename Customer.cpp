@@ -12,7 +12,6 @@ void Customer::Show()
 ostream& operator<<(ostream& o, const Customer& e){
     Person *p = new Customer();
     *p = e;
-    o << "Ma Nhan vien: " << e.ID << "; ";
     p->Show();
     delete p;
     return o;

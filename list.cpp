@@ -1,4 +1,5 @@
 #include "list.h"
+#pragma once
 template <typename T>
 Node<T>::Node()
     : next(nullptr)
@@ -74,4 +75,3 @@ void list<T>::display()
         tempNode = tempNode->next;
     }
 }
-

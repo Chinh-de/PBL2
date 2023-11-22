@@ -17,7 +17,10 @@ product::product(){
     this->RAM = 0;
     this->GPU = "";
     this->hard_disk = 0;
+<<<<<<< HEAD
     this->import_price = 0;
+=======
+>>>>>>> aaa9f08726ef2e39cdf76386995a22d7f113c249
     this->screen = "";
     this->quantity = 0;
     this->OS = "";
@@ -36,12 +39,32 @@ void product::show(){
     << "Man hinh: " << this->screen << endl
     << "O cung: " << this->hard_disk << "GB" << endl
     << "GPU: " << this->GPU << endl;
+<<<<<<< HEAD
     cout << "so luong con: " << getQuantity() << " may";
+=======
+    // this->serial.display();
+>>>>>>> aaa9f08726ef2e39cdf76386995a22d7f113c249
 }
-string product::getProductName(){
+ostream& operator<<(ostream& o, const product& p){
+    o << "Ten san pham: " << p.name << endl
+    << "Ten gia nhap: " << p.import_price << endl
+    << "Ten san ban: " << p.price << endl
+    << "Thong so:" << endl
+    << "CPU: " << p.CPU << endl
+    << "RAM: " << p.RAM << endl
+    << "Man hinh: " << p.screen << endl
+    << "O cung: " << p.hard_disk << endl
+    << "GPU: " << p.GPU << endl;
+    // p.serial.display();
+    return o;
+}
+bool product::operator!=(const product& p){
+    return (this->productID != p.productID);
+}
+string product::getName(){
     return this->name;
 }
-string product::getproductID(){
+string product::getID(){
     return this->productID;
 }
 unsigned int product::getPrice(){
@@ -73,10 +96,10 @@ int product::getQuantity()
 {
     return this->quantity;
 }
-void product::setProductName(string n){
+void product::setName(string n){
     this->name = n;
 }
-void product::setproductID(string id){
+void product::setID(string id){
     this->productID = id;
 }
 void product::setImportPrice(unsigned int p){
@@ -107,12 +130,18 @@ void product::setQuantity(int newQuantity)
 {
     this->quantity = newQuantity;
 }
+<<<<<<< HEAD
 void product::addSerial(string& newSerial)
 {
     this->serial.add(newSerial);
     this->setQuantity (this->getQuantity() + 1);
+=======
+void product::addSerial(string newSerial)
+{
+    this->serial.add(newSerial);
+>>>>>>> aaa9f08726ef2e39cdf76386995a22d7f113c249
 }
-void product::removeSerial(string& rSerial)
+void product::removeSerial(string rSerial)
 {
     this->serial.remove(rSerial);
     this->setQuantity(this->getQuantity() - 1);

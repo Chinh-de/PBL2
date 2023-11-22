@@ -1,5 +1,7 @@
 #include "Date.h"
 
+Date::Date()
+{ }
 Date::Date(string Y, string M, string D)
     : Year(Y), Month(M), Day(D)
 { }

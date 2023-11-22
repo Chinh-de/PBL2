@@ -1,15 +1,15 @@
 #include <iostream>
 using namespace std;
-
+#pragma once
 class Date{
     protected:
         string Year;
         string Month;
         string Day;
-    private:
+    public:
+        Date();
         Date(string, string, string);
         ~Date();
-    public:
         string getYear();
         string getMonth();
         string getDay();
