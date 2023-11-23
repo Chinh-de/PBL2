@@ -7,7 +7,7 @@ using namespace std;
 class product
 {
     protected:
-        string productID;
+        int productID;
         string name;
         int quantity;
         list<string> serial;
@@ -28,7 +28,7 @@ class product
         friend ostream& operator<<(ostream&, const product&);
         bool operator!=(const product&);
         string getName();
-        string getID() const;
+        int getID() const;
         unsigned int getPrice();
         unsigned int getImportPrice();
         string getCPU();
@@ -39,7 +39,7 @@ class product
         string getOS();
         int getQuantity();
         void setName(string);
-        void setID(string);
+        void setID(int);
         void setPrice(unsigned int);
         void setImportPrice(unsigned int);
         void setCPU(string);

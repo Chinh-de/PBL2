@@ -31,5 +31,5 @@ class invoice
         void setCustomerID(int&);
         void setDate(string&, string&, string&);
         void addOrder(order&);
-        void removeOrder(const string&);
+        void removeOrder(const int&);
 };

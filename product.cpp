@@ -10,7 +10,7 @@ product::product(){
     // cout << "Man hinh: "; cin >> this->screen;
     // cout << "O cung: "; cin >> this->hard_disk;
     // cout << "GPU: "; cin >> this->GPU;
-    this->productID = "";
+    this->productID = 0;
     this->name = "";
     this->price = 0;
     this->CPU = "";
@@ -57,7 +57,7 @@ bool product::operator!=(const product& p){
 string product::getName(){
     return this->name;
 }
-string product::getID() const
+int product::getID() const
 {
     return this->productID;
 }
@@ -93,7 +93,7 @@ int product::getQuantity()
 void product::setName(string n){
     this->name = n;
 }
-void product::setID(string id){
+void product::setID(int id){
     this->productID = id;
 }
 void product::setImportPrice(unsigned int p){
