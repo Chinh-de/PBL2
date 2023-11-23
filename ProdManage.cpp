@@ -16,3 +16,8 @@ void ProdManage::display(){
 void ProdManage::update(){
     cout << "123";
 }
+//void sort(bool type)
+//{
+    //type = 0 sap xep tu thap den cao, = 1 tu cao den thap
+    
+//}

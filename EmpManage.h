@@ -12,4 +12,6 @@ class EmpManage : public Manage<Employee> {
         void remove(const Employee&);
         void update();
         void display();
+        Employee find(int&);
+        list<Employee> find(string&, string&);
 };

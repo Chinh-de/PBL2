@@ -110,5 +110,4 @@ void invoice::removeOrder(const int& ID)
     if (tempNode != nullptr) 
         listOfOrder.remove(tempNode->data);
     else cout << "Chua co san pham nay trong gio hang";
-
 }

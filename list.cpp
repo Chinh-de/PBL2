@@ -68,7 +68,6 @@ void list<T>::remove(const T& removeData)
             tempNode->next = nullptr;
         }
     }
-    delete tempNode;
 }
 template <typename T>
 void list<T>::display()

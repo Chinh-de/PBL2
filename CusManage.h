@@ -12,4 +12,6 @@ class CusManage : public Manage<Customer> {
         void remove(const Customer&);
         void update();
         void display();
+        Customer find(int&);
+        list<Customer> find(string&, string&);
 };
