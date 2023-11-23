@@ -15,7 +15,7 @@ void invoice::show(){
     cout << "Ma khach hang: " << this->customerID << endl;
     cout << "Ma nhan vien: " << this->employeeID << endl;
     cout << "Tong tien: " << this->total << endl;
-    // this->listOfOrder.display();
+    this->listOfOrder.display();
 }
 ostream& operator<<(ostream& o, const invoice& i)
 {
@@ -23,7 +23,10 @@ ostream& operator<<(ostream& o, const invoice& i)
     o << "Ma khach hang: " << i.customerID << endl;
     o << "Ma nhan vien: " << i.employeeID << endl;
     o << "Tong tien: " << i.total << endl;
-    // i.listOfOrder.display();
+    invoice *temp = new invoice();
+    *temp = i;
+    temp->listOfOrder.display();
+    delete temp;
     return o;
 }
 bool invoice::operator!=(const invoice& i){

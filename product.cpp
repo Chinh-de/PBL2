@@ -48,7 +48,10 @@ ostream& operator<<(ostream& o, const product& p){
     << "Man hinh: " << p.screen << endl
     << "O cung: " << p.hard_disk << endl
     << "GPU: " << p.GPU << endl;
-    // p.serial.display();
+    product *temp = new product();
+    *temp = p;
+    temp->serial.display();
+    delete temp;
     return o;
 }
 bool product::operator!=(const product& p){

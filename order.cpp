@@ -26,8 +26,11 @@ unsigned int order::getTotal()
 
 ostream& operator<<(ostream& o, const order& _order)
 {
-    o << _order.productID << "  " << _order.name << "   " << _order.price << "  " << _order.quantity << "  "; 
-    // _order.serial.display();
+    o << _order.productID << "  " << _order.name << "   " << _order.price << "  " << _order.quantity << "  ";
+    order *don = new order();
+    *don = _order;
+    don->serial.display();
+    delete don;
     return o;
 }
 
