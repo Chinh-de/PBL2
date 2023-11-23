@@ -137,6 +137,14 @@ void product::removeSerial(string& rSerial)
     this->serial.remove(rSerial);
     this->setQuantity(this->getQuantity() - 1);
 }
+bool product::operator>(product& p)
+{
+    return this->getPrice() > p.getPrice();
+}
+bool product::operator<(product& p)
+{
+    return this->getPrice() < p.getPrice();
+}
 
 
 

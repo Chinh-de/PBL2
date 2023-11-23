@@ -12,5 +12,6 @@ class ProdManage : public Manage<product> {
         void remove(const product&);
         void update();
         void display();
+        void sort(bool);
         
 };

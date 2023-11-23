@@ -80,3 +80,59 @@ void list<T>::display()
         tempNode = tempNode->next;
     }
 }
+
+template <typename T>
+Node<T>* list<T>::findMiddle(Node<T>* head) {
+    if (head == nullptr) {
+        return nullptr;
+    }
+
+    Node<T>* slow = head;
+    Node<T>* fast = head;
+
+    while (fast->next != nullptr && fast->next->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
+template <typename T>
+Node<T>* list<T>::mergeSort(Node<T>* head, bool ascending) {
+    if (head == nullptr || head->next == nullptr) {
+        return head;
+    }
+
+    Node<T>* middle = findMiddle(head);
+    Node<T>* nextToMiddle = middle->next;
+    middle->next = nullptr;
+
+    head = mergeSort(head, ascending);
+    nextToMiddle = mergeSort(nextToMiddle, ascending);
+
+    return merge(head, nextToMiddle, ascending);
+}
+
+template <typename T>
+Node<T>* list<T>::merge(Node<T>* left, Node<T>* right, bool type) {
+    //type true tang, false
+    Node<T>* result = nullptr;
+
+    if (left == nullptr) {
+        return right;
+    }
+    if (right == nullptr) {
+        return left;
+    }
+
+    if (type ? (left->data < right->data) : (left->data > right->data)) {
+        result = left;
+        result->next = merge(left->next, right, type);
+    } else {
+        result = right;
+        result->next = merge(left, right->next, type);
+    }
+
+    return result;
+}
