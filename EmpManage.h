@@ -10,7 +10,7 @@ class EmpManage : public Manage<Employee> {
         ~EmpManage();
         void add(const Employee&);
         void remove(const Employee&);
-        void update();
+        void update(Employee&);
         void display();
         Employee find(int&);
         list<Employee> find(string&, string&);

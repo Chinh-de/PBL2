@@ -13,7 +13,7 @@ void EmpManage::remove(const Employee& e){
 void EmpManage::display(){
     this->Emp.display();
 }
-void EmpManage::update(){
+void EmpManage::update(Employee& e){
     cout << "123";
 }
 Employee EmpManage::find(int& ID)

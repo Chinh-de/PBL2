@@ -10,6 +10,6 @@ class InvManage : public Manage<invoice> {
         ~InvManage();
         void add(const invoice&);
         void remove(const invoice&);
-        void update();
+        void update(invoice&);
         void display();
 };

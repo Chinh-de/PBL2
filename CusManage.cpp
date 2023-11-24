@@ -13,7 +13,7 @@ void CusManage::remove(const Customer& c){
 void CusManage::display(){
     this->Cus.display();
 }
-void CusManage::update(){
+void CusManage::update(Customer& c){
     cout << "123";
 }
 Customer CusManage::find(int& ID)

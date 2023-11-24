@@ -10,8 +10,9 @@ class ProdManage : public Manage<product> {
         ~ProdManage();
         void add(const product&);
         void remove(const product&);
-        void update();
+        void update(product&);
         void display();
         void sort(bool);
-        
+        //product find(int &ID);
+        //list<product> filter(....); 
 };

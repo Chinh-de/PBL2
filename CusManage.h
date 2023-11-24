@@ -10,7 +10,7 @@ class CusManage : public Manage<Customer> {
         ~CusManage();
         void add(const Customer&);
         void remove(const Customer&);
-        void update();
+        void update(Customer&);
         void display();
         Customer find(int&);
         list<Customer> find(string&, string&);

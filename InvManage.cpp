@@ -13,6 +13,6 @@ void InvManage::remove(const invoice& c){
 void InvManage::display(){
     this->Inv.display();
 }
-void InvManage::update(){
+void InvManage::update(invoice&){
     cout << "123";
 }
