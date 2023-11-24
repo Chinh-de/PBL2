@@ -84,7 +84,7 @@ void invoice::setCustomerID(int& ID)
     this->customerID = ID;
 }
 
-void invoice::setDate(string& year, string& month, string& day)
+void invoice::setDate(int& year, int& month, int& day)
 {
     this->date.setYear(year);
     this->date.setMonth(month);
