@@ -31,6 +31,7 @@ class product
         int getID() const;
         unsigned int getPrice();
         unsigned int getImportPrice();
+        unsigned int Profit();
         string getCPU();
         int getRAM();
         string getScreen();

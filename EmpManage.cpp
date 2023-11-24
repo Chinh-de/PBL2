@@ -24,6 +24,7 @@ Employee EmpManage::find(int& ID)
         if (tempNode->data.getID() == ID) return tempNode->data;
         tempNode = tempNode->next;
     }
+    return tempNode->data;
 }
 list<Employee> EmpManage::find(string& name, string& phone)
 {

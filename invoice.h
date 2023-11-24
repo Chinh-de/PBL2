@@ -25,11 +25,13 @@ class invoice
         int getEmployeeID();
         int getCustomerID();
         unsigned int getTotal();
+        unsigned int getProfit();
+        unsigned int productSales();
         Date getDate();
         void setInvoiceID(int&);
         void setEmployeeID(int&);
         void setCustomerID(int&);
-        void setDate(string&, string&, string&);
+        void setDate(int&, int&, int&);
         void addOrder(order&);
         void removeOrder(const int&);
 };

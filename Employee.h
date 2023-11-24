@@ -10,6 +10,7 @@ class Employee : public Person
     protected:
         unsigned int salary;
         Position position;
+        string password;
     public:
         Employee(int = 0, string = "", string = "", string = "", bool = 0, string = "", unsigned int = 0, Position = manager);           
         ~Employee();
@@ -18,6 +19,8 @@ class Employee : public Person
         unsigned int getSalary();
         void setSalary(unsigned int);
         Position getPosition();
-        void setPositon(Position);     
+        void setPositon(Position);
+        string getPassword();
+        void setPassword(string&);
 };
 

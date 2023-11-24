@@ -12,4 +12,8 @@ class InvManage : public Manage<invoice> {
         void remove(const invoice&);
         void update(invoice&);
         void display();
+        list<invoice> find(int&, int&, int&);
+        list<invoice> find(int&, int&);
+        list<invoice> find(int&);
+        void statistic(list<invoice>&);
 };

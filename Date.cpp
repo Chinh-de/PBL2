@@ -2,27 +2,27 @@
 
 Date::Date()
 { }
-Date::Date(string Y, string M, string D)
-    : Year(Y), Month(M), Day(D)
+Date::Date(int D, int M, int Y)
+    : Day(D), Month(M), Year(Y)
 { }
 Date::~Date()
 { }
 
-string Date::getYear(){
+int Date::getYear(){
     return this->Year;
 }
-string Date::getMonth(){
+int Date::getMonth(){
     return this->Month;
 }
-string Date::getDay(){
+int Date::getDay(){
     return this->Day;
 }
-void Date::setYear(string Y){
+void Date::setYear(int Y){
     this->Year = Y;
 }
-void Date::setMonth(string M){
+void Date::setMonth(int M){
     this->Month = M;
 }
-void Date::setDay(string D){
+void Date::setDay(int D){
     this->Year = D;
 }

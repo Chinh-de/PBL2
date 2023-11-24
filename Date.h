@@ -3,17 +3,17 @@ using namespace std;
 #pragma once
 class Date{
     protected:
-        string Year;
-        string Month;
-        string Day;
+        int Year;
+        int Month;
+        int Day;
     public:
         Date();
-        Date(string, string, string);
+        Date(int, int, int);
         ~Date();
-        string getYear();
-        string getMonth();
-        string getDay();
-        void setYear(string);
-        void setMonth(string);
-        void setDay(string);
+        int getYear();
+        int getMonth();
+        int getDay();
+        void setYear(int);
+        void setMonth(int);
+        void setDay(int);
 };
