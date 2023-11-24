@@ -19,6 +19,8 @@ class Employee : public Person
         unsigned int getSalary();
         void setSalary(unsigned int);
         Position getPosition();
-        void setPositon(Position);     
+        void setPositon(Position);
+        string getPassword();
+        void setPassword(string&);
 };
 

@@ -45,3 +45,9 @@ void Employee::setPositon(Position newPosition)
 {
     this->position = newPosition;
 }
+string Employee::getPassword(){
+    return this->password;
+}
+void Employee::setPassword(string& p){
+    this->password = p;
+}
