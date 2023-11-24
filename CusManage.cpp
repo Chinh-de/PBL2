@@ -24,6 +24,7 @@ Customer CusManage::find(int& ID)
         if (tempNode->data.getID() == ID) return tempNode->data;
         tempNode = tempNode->next;
     }
+    return tempNode->data;
 }
 list<Customer> CusManage::find(string& name, string& phone)
 {
