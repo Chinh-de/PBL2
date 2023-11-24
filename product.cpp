@@ -70,6 +70,9 @@ unsigned int product::getPrice(){
 unsigned int product::getImportPrice(){
     return this->import_price;
 }
+unsigned int product::Profit(){
+    return (this->price - this->import_price); 
+}
 string product::getCPU(){
     return this->CPU;
 }

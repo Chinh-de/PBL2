@@ -15,4 +15,5 @@ class InvManage : public Manage<invoice> {
         list<invoice> find(int&, int&, int&);
         list<invoice> find(int&, int&);
         list<invoice> find(int&);
+        void statistic(list<invoice>&);
 };

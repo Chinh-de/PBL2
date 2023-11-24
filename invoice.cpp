@@ -34,8 +34,8 @@ bool invoice::operator!=(const invoice& i){
 }
 void invoice::updateTotal()
 {
-  this->total = 0;
-  Node<order>* tempNode = this->listOfOrder.getHead();
+    this->total = 0;
+    Node<order>* tempNode = this->listOfOrder.getHead();
     while (tempNode != nullptr) 
     {
         this->total += tempNode->data.getTotal();
@@ -63,7 +63,26 @@ unsigned int invoice::getTotal()
     this->updateTotal();
     return this->total;
 }
-
+unsigned int invoice::getProfit(){
+    unsigned int p = 0;
+    Node<order>* tempNode = this->listOfOrder.getHead();
+    while (tempNode != nullptr) 
+    {
+        p += tempNode->data.Profit();
+        tempNode = tempNode->next;
+    }
+    return p;
+}
+unsigned int invoice::productSales(){
+    unsigned int s = 0;
+    Node<order>* tempNode = this->listOfOrder.getHead();
+    while (tempNode != nullptr) 
+    {
+        s += tempNode->data.getQuantity();
+        tempNode = tempNode->next;
+    }
+    return s;
+}
 Date invoice::getDate()
 {
     return this->date;

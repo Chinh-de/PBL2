@@ -60,3 +60,20 @@ list<invoice> InvManage::find(int& n){
     delete tempNode;
     return tempList;
 }
+void InvManage::statistic(list<invoice>& List){
+    Node<invoice>* tempNode;
+    tempNode = List.getHead();
+    int revenue = 0; //doanh thu
+    int profit = 0; //loi nhuan
+    int sales = 0; //so luong san pham ban duoc 
+    while (tempNode != nullptr){
+        revenue += tempNode->data.getTotal();
+        profit += tempNode->data.getProfit();
+        sales += tempNode->data.productSales();
+    }
+    cout << "Thong ke ngay: " << endl;
+    cout << "Doanh thu: " << revenue << endl
+    << "Loi nhuan: " << profit << endl
+    << "san pham ban duocL " << sales << endl;
+    delete tempNode;
+}

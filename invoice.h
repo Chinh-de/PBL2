@@ -25,6 +25,8 @@ class invoice
         int getEmployeeID();
         int getCustomerID();
         unsigned int getTotal();
+        unsigned int getProfit();
+        unsigned int productSales();
         Date getDate();
         void setInvoiceID(int&);
         void setEmployeeID(int&);
