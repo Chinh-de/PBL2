@@ -1,0 +1,1 @@
+HX5020|laptop lenovo ideapad 3|10000000|9000000|i5 12500|16|16inch|256|rtx 3050|window|5|1,2,3,4,5
