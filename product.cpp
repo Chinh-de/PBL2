@@ -60,7 +60,7 @@ bool product::operator!=(const product& p){
 string product::getName(){
     return this->name;
 }
-int product::getID() const
+string product::getID() const
 {
     return this->productID;
 }
@@ -99,7 +99,7 @@ int product::getQuantity()
 void product::setName(string n){
     this->name = n;
 }
-void product::setID(int id){
+void product::setID(string id){
     this->productID = id;
 }
 void product::setImportPrice(unsigned int p){

@@ -115,7 +115,7 @@ void invoice::addOrder(order& o)
     this->listOfOrder.add(o);
 }
 
-void invoice::removeOrder(const int& ID)
+void invoice::removeOrder(const string& ID)
 {
     Node<order>* tempNode = this->listOfOrder.getHead();
      while (tempNode != nullptr) 
