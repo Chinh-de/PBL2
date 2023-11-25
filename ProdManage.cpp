@@ -19,7 +19,7 @@ void ProdManage::update(product& _product){
     int MaxChoice = 10;
     do{
         system("cls");
-        cout<<"Chon thong tin can cap nhat:"<< endl;
+        cout<<"Nhap thong tin:"<< endl;
             cout << (choice == 1 ? "->":"  ") << "Ten san pham: " << _product.getName() << endl;
             cout << (choice == 2 ? "->":"  ") << "Gia ban: " << _product.getPrice() << endl;
             cout << (choice == 3 ? "->":"  ") << "Gia nhap: " << _product.getImportPrice() << endl;
@@ -138,7 +138,7 @@ product ProdManage::find(int &ID)
     return tempNode->data;
 }
 
-list<product> filter()
+list<product> ProdManage::filter()
 {
     //sao chep list ban dau
     list<product> copy;
