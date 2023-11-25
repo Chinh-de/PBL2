@@ -126,3 +126,113 @@ void ProdManage::sort(bool type)
     sortprice.mergeSort(sortprice.getHead(),type);
     sortprice.display();
 }
+
+product ProdManage::find(int &ID)
+{
+    Node<product>* tempNode = this->Prod.getHead();
+    while (tempNode != nullptr) 
+    {
+        if (tempNode->data.getID() == ID) return tempNode->data;
+        tempNode = tempNode->next;
+    }
+    return tempNode->data;
+}
+
+list<product> filter()
+{
+    //sao chep list ban dau
+    list<product> copy;
+    Node<product>* tempNode = this->Prod.getHead();
+    while (tempNode != nullptr) 
+    {
+        copy.add(tempNode->data);
+        tempNode = tempNode->next;
+    }    
+
+    //loc thuoc tinh 
+    int input;
+    int choice = 1;
+    int MaxChoice = 7;
+    do{
+        system("cls");
+        cout<<"Chon thong tin can cap nhat:"<< endl;
+            cout << (choice == 1 ? "->":"  ") << "Hang: " << endl;
+            cout << (choice == 2 ? "->":"  ") << "Muc gia: " << _product.getPrice() << endl;
+            cout << (choice == 3 ? "->":"  ") << "RAM: " << _product.getImportPrice() << endl;
+            cout << (choice == 4 ? "->":"  ") << "Card do hoa: " << _product.getCPU() << endl;
+            cout << (choice == 5 ? "->":"  ") << "O cung: " << _product.getRAM() << " GB" << endl;
+            cout << (choice == 6 ? "->":"  ") << "He Dieu Hanh: " << _product.getOS() << endl;
+            cout << (choice == 7 ? "->":"  ") << "Thoat! " << endl;
+            input = getch();
+
+            if (input == 80) //phim mui ten xuong
+            { 
+                if (choice == MaxChoice) choice = 1; // quay tro lai dau danh sach
+                else choice++;
+            }else if (input == 72) //phim mui ten len
+            {
+                if (choice == 1) choice = MaxChoice; //chay vong xuong cuoi danh sach
+                else choice--;
+            }
+
+        if(input == 13)  //phim enter
+        {
+            string _brand;
+            unsigned int _sprice;
+            unsigned int _eprice;
+            string _CPU;
+            int _RAM = 0;
+            string _Screen;
+            int _Disk;
+            string _GPU;
+            string _OS;
+            switch (choice)
+            {
+                using namespace std;
+                case 1:
+                    //xet brand bằng swichcase
+                    break;
+                case 2:
+                    cout << "Nhap gia bat dau : ";
+                    cin >> _sprice;
+                    cout << "Nhap gia ket thuc : ";
+                    cin >> _eprice;
+                    Node<product>* tempNode = this->copy.getHead();
+                    while (tempNode != nullptr) 
+                    {
+                        if (tempNode->data.getPrice() < _sprice || tempNode->data.getPrice > _eprice) copy.remove(tempNode->data);
+                        tempNode = tempNode->next;
+                    }
+                    copy.display();
+                    system("pause");              
+                    break;
+                case 3:
+                    // cout << "RAM : ";
+                    // //chon ram
+                    break;
+                case 4:
+                    // cout << "Cap nhat CPU moi : ";
+                    // getline(cin,_CPU);
+                    // _product.setCPU(_CPU);
+                    break;
+                case 5:
+                    // cout << "Cap nhat dung luong RAM moi (GB): ";
+                    // cin >> _RAM;
+                    // _product.setRAM(_RAM);
+                    break; 
+                case 6:
+                    // cout << "Cap nhat thong so ma hinh moi : ";
+                    // getline(cin,_Screen);
+                    // _product.setScreen(_Screen);
+                    break;                      
+                case 7:
+                    cout << "Da thoat khoi cap nhat" << endl;
+                    return;
+                    break;
+                default: cout << "Loi du lieu";
+            }
+        }
+    }while (input != '0');
+} 
+
+

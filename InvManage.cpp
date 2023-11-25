@@ -77,3 +77,22 @@ void InvManage::statistic(list<invoice>& List){
     << "san pham ban duocL " << sales << endl;
     delete tempNode;
 }
+/*
+invoice InvManage::printInvoice()
+{
+    //in hoa don ra man hinh
+    //in hoa don ra file trong folder hoa don
+}
+void InvManage::sell()
+{
+    //swich case chon
+    //khach hang cu: chon tim theo ID or SDT
+    //khach hang moi: tao khach hang moi kh1, add khach hang vo roi goi qlkh.update(kh1.getid)
+    
+    //tao hoa don moi voi ID hoa don +1 tu cai hoa don gan nhat
+    //lay thong tin nhan vien khach hang set cho hoa don
+    //lay thoi gianhien tai set cho hoa don
+    //vong lap them san pham: nhap IDsp, nhap sl, nhap serial;
+    //dua trang thai hoa don thanh hoan thanh goi complete();
+    //goi ham in hoa don    
+} */
