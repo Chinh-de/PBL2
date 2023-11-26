@@ -14,4 +14,5 @@ class CusManage : public Manage<Customer> {
         void display();
         Customer find(int&);
         list<Customer> find(string&, string&);
+        int getEndID();
 };

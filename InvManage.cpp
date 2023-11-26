@@ -1,5 +1,4 @@
 #include "InvManage.h"
-
 InvManage::InvManage()
 { }
 InvManage::~InvManage()
@@ -132,3 +131,7 @@ void InvManage::sell()
     //dua trang thai hoa don thanh hoan thanh goi complete();
     //goi ham in hoa don    
 } */
+int InvManage::getEndID()
+{
+    return this->Inv.getHead()->data.getInvoiceID();
+}

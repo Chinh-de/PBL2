@@ -34,6 +34,7 @@ Node<T>* list<T>::getHead() const
 {
     return this->head;
 }
+
 template <typename T>
 void list<T>::add(const T& addData)
 {
@@ -47,6 +48,28 @@ void list<T>::add(const T& addData)
         this->head = newNode; 
     } 
 }
+
+template <typename T>
+void list<T>::addAtEnd(const T& addData)
+{
+    Node<T>* newNode = new Node<T>(addData);
+
+    // Neu rong them vao dau
+    if (this->head == nullptr) {
+        this->head = newNode;
+    } 
+    else {
+        // Duyet den cuoi
+        Node<T>* tempNode = this->head;
+        while (tempNode->next != nullptr) {
+            tempNode = tempNode->next;
+        }
+
+        // Them vao cuoi
+        tempNode->next = newNode;
+    }
+}
+
 template <typename T>
 void list<T>::remove(const T& removeData)
 {

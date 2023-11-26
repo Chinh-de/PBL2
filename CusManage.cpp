@@ -41,3 +41,8 @@ list<Customer> CusManage::find(string& name, string& phone)
     if ( Found.getHead() == nullptr ) cout << "khong tim thay!";
     return Found;
 }
+
+int CusManage::getEndID()
+{
+    return this->Cus.getHead()->data.getID();
+}

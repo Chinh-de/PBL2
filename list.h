@@ -22,6 +22,7 @@ class list
         ~list();
         Node<T>* getHead() const;
         void add(const T&);
+        void addAtEnd(const T&);
         void remove(const T&);
         void display();
         Node<T>* findMiddle(Node<T>*);

@@ -38,6 +38,5 @@ list<Employee> EmpManage::find(string& name, string& phone)
             Found.add(tempNode->data);
         tempNode = tempNode->next;
     }
-    if ( Found.getHead() == nullptr ) cout << "khong tim thay!";
     return Found;
 }
