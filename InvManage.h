@@ -1,6 +1,7 @@
 #include "invoice.h"
 #include "list.cpp"
 #include "Manage.h"
+#include "Customer.h"
 
 class InvManage : public Manage<invoice> {
     protected:
@@ -16,4 +17,5 @@ class InvManage : public Manage<invoice> {
         list<invoice> find(int&, int&);
         list<invoice> find(int&);
         void statistic(list<invoice>&);
+        invoice printInvoice(int&, list<Customer>&);
 };

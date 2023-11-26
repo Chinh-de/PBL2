@@ -77,12 +77,48 @@ void InvManage::statistic(list<invoice>& List){
     << "san pham ban duocL " << sales << endl;
     delete tempNode;
 }
-/*
-invoice InvManage::printInvoice()
+
+invoice InvManage::printInvoice(int& ID, list<Customer>& cusList)
 {
     //in hoa don ra man hinh
     //in hoa don ra file trong folder hoa don
+    Node<invoice>* tempInv;
+    tempInv = this->Inv.getHead();
+    while (tempInv != nullptr){
+        if(tempInv->data.getInvoiceID() == ID)
+            break;
+        else tempInv = tempInv->next;
+    }
+    if (tempInv == nullptr) return *tempInv;
+    Node<Customer>* tempCus;
+    tempCus = cusList.getHead();
+    while (tempCus != nullptr){
+        if(tempCus->data.getID() == tempInv->data.getCustomerID)
+            break;
+        else tempCus = tempCus->next;
+    }
+    if (tempCus == nullptr) return *tempInv;
+    << "Ten khach hang: " << tempCus->data.getName() << endl
+    << "So dien thoai: " <<tempCus->data.getPhone() << endl;
+    Node<order>* tempOrder;
+    Node<string>* tempSerial;
+    tempOrder = tempInv->data.listOfOrder.getHead();
+    tempSerial = tempOrder->data.serial.getHead();
+    while (tempOrder != nullptr){
+        cout << "Ten hang: " << tempOrder->data.getName() << endl
+        << "So luong: " << tempOrder->data.getQuantity() << endl
+        << "Don gia: " << tempOrder->data.getPrice() << endl
+        << "Thanh tien: " << tempOrder->data.getTotal() << endl;
+        while (tempSerial != nullptr){
+            if (tempSerial->next == nullptr)
+                cout << tempSerial->data << endl;
+            else 
+                cout << tempSerial->data << ", ";
+        }
+        cout << "Tong cong: " << tempInv->data.getTotal() << endl;
+    }
 }
+/*
 void InvManage::sell()
 {
     //swich case chon

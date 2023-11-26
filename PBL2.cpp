@@ -29,9 +29,9 @@ int main()
     string password;
     system("cls");
     lg: {
-        cout << "DANG NHAP" << endl << "Ten tai khoan: "; cin >> username; 
+        cout << "DANG NHAP" << endl << "Ten tai khoan: "; cin >> userID; 
         cout << "Mat khau: "; cin >> password;
-        if(username == "ql" && password == "ql") 
+        if(userID == "ql" && password == "ql") 
             MenuManager();
         // else if(strcmp(username), "nv" == 0 && strcmp(password), "nv" == 0)  MenuEmplyee();
         else goto lg;
@@ -74,33 +74,24 @@ void MenuManager()
     int option = 1, t;
     do{
         system("cls");
-        if (option == 1)
-            cout << "\t>Thong tin ca nhan" << endl;
-        else cout << "\tThong tin ca nhan" << endl;
-        if (option == 2)
-            cout << "\t>Thong ke ban hang" << endl;
-        else cout <<"\tThong ke ban hang" << endl;
-        if (option == 3)
-            cout << "\t>Quan li san pham" << endl;
-        else cout << "\tQuan li san pham" << endl;
-        if (option == 4)
-            cout << "\t>Quan li nhan vien" << endl;
-        else cout << "\tQuan li nhan vien" << endl;
-        if (option == 5)
-            cout << "\t>Ban hang" << endl;
-        else cout << "\tBan hang" << endl;
-        if (option == 6)
-            cout << "\t>Quan li khach hang" << endl;
-        else cout << "\tQuan li khach hang" << endl;
-        if (option == 7)
-            cout << "\t>Lich su ban hang" << endl;
-        else cout << "\tLich su ban hang" << endl;
-        if (option == 8)
-            cout << "\t>Doi mat khau" << endl;
-        else cout << "\tDoi mat khau" << endl;
-        if (option == 9)
-            cout << "\t>Thoat" << endl;
-        else cout << "\tThoat" << endl;
+        if (option == 1) cout << "\t>";
+        cout << "\tThong tin ca nhan" << endl;
+        if (option == 2) cout << "\t>";
+        cout <<"\tThong ke ban hang" << endl;
+        if (option == 3) cout << "\t>";
+        cout << "\tQuan li san pham" << endl;
+        if (option == 4) cout << "\t>";
+        cout << "\tQuan li nhan vien" << endl;
+        if (option == 5) cout << "\t>";
+        cout << "\tBan hang" << endl;
+        if (option == 6) cout << "\t>";
+        cout << "\tQuan li khach hang" << endl;
+        if (option == 7) cout << "\t>";
+        cout << "\tLich su ban hang" << endl;
+        if (option == 8) cout << "\t>";
+        cout << "\tDoi mat khau" << endl;
+        if (option == 9) cout << "\t>";
+        cout << "\tThoat" << endl;
         t = getch();
         if (t == 72) option--;
         else if (t == 80) option++;
