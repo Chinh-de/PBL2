@@ -7,12 +7,54 @@ ProdManage::~ProdManage()
 void ProdManage::add(const product& p) {
     this->Prod.add(p);
 }
+void ProdManage::add(){
+    product p;
+    int id;
+    string name;
+    unsigned int price;
+    unsigned int imprice;
+    string CPU;
+    int RAM = 0;
+    string Screen;
+    int Disk;
+    string GPU;
+    string OS;
+    cout << "Nhap thong tin san pham:" << endl
+    << "Ma san pham: "; cin >> id; p.setID(id);
+    cout << "Ten san pham: "; cin >> name; p.setName(name);
+    cout << "Gia ban: "; cin >> price; p.setPrice(price);
+    cout << "Gia nhap: "; cin >> imprice; p.setImportPrice(imprice);
+    cout << "CPU: "; cin >> CPU; p.setCPU(CPU);
+    cout << "Ram: "; cin >> RAM; p.setRAM(RAM);
+    cout << "Man hinh: "; cin >> Screen; p.setScreen(Screen);
+    cout << "O cung: "; cin >> Disk; p.setHardDisk(Disk);
+    cout << "GPU: "; cin >> GPU; p.setGPU(GPU);
+    cout << "He dieu hanh: "; cin >> OS; p.setOS(OS);
+    this->Prod.add(p);
+}
 void ProdManage::remove(const product& p){
     this->Prod.remove(p);
 }
 void ProdManage::display(){
     this->Prod.display();
 }
+
+void ProdManage::display(bool type)
+{
+    //type = false sap xep tu giam, = true tang 
+    
+    //tao ban sao cua danh sach san pham
+    list<product> sortprice;
+    Node<product>* tempNode = this->Prod.getHead();
+    while (tempNode != nullptr) 
+    {
+        sortprice.add(tempNode->data);
+        tempNode = tempNode->next;
+    }    
+    sortprice.mergeSort(sortprice.getHead(),type);
+    sortprice.display();
+}
+
 void ProdManage::update(product& _product){
     int input;
     int choice = 1;
@@ -109,22 +151,6 @@ void ProdManage::update(product& _product){
             }
         }
     }while (input != '0');
-}
-
-void ProdManage::sort(bool type)
-{
-    //type = false sap xep tu giam, = true tang 
-    
-    //tao ban sao cua danh sach san pham
-    list<product> sortprice;
-    Node<product>* tempNode = this->Prod.getHead();
-    while (tempNode != nullptr) 
-    {
-        sortprice.add(tempNode->data);
-        tempNode = tempNode->next;
-    }    
-    sortprice.mergeSort(sortprice.getHead(),type);
-    sortprice.display();
 }
 
 product ProdManage::find(int &ID)

@@ -70,7 +70,7 @@ void InvManage::statistic(list<invoice>& List){
         profit += tempNode->data.getProfit();
         sales += tempNode->data.productSales();
     }
-    cout << "Thong ke ngay: " << endl;
+    cout << "Thong ke: " << endl;
     cout << "Doanh thu: " << revenue << endl
     << "Loi nhuan: " << profit << endl
     << "san pham ban duocL " << sales << endl;
