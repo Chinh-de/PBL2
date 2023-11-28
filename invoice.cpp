@@ -103,19 +103,20 @@ void invoice::setCustomerID(int& ID)
     this->customerID = ID;
 }
 
-void invoice::setDate(int& year, int& month, int& day)
-{
-    this->date.setYear(year);
-    this->date.setMonth(month);
-    this->date.setDay(day);
-}
-
 void invoice::addOrder(order& o)
 {
     this->listOfOrder.add(o);
 }
 
 void invoice::removeOrder(const string& ID)
+{
+    Node<order>* tempNode = this->findOrder(ID);
+    if (tempNode != nullptr) 
+        listOfOrder.remove(tempNode->data);
+    else cout << endl << "Chua co san pham nay trong gio hang!";
+}
+    
+Node<order>* invoice::findOrder(const string& ID)
 {
     Node<order>* tempNode = this->listOfOrder.getHead();
      while (tempNode != nullptr) 
@@ -126,7 +127,11 @@ void invoice::removeOrder(const string& ID)
         }
         tempNode = tempNode->next;
     }
-    if (tempNode != nullptr) 
-        listOfOrder.remove(tempNode->data);
-    else cout << "Chua co san pham nay trong gio hang";
+    return tempNode; //neu khong tim duoc tra ve nullptr;
+}
+
+
+void invoice::updateDate()
+{
+    getCurrent(this->date);
 }

@@ -127,7 +127,7 @@ void ProdManage::sort(bool type)
     sortprice.display();
 }
 
-product ProdManage::find(int &ID)
+product ProdManage::find(string ID)
 {
     Node<product>* tempNode = this->Prod.getHead();
     while (tempNode != nullptr) 

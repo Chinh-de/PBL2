@@ -148,6 +148,15 @@ bool product::operator<(product& p)
 {
     return this->getPrice() < p.getPrice();
 }
-
+bool product::isSerial(string& s)
+{
+    Node<string>* tempNode = this->serial.getHead();
+     while (tempNode != nullptr) 
+    {
+        if (tempNode->data == s) return true;
+        tempNode = tempNode->next;
+    }
+    return false;
+}
 
 

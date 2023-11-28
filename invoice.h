@@ -31,7 +31,8 @@ class invoice
         void setInvoiceID(int&);
         void setEmployeeID(int&);
         void setCustomerID(int&);
-        void setDate(int&, int&, int&);
         void addOrder(order&);
         void removeOrder(const string&);
+        Node<order>* findOrder(const string &);
+        void updateDate();
 };

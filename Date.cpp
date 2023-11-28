@@ -24,5 +24,13 @@ void Date::setMonth(int M){
     this->Month = M;
 }
 void Date::setDay(int D){
-    this->Year = D;
+    this->Day = D;
+}
+void getCurrent(Date& Current)
+{
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    Current.setYear(1900 + ltm->tm_year);
+    Current.setMonth(1 + ltm->tm_mon);
+    Current.setDay(ltm->tm_mday);
 }

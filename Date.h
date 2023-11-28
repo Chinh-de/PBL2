@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ctime>
 using namespace std;
 #pragma once
 class Date{
@@ -16,4 +17,5 @@ class Date{
         void setYear(int);
         void setMonth(int);
         void setDay(int);
+        friend void getCurrent(Date&);
 };

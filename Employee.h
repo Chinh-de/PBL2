@@ -22,5 +22,6 @@ class Employee : public Person
         void setPositon(Position);
         string getPassword();
         void setPassword(string&);
+        
 };
 

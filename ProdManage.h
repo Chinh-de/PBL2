@@ -13,6 +13,6 @@ class ProdManage : public Manage<product> {
         void update(product&);
         void display();
         void sort(bool);
-        product find(int &);
+        product find(string);
         list<product> filter(); 
 };

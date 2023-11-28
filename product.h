@@ -52,6 +52,7 @@ class product
         void setQuantity(int);
         void addSerial(string&);
         void removeSerial(string&);
+        bool isSerial(string&);
         bool operator>(product&);
         bool operator<(product&);
 };
