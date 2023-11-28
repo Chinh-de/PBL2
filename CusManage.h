@@ -1,6 +1,7 @@
 #include "Customer.h"
 #include "list.cpp"
 #include "Manage.h"
+#pragma once
 
 class CusManage : public Manage<Customer> {
     protected:

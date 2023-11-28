@@ -35,8 +35,9 @@ void product::show(){
     << "Man hinh: " << this->screen << endl
     << "O cung: " << this->hard_disk << "GB" << endl
     << "GPU: " << this->GPU << endl
-    << "He dieu hang: " << this->OS << endl;
-    cout << "so luong con: " << this->getQuantity() << " may";
+    << "He dieu hang: " << this->OS << endl
+    << "so luong con: " << this->getQuantity() << " may";
+    this->serial.display();
 }
 ostream& operator<<(ostream& o, const product& p){
     o << "Ten san pham: " << p.name << endl
@@ -47,7 +48,8 @@ ostream& operator<<(ostream& o, const product& p){
     << "Man hinh: " << p.screen << endl
     << "O cung: " << p.hard_disk << endl
     << "GPU: " << p.GPU << endl
-    << "He dieu hang: " << p.OS << endl;
+    << "He dieu hang: " << p.OS << endl
+    << "so luong con: " << this->getQuantity() << " may";
     product *temp = new product();
     *temp = p;
     temp->serial.display();

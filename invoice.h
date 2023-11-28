@@ -3,6 +3,7 @@
 #include "Date.h"
 #include <iostream>
 #include <string>
+#pragma once
 using namespace std;
 
 class invoice

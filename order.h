@@ -1,4 +1,5 @@
 #include "product.h"
+#pragma once
 using namespace std;
 class order : public product
 {  

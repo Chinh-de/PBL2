@@ -7,6 +7,24 @@ EmpManage::~EmpManage()
 void EmpManage::add(const Employee& e) {
     this->Emp.add(e);
 }
+void EmpManage::add(){
+    int ID; unsigned int salary;
+    string name, phone, email, address, password;
+    bool gender;
+    Position position;
+    cout << "Nhap thong tin: " << endl
+    << "Ma nhan vien: "; cin >> ID;
+    cout << "Ten nhan vien: "; cin >> name;
+    cout << "So dien thoai: "; cin >> phone;
+    cout << "Email: "; cin >> email;
+    cout << "Gioi tinh(Nam = 0, Nu = 1): "; cin >> gender;
+    cout << "Dia chi: "; cin >> address;
+    cout << "Luong: "; cin >> salary;
+    cout << "Vi tri cong viec: "; cin >> position;
+    cout << "Dat mat khau tai khoan nhan vien: "; cin >> password;
+    Employee e(ID, name, phone, email, gender, address, salary, position, password);
+    this->Emp.add(e);
+}
 void EmpManage::remove(const Employee& e){
     this->Emp.remove(e);
 }

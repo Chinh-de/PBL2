@@ -35,7 +35,6 @@ ostream& operator<<(ostream& o, const order& _order)
 }
 
 bool order::operator!=(const order& other) const {
-    
     return this->getID() != other.getID();
 }
 

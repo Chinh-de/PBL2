@@ -1,13 +1,7 @@
-#include "CusManage.h"
-#include "ProdManage.h"
-#include "InvManage.h"
 #include "Employee.h"
-Employee::Employee(int ID, string name, string phoneNumber, string email, bool gender, string address, unsigned int salary, Position positon)
-    :Person(ID, name, phoneNumber, email, gender, address)
-{
-    this->salary = salary;
-    this->position = position;
-}
+Employee::Employee(int ID, string name, string phoneNumber, string email, bool gender, string address, unsigned int salary, Position positon, string password)
+    :Person(ID, name, phoneNumber, email, gender, address), salary(salary), position(position), password(password)
+{ }
 Employee::~Employee()
 { }
 void Employee::Show()
@@ -53,6 +47,20 @@ string Employee::getPassword(){
 }
 void Employee::setPassword(string& p){
     this->password = p;
+}
+bool Employee::changePassword(){
+    string old_pass, new_pass;
+    do{
+        cout << "Nhap mat khau cu: "; cin >> old_pass;
+        if (old_pass != this->password)
+            cout << "SAI MAT KHAU, vui long nhap lai hoac nhan 'x' de quay ve menu chinh" << endl;
+    } while (old_pass != this->password || old_pass != x);
+    if (old_pass == "x")
+        return false;
+    cout << "Nhap mat khau moi: "; cin >> new_pass;
+    this->setPassword(new_pass);
+    cout << "Doi mat khau thanh cong";
+    return true;
 }
 
 void Employee::sell(CusManage& cusmanage, ProdManage& prodmanage, InvManage& invmanage)

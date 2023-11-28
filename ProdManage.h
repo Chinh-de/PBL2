@@ -1,6 +1,7 @@
 #include "Product.h"
 #include "list.cpp"
 #include "Manage.h"
+#pragma once
 
 class ProdManage : public Manage<product> {
     protected:
@@ -14,6 +15,7 @@ class ProdManage : public Manage<product> {
         void update(product&);
         void display();
         void display(bool);
-        product find(int &);
+        void displayOption();
+        product find(string &);
         list<product> filter(); 
 };

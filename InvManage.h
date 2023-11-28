@@ -2,6 +2,7 @@
 #include "list.cpp"
 #include "Manage.h"
 #include "Customer.h"
+#pragma once
 
 class InvManage : public Manage<invoice> {
     protected:

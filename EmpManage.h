@@ -1,6 +1,7 @@
 #include "Employee.h"
 #include "list.cpp"
 #include "Manage.h"
+#pragma once
 
 class EmpManage : public Manage<Employee> {
     protected:
@@ -9,6 +10,7 @@ class EmpManage : public Manage<Employee> {
         EmpManage();
         ~EmpManage();
         void add(const Employee&);
+        void add();
         void remove(const Employee&);
         void update(Employee&);
         void display();

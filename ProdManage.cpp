@@ -9,16 +9,9 @@ void ProdManage::add(const product& p) {
 }
 void ProdManage::add(){
     product p;
-    int id;
-    string name;
-    unsigned int price;
-    unsigned int imprice;
-    string CPU;
-    int RAM = 0;
-    string Screen;
-    int Disk;
-    string GPU;
-    string OS;
+    int RAM, Disk;
+    string id, name, CPU, Screen, GPU, OS; 
+    unsigned int price, imprice; 
     cout << "Nhap thong tin san pham:" << endl
     << "Ma san pham: "; cin >> id; p.setID(id);
     cout << "Ten san pham: "; cin >> name; p.setName(name);
@@ -42,8 +35,6 @@ void ProdManage::display(){
 void ProdManage::display(bool type)
 {
     //type = false sap xep tu giam, = true tang 
-    
-    //tao ban sao cua danh sach san pham
     list<product> sortprice;
     Node<product>* tempNode = this->Prod.getHead();
     while (tempNode != nullptr) 
@@ -53,6 +44,25 @@ void ProdManage::display(bool type)
     }    
     sortprice.mergeSort(sortprice.getHead(),type);
     sortprice.display();
+}
+
+void ProdManage::displayOption(){
+    int input;
+    int display_option = 1;
+    do{
+        system("cls");
+        cout << ((display_option == 1) ? "->" : "  ") << "Tat ca san pham" << endl;
+        cout << ((display_option == 2) ? "->" : "  ") << "Xem theo gia tang" << endl;
+        cout << ((display_option == 3) ? "->" : "  ") << "Xem theo gia giam" << endl;
+        input = getch();
+        if (input == 72) display_option--;
+        else if (input == 80) display_option++;
+        if (display_option < 1) display_option = 3;
+        if (display_option > 3)  = 1;
+    }while(t != 13);
+    if (display_option == 1) this->display();
+    else if (display_option == 2) this->display(true);
+    else this->display(false);
 }
 
 void ProdManage::update(product& _product){
@@ -153,7 +163,7 @@ void ProdManage::update(product& _product){
     }while (input != '0');
 }
 
-product ProdManage::find(int &ID)
+product ProdManage::find(string &ID)
 {
     Node<product>* tempNode = this->Prod.getHead();
     while (tempNode != nullptr) 
