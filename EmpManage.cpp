@@ -12,8 +12,8 @@ void EmpManage::readfromfile(string file){
     int n = 0;
     string info[10];
     while(!input.eof()){
-        n = 0
-        Node<Employee>* tempNode = this->Emp.getHead();
+        n = 0;
+        Employee tempEmp;
         do {
             char c;
             string Data = "";
@@ -25,17 +25,16 @@ void EmpManage::readfromfile(string file){
             info[n] = Data;
             n++;
         } while(n <= 8);
-        tempNode->data.setID(stoi(info[0]));
-        tempNode->data.setName(info[1]);
-        tempNode->data.setPhone(info[2]);
-        tempNode->data.setEmail(info[3]);
-        tempNode->data.setGender((info[4] == "Nu"));
-        tempNode->data.setAddress(info[5]);
-        tempNode->data.setSalary(stoi(info[6]));
-        tempNode->data.setPositon(info[7] == "manager" ? manager : salesperson);
-        tempNode->data.setPassword(info[8]);
-        this->Emp.addAtEnd(tempNode->data);
-        tempNode = tempNode->next;
+        tempEmp.setID(stoi(info[0]));
+        tempEmp.setName(info[1]);
+        tempEmp.setPhone(info[2]);
+        tempEmp.setEmail(info[3]);
+        tempEmp.setGender((info[4] == "Nu"));
+        tempEmp.setAddress(info[5]);
+        tempEmp.setSalary(stoi(info[6]));
+        tempEmp.setPositon(info[7] == "manager" ? manager : salesperson);
+        tempEmp.setPassword(info[8]);
+        this->Emp.addAtEnd(tempEmp);
     }
     input.close();
 }

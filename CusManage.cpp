@@ -10,7 +10,7 @@ void CusManage::readfromfile(string file){
     string info[10];
     while(!input.eof()){
         n = 0;
-        Node<Customer>* tempNode = this->Cus.getHead();
+        Customer tempCus;
         do{
             char c;
             string Data = "";
@@ -22,14 +22,13 @@ void CusManage::readfromfile(string file){
             info[n] = Data;
             n++;
         }while (n <= 5);
-        tempNode->data.setID(stoi(info[0]));
-        tempNode->data.setName(info[1]);
-        tempNode->data.setPhone(info[2]);
-        tempNode->data.setEmail(info[3]);
-        tempNode->data.setGender((info[4] == "Nu"));
-        tempNode->data.setAddress(info[5]);
-        this->Cus.addAtEnd(tempNode->data);
-        tempNode = tempNode->next;
+        tempCus.setID(stoi(info[0]));
+        tempCus.setName(info[1]);
+        tempCus.setPhone(info[2]);
+        tempCus.setEmail(info[3]);
+        tempCus.setGender((info[4] == "Nu"));
+        tempCus.setAddress(info[5]);
+        this->Cus.addAtEnd(tempCus);
     }
     input.close();
 }
