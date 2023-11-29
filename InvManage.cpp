@@ -7,13 +7,14 @@ void InvManage::add(const invoice& c) {
     this->Inv.add(c);
 }
 void InvManage::remove(const invoice& c){
-    this->Inv.remove(c);
+    //this->Inv.remove(c);
+    cout << endl << "Khong the xoa hoa don!" << endl;
 }
 void InvManage::display(){
     this->Inv.display();
 }
 void InvManage::update(invoice&){
-    cout << "123";
+    cout << endl << "Khong the chinh sua hoa don!" << endl;
 }
 list<invoice> InvManage::find(int& d, int& m, int& y){
     list<invoice> tempList;
@@ -184,14 +185,13 @@ void InvManage::sell(const int& userID, CusManage& customerM, ProdManage& produc
     } while(input == '0');    
     newInv.updateDate(); //cap nhat thoi gian cho hoa don
     //Tuong tac voi gio hang
-    this->updateCart(newInv);
+    this->updateCart(newInv,productM,customerM);
 }
 
-void InvManage::updateCart(invoice& newInv, ProdManage& productM)
+void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage CustomerM)
 {
     int input;
     int choice = 1;
-    int option;
     int MaxChoice = 2;
     list<order> cart = newInv.getOrder();
     do 
@@ -276,11 +276,23 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM)
                         system("pause");
                         break;
                     }
-                    cout << endl << "Nhap vao so serial cua san pham";
-                    
+                    cout << endl << "Nhap 0 đe xoa tat ca san pham: "<< Norder->data.getName
+                         << endl << "Hoac Nhap vao so serial cua san pham can xoa: ";
+                    cin >> newSerial;
+                    if (newSerial == "0") newInv.getOrder().remove(Norder->data);
+                    else if(Norder->data.isSerial(newSerial))
+                            Norder->data.removeSerial(newSerial);
+                         else
+                         {
+                            cout << endl << "Khong co san pham mang so serial " << newSerial << " trong gio hang!";
+                            system("pause");
+                         }   
                     break;
                 case 3:
-
+                    newInv.updateTotal();
+                    newInv.complete();
+                    this->add(newInv);
+                    this->printInvoice(newInv.getInvoiceID,CustomerM);
                     input = '0';
                     break;
                 default: cout << "Loi du lieu";

@@ -15,6 +15,7 @@ class invoice
         unsigned int total;
         Date date;
         list<order> listOfOrder;
+        bool status; //true da hoan thanh; false chua hoan thanh 
     public:
         invoice();
         ~invoice();
@@ -38,4 +39,5 @@ class invoice
         void removeOrder(const string&);
         Node<order>* findOrder(const string &);
         void updateDate();
+        void complete();
 };

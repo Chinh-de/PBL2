@@ -6,6 +6,7 @@ invoice::invoice()
     this->customerID = 0;
     this->employeeID = 0;
     this->total = 0;
+    this->status = false;
 }
 
 invoice::~invoice()
@@ -93,22 +94,22 @@ Date invoice::getDate()
 
 void invoice::setInvoiceID(int& ID)
 {
-    this->invoiceID = ID;
+    if(status == false) this->invoiceID = ID;
 }
 
 void invoice::setEmployeeID(int& ID)
 {
-    this->employeeID = ID;
+    if(status == false) this->employeeID = ID;
 }
         
 void invoice::setCustomerID(int& ID)
 {
-    this->customerID = ID;
+   if(status == false) this->customerID = ID;
 }
 
 void invoice::addOrder(order& o)
 {
-    this->listOfOrder.add(o);
+    if(status == false) this->listOfOrder.add(o);
 }
 
 list<order>& invoice::getOrder()
@@ -118,10 +119,13 @@ list<order>& invoice::getOrder()
 
 void invoice::removeOrder(const int& ID)
 {
-    Node<order>* tempNode = this->findOrder(ID);
-    if (tempNode != nullptr) 
-        listOfOrder.remove(tempNode->data);
-    else cout << endl << "Chua co san pham nay trong gio hang!";
+    if(status == false) 
+    {
+        Node<order>* tempNode = this->findOrder(ID);
+        if (tempNode != nullptr) 
+            listOfOrder.remove(tempNode->data);
+        else cout << endl << "Chua co san pham nay trong gio hang!";
+    }
 }
     
 Node<order>* invoice::findOrder(const string& ID)
@@ -134,5 +138,9 @@ Node<order>* invoice::findOrder(const string& ID)
 
 void invoice::updateDate()
 {
-    getCurrent(this->date);
+    if(status == false) getCurrent(this->date);
+}
+void invoice::complete()
+{
+    this->status = true;
 }
