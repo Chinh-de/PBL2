@@ -10,7 +10,7 @@ product::product(){
     // cout << "Man hinh: "; cin >> this->screen;
     // cout << "O cung: "; cin >> this->hard_disk;
     // cout << "GPU: "; cin >> this->GPU;
-    this->productID = 0;
+    this->productID = "0";
     this->name = "";
     this->price = 0;
     this->CPU = "";
@@ -28,26 +28,28 @@ product::~product()
 { }
 void product::show(){
     cout << "Ten san pham: " << this->name << endl
-    << "Ten gia nhap: " << this->import_price << endl
     << "Ten san ban: " << this->price << endl
     << "Thong so:" << endl
     << "CPU: " << this->CPU << endl
     << "RAM: " << this->RAM << "GB" << endl
     << "Man hinh: " << this->screen << endl
     << "O cung: " << this->hard_disk << "GB" << endl
-    << "GPU: " << this->GPU << endl;
-    cout << "so luong con: " << getQuantity() << " may";
+    << "GPU: " << this->GPU << endl
+    << "He dieu hang: " << this->OS << endl
+    << "so luong con: " << this->getQuantity() << " may";
+    this->serial.display();
 }
 ostream& operator<<(ostream& o, const product& p){
     o << "Ten san pham: " << p.name << endl
-    << "Gia nhap: " << p.import_price << endl
-   // << "Ten san ban: " << p.price << endl
+    << "Gia ban: " << p.price << endl
     << "Thong so:" << endl
     << "CPU: " << p.CPU << endl
     << "RAM: " << p.RAM << endl
     << "Man hinh: " << p.screen << endl
     << "O cung: " << p.hard_disk << endl
-    << "GPU: " << p.GPU << endl;
+    << "GPU: " << p.GPU << endl
+    << "He dieu hang: " << p.OS << endl
+    << "so luong con: " << this->getQuantity() << " may";
     product *temp = new product();
     *temp = p;
     temp->serial.display();
@@ -56,6 +58,9 @@ ostream& operator<<(ostream& o, const product& p){
 }
 bool product::operator!=(const product& p){
     return (this->productID != p.productID);
+}
+bool product::operator==(const product& p){
+    return (this->productID == p.productID);
 }
 string product::getName(){
     return this->name;

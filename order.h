@@ -1,4 +1,5 @@
 #include "product.h"
+#pragma once
 using namespace std;
 class order : public product
 {  
@@ -11,4 +12,6 @@ class order : public product
         unsigned int getTotal();
         friend ostream& operator<<(ostream&, const order&);
         bool operator!=(const order&) const;
+        bool operator==(const order&) const;
+
 };

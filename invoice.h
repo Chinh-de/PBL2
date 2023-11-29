@@ -3,6 +3,7 @@
 #include "Date.h"
 #include <iostream>
 #include <string>
+#pragma once
 using namespace std;
 
 class invoice
@@ -20,6 +21,7 @@ class invoice
         void show();
         friend ostream& operator<<(ostream&, const invoice&);
         bool operator!=(const invoice&);
+        bool operator==(const invoice&);
         void updateTotal();
         int getInvoiceID();
         int getEmployeeID();
@@ -32,6 +34,7 @@ class invoice
         void setEmployeeID(int&);
         void setCustomerID(int&);
         void addOrder(order&);
+        list<order>& getOrder();
         void removeOrder(const string&);
         Node<order>* findOrder(const string &);
         void updateDate();

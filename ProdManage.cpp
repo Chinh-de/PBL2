@@ -1,10 +1,29 @@
 #include "ProdManage.h"
 #include <conio.h>
+
 ProdManage::ProdManage()
 { }
 ProdManage::~ProdManage()
 { }
 void ProdManage::add(const product& p) {
+    this->Prod.add(p);
+}
+void ProdManage::add(){
+    product p;
+    int RAM, Disk;
+    string id, name, CPU, Screen, GPU, OS; 
+    unsigned int price, imprice; 
+    cout << "Nhap thong tin san pham:" << endl
+    << "Ma san pham: "; cin >> id; p.setID(id);
+    cout << "Ten san pham: "; cin >> name; p.setName(name);
+    cout << "Gia ban: "; cin >> price; p.setPrice(price);
+    cout << "Gia nhap: "; cin >> imprice; p.setImportPrice(imprice);
+    cout << "CPU: "; cin >> CPU; p.setCPU(CPU);
+    cout << "Ram: "; cin >> RAM; p.setRAM(RAM);
+    cout << "Man hinh: "; cin >> Screen; p.setScreen(Screen);
+    cout << "O cung: "; cin >> Disk; p.setHardDisk(Disk);
+    cout << "GPU: "; cin >> GPU; p.setGPU(GPU);
+    cout << "He dieu hanh: "; cin >> OS; p.setOS(OS);
     this->Prod.add(p);
 }
 void ProdManage::remove(const product& p){
@@ -13,13 +32,47 @@ void ProdManage::remove(const product& p){
 void ProdManage::display(){
     this->Prod.display();
 }
+
+void ProdManage::display(bool type)
+{
+    //type = false sap xep tu giam, = true tang 
+    list<product> sortprice;
+    Node<product>* tempNode = this->Prod.getHead();
+    while (tempNode != nullptr) 
+    {
+        sortprice.add(tempNode->data);
+        tempNode = tempNode->next;
+    }    
+    sortprice.mergeSort(sortprice.getHead(),type);
+    sortprice.display();
+}
+
+void ProdManage::displayOption(){
+    int input;
+    int display_option = 1;
+    do{
+        system("cls");
+        cout << ((display_option == 1) ? "->" : "  ") << "Tat ca san pham" << endl;
+        cout << ((display_option == 2) ? "->" : "  ") << "Xem theo gia tang" << endl;
+        cout << ((display_option == 3) ? "->" : "  ") << "Xem theo gia giam" << endl;
+        input = getch();
+        if (input == 72) display_option--;
+        else if (input == 80) display_option++;
+        if (display_option < 1) display_option = 3;
+        if (display_option > 3)  = 1;
+    }while(t != 13);
+    if (display_option == 1) this->display();
+    else if (display_option == 2) this->display(true);
+    else this->display(false);
+}
+
 void ProdManage::update(product& _product){
     int input;
     int choice = 1;
     int MaxChoice = 10;
     do{
         system("cls");
-        cout<<"Nhap thong tin:"<< endl;
+        cout<<"Chon thong tin muon thay doi:"<< endl;
             cout << (choice == 1 ? "->":"  ") << "Ten san pham: " << _product.getName() << endl;
             cout << (choice == 2 ? "->":"  ") << "Gia ban: " << _product.getPrice() << endl;
             cout << (choice == 3 ? "->":"  ") << "Gia nhap: " << _product.getImportPrice() << endl;
@@ -57,37 +110,37 @@ void ProdManage::update(product& _product){
             {
                 using namespace std;
                 case 1:
-                    cout << "Nhap ten san pham moi : ";
+                    cout << "Nhap ten san pham : ";
                     getline(cin, _name);
                     _product.setName(_name);
                     break;
                 case 2:
-                    cout << "Nhap gia ban moi : ";
+                    cout << "Nhap gia ban : ";
                     cin >> _price;
                     _product.setPrice(_price);
                     break;
                 case 3:
-                    cout << "Nhap gia nhap moi : ";
+                    cout << "Nhap gia nhap : ";
                     cin >> _iprice;
                     _product.setImportPrice(_iprice);
                     break;
                 case 4:
-                    cout << "Cap nhat CPU moi : ";
+                    cout << "Cap nhat CPU : ";
                     getline(cin,_CPU);
                     _product.setCPU(_CPU);
                     break;
                 case 5:
-                    cout << "Cap nhat dung luong RAM moi (GB): ";
+                    cout << "Cap nhat dung luong RAM (GB): ";
                     cin >> _RAM;
                     _product.setRAM(_RAM);
                     break; 
                 case 6:
-                    cout << "Cap nhat thong so ma hinh moi : ";
+                    cout << "Cap nhat thong so ma hinh : ";
                     getline(cin,_Screen);
                     _product.setScreen(_Screen);
                     break;                      
                 case 7:
-                    cout << "Cap nhat dung luong o cung moi (GB): ";
+                    cout << "Cap nhat dung luong o cung (GB): ";
                     cin >> _Disk;
                     _product.setHardDisk(_Disk);
                     break;                      
@@ -97,7 +150,7 @@ void ProdManage::update(product& _product){
                     _product.setGPU(_GPU);
                     break;
                 case 9:
-                    cout << "Cap nhat He dieu hanh moi : ";
+                    cout << "Cap nhat He dieu hanh : ";
                     getline(cin,_OS);
                     _product.setOS(_OS);
                     break;                                                   
@@ -127,15 +180,11 @@ void ProdManage::sort(bool type)
     sortprice.display();
 }
 
-product ProdManage::find(string ID)
+Node<product>* ProdManage::find(string &ID)
 {
-    Node<product>* tempNode = this->Prod.getHead();
-    while (tempNode != nullptr) 
-    {
-        if (tempNode->data.getID() == ID) return tempNode->data;
-        tempNode = tempNode->next;
-    }
-    return tempNode->data;
+    product tempProd;
+    tempProd.setID(ID);
+    return this->Prod.find(tempProd);
 }
 
 list<product> ProdManage::filter()
@@ -155,7 +204,7 @@ list<product> ProdManage::filter()
     int MaxChoice = 7;
     do{
         system("cls");
-        cout<<"Chon thong tin can cap nhat:"<< endl;
+        cout<<"Chon thong tin can loc:"<< endl;
             cout << (choice == 1 ? "->":"  ") << "Hang: " << endl;
             cout << (choice == 2 ? "->":"  ") << "Muc gia: " << _product.getPrice() << endl;
             cout << (choice == 3 ? "->":"  ") << "RAM: " << _product.getImportPrice() << endl;

@@ -1,4 +1,5 @@
 #include "Person.h"
+#pragma once
 enum Position 
 {
     manager = 1,
@@ -12,7 +13,7 @@ class Employee : public Person
         Position position;
         string password;
     public:
-        Employee(int = 0, string = "", string = "", string = "", bool = 0, string = "", unsigned int = 0, Position = manager);           
+        Employee(int = 0, string = "", string = "", string = "", bool = 0, string = "", unsigned int = 0, Position = manager, string = "0000");           
         ~Employee();
         void Show();
         friend ostream& operator<<(ostream&, const Employee&);
@@ -22,6 +23,6 @@ class Employee : public Person
         void setPositon(Position);
         string getPassword();
         void setPassword(string&);
-        
+        bool changePassword();
 };
 

@@ -32,6 +32,9 @@ ostream& operator<<(ostream& o, const invoice& i)
 bool invoice::operator!=(const invoice& i){
     return (this->invoiceID != i.invoiceID);
 }
+bool invoice::operator==(const invoice& i){
+    return (this->invoiceID == i.invoiceID);
+}
 void invoice::updateTotal()
 {
     this->total = 0;
@@ -108,7 +111,12 @@ void invoice::addOrder(order& o)
     this->listOfOrder.add(o);
 }
 
-void invoice::removeOrder(const string& ID)
+list<order>& invoice::getOrder()
+{
+    return this->listOfOrder;
+}
+
+void invoice::removeOrder(const int& ID)
 {
     Node<order>* tempNode = this->findOrder(ID);
     if (tempNode != nullptr) 
@@ -118,16 +126,9 @@ void invoice::removeOrder(const string& ID)
     
 Node<order>* invoice::findOrder(const string& ID)
 {
-    Node<order>* tempNode = this->listOfOrder.getHead();
-     while (tempNode != nullptr) 
-    {
-        if (tempNode->data.getID() == ID) {
-            listOfOrder.remove(tempNode->data);
-            break;
-        }
-        tempNode = tempNode->next;
-    }
-    return tempNode; //neu khong tim duoc tra ve nullptr;
+    order tempOrder;
+    tempOrder.setID(ID);
+    return this->listOfOrder.find(tempOrder);
 }
 
 

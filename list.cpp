@@ -105,6 +105,21 @@ void list<T>::display()
 }
 
 template <typename T>
+Node<T>* list<T>::find(const T& FindData) {
+    Node<T>* tempNode = this->head;
+
+    while (tempNode != nullptr) {
+        if (tempNode->data == FindData) {
+            //neu tim thay tra ve Node<T>
+            return tempNode;
+        }
+        tempNode = tempNode->next;
+    }
+    // tra ve nullptr neu khong tim thay
+    return nullptr;
+}
+
+template <typename T>
 Node<T>* list<T>::findMiddle(Node<T>* head) {
     if (head == nullptr) {
         return nullptr;

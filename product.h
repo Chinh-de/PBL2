@@ -27,6 +27,7 @@ class product
         void show();
         friend ostream& operator<<(ostream&, const product&);
         bool operator!=(const product&);
+        bool operator==(const product&);
         string getName();
         string getID() const;
         unsigned int getPrice();

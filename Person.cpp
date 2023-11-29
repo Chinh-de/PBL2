@@ -8,8 +8,8 @@ void Person::Show()
 {
     cout << "; Ten: " << this->Name << "; So Dien Thoai: " << this->Phone;
     cout << "; Gioi tinh: ";
-    if(this->Gender) cout << "Nam ;";
-    else cout << "Nu ;";
+    if(this->Gender) cout << "Nu;";
+    else cout << "Nam;";
     cout << " email: " << this->Email << "; Dia chi: " << this->Address; 
 }
 int Person::getID(){
@@ -50,4 +50,7 @@ void Person::setAddress(string a){
 }
 bool Person::operator!=(const Person& p){
     return (this->ID != p.ID);
+}
+bool Person::operator==(const Person& p){
+    return (this->ID == p.ID);
 }

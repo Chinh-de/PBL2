@@ -1,6 +1,9 @@
 #include "invoice.h"
 #include "list.cpp"
 #include "Manage.h"
+#include "CusManage.h"
+#include "ProdManage.h"
+#pragma once
 
 class InvManage : public Manage<invoice> {
     protected:
@@ -16,5 +19,8 @@ class InvManage : public Manage<invoice> {
         list<invoice> find(int&, int&);
         list<invoice> find(int&);
         void statistic(list<invoice>&);
-        int getEndID();
+        invoice printInvoice(int&, list<Customer>&);
+        int getNewID();
+        void sell(const int&, CusManage&, ProdManage&);
+        void updateCart(invoice&, ProdManage&);
 };
