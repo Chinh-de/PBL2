@@ -7,6 +7,37 @@ EmpManage::~EmpManage()
 void EmpManage::add(const Employee& e) {
     this->Emp.add(e);
 }
+void EmpManage::readfromfile(string file){
+    ifstream input(file);
+    Node<Employee>* tempNode = this->Emp.getHead();
+    int n = 0;
+    string info[10];
+    while(!input.eof()){
+        do {
+            char c;
+            string Data = "";
+            input.get(c);
+            while (c != '|' && c != '\n' && !input.eof()){
+                Data += c;
+                input.get(c);
+            }
+            info[n] = Data;
+            n++;
+        } while(n <= 8);
+        tempNode->data.setID(stoi(info[0]));
+        tempNode->data.setName(info[1]);
+        tempNode->data.setPhone(info[2]);
+        tempNode->data.setEmail(info[3]);
+        tempNode->data.setGender((info[4] == "Nu"));
+        tempNode->data.setAddress(info[5]);
+        tempNode->data.setSalary(stoi(info[6]));
+        tempNode->data.setPositon(info[7] == "manager" ? manager : salesperson);
+        tempNode->data.setPassword(info[8]);
+        this->Emp.addAtEnd(tempNode->data);
+        tempNode = tempNode->next;
+    }
+    input.close();
+}
 void EmpManage::add(){
     int ID; unsigned int salary;
     string name, phone, email, address, password;

@@ -9,6 +9,7 @@ class CusManage : public Manage<Customer> {
     public:
         CusManage();
         ~CusManage();
+        void readfromfile(string);
         void add(const Customer&);
         void remove(const Customer&);
         void update(Customer&);

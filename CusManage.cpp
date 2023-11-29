@@ -4,11 +4,40 @@ CusManage::CusManage()
 { }
 CusManage::~CusManage()
 { }
+void CusManage::readfromfile(string file){
+    ifstream input(file);
+    Node<Customer>* tempNode = this->Cus.getHead();
+    int n = 0;
+    string info[10];
+    while(!input.eof()){
+        n = 0;
+        do{
+            char c;
+            string Data = "";
+            input.get(c);
+            while (c != '|' && c != '\n' && !input.eof()){
+                Data += c;
+                input.get(c);
+            }
+            info[n] = Data;
+            n++;
+        }while (n <= 5);
+        tempNode->data.setID(stoi(info[0]));
+        tempNode->data.setName(info[1]);
+        tempNode->data.setPhone(info[2]);
+        tempNode->data.setEmail(info[3]);
+        tempNode->data.setGender((info[4] == "Nu"));
+        tempNode->data.setAddress(info[5]);
+        this->Cus.addAtEnd(tempNode->data);
+        tempNode = tempNode->next;
+    }
+    input.close();
+}
 void CusManage::add(const Customer& c) {
     this->Cus.add(c);
 }
 void CusManage::remove(const Customer& c){
-    this->Cus.remove(c);
+    this->Cus.remove(c); 
 }
 void CusManage::display(){
     this->Cus.display();

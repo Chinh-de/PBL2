@@ -23,6 +23,7 @@ int main()
     //docfile dang nhap
     //docfile person
     //docfile lichsumuahang
+    customerManage.read();
     int Close;
     lg:;
     Close = 0;
