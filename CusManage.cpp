@@ -6,11 +6,11 @@ CusManage::~CusManage()
 { }
 void CusManage::readfromfile(string file){
     ifstream input(file);
-    Node<Customer>* tempNode = this->Cus.getHead();
     int n = 0;
     string info[10];
     while(!input.eof()){
         n = 0;
+        Node<Customer>* tempNode = this->Cus.getHead();
         do{
             char c;
             string Data = "";

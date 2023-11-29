@@ -9,10 +9,11 @@ void EmpManage::add(const Employee& e) {
 }
 void EmpManage::readfromfile(string file){
     ifstream input(file);
-    Node<Employee>* tempNode = this->Emp.getHead();
     int n = 0;
     string info[10];
     while(!input.eof()){
+        n = 0
+        Node<Employee>* tempNode = this->Emp.getHead();
         do {
             char c;
             string Data = "";
