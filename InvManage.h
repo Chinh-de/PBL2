@@ -22,5 +22,5 @@ class InvManage : public Manage<invoice> {
         invoice printInvoice(int&, list<Customer>&);
         int getNewID();
         void sell(const int&, CusManage&, ProdManage&);
-        void updateCart(invoice&, ProdManage&);
+        void updateCart(invoice&, ProdManage&, CusManage);
 };
