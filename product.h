@@ -54,6 +54,6 @@ class product
         void addSerial(string&);
         void removeSerial(string&);
         bool isSerial(string&);
-        bool operator>(product&);
-        bool operator<(product&);
+        bool operator>(product&); //so sanh gia
+        bool operator<(product&); //so sanh gia
 };

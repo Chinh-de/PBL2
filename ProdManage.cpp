@@ -145,18 +145,18 @@ void ProdManage::update(product& _product){
                     _product.setHardDisk(_Disk);
                     break;                      
                 case 8:
-                    cout << "Cap nhat GPU moi : ";
+                    cout << "Cap nhat GPU : ";
                     getline(cin,_GPU);
                     _product.setGPU(_GPU);
                     break;
                 case 9:
-                    cout << "Cap nhat He dieu hanh : ";
+                    cout << "Nhap He dieu hanh : ";
                     getline(cin,_OS);
                     _product.setOS(_OS);
                     break;                                                   
                 case 10:
-                    cout << "Da thoat khoi cap nhat" << endl;
-                    return;
+                    cout << "Da hoan thanh" << endl;
+                    input = '0';
                     break;
                 default: cout << "Loi du lieu";
             }
