@@ -45,7 +45,7 @@ void Employee::setPositon(Position newPosition)
 string Employee::getPassword(){
     return this->password;
 }
-void Employee::setPassword(string& p){
+void Employee::setPassword(string p){
     this->password = p;
 }
 bool Employee::changePassword(){
@@ -54,7 +54,7 @@ bool Employee::changePassword(){
         cout << "Nhap mat khau cu: "; cin >> old_pass;
         if (old_pass != this->password)
             cout << "SAI MAT KHAU, vui long nhap lai hoac nhan 'x' de quay ve menu chinh" << endl;
-    } while (old_pass != this->password || old_pass != x);
+    } while (old_pass != this->password || old_pass != "x");
     if (old_pass == "x")
         return false;
     cout << "Nhap mat khau moi: "; cin >> new_pass;

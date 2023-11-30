@@ -7,9 +7,43 @@ EmpManage::~EmpManage()
 void EmpManage::add(const Employee& e) {
     this->Emp.add(e);
 }
+void EmpManage::readfromfile(string file){
+    ifstream input(file);
+    int n = 0, value;
+    string info[10];
+    while(!input.eof()){
+        n = 0;
+        Employee tempEmp;
+        do {
+            char c;
+            string Data = "";
+            input.get(c);
+            while (c != '|' && c != '\n' && !input.eof()){
+                Data += c;
+                input.get(c);
+            }
+            info[n] = Data;
+            n++;
+        } while(n <= 8);
+        if (isdigit(info[0][0]) && isdigit(info[6][0])){
+            value = stoi(info[0]); tempEmp.setID(value);
+            value = stoi(info[6]); tempEmp.setSalary(value);
+        }
+        
+        tempEmp.setName(info[1]);
+        tempEmp.setPhone(info[2]);
+        tempEmp.setEmail(info[3]);
+        tempEmp.setGender((info[4] == "Nu"));
+        tempEmp.setAddress(info[5]);
+        tempEmp.setPositon(info[7] == "manager" ? manager : salesperson);
+        tempEmp.setPassword(info[8]);
+        this->Emp.addAtEnd(tempEmp);
+    }
+    input.close();
+}
 void EmpManage::add(){
     int ID; unsigned int salary;
-    string name, phone, email, address, password;
+    string name, phone, email, address, password, pos;
     bool gender;
     Position position;
     cout << "Nhap thong tin: " << endl
@@ -20,7 +54,9 @@ void EmpManage::add(){
     cout << "Gioi tinh(Nam = 0, Nu = 1): "; cin >> gender;
     cout << "Dia chi: "; cin >> address;
     cout << "Luong: "; cin >> salary;
-    cout << "Vi tri cong viec: "; cin >> position;
+    cout << "Vi tri cong viec: "; cin >> pos;
+    if (pos == "manager") position = manager;
+    if (pos == "salesperson") position = salesperson;  
     cout << "Dat mat khau tai khoan nhan vien: "; cin >> password;
     Employee e(ID, name, phone, email, gender, address, salary, position, password);
     this->Emp.add(e);

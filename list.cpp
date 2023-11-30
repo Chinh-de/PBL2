@@ -24,7 +24,7 @@ template <typename T>
 list<T>::~list()
 {
     while (head != nullptr) {
-        Node<T>* temp = head;            
+        Node<T>* temp = head;
         head = head->next;
         delete temp;
     }
@@ -53,7 +53,6 @@ template <typename T>
 void list<T>::addAtEnd(const T& addData)
 {
     Node<T>* newNode = new Node<T>(addData);
-
     // Neu rong them vao dau
     if (this->head == nullptr) {
         this->head = newNode;
@@ -64,7 +63,6 @@ void list<T>::addAtEnd(const T& addData)
         while (tempNode->next != nullptr) {
             tempNode = tempNode->next;
         }
-
         // Them vao cuoi
         tempNode->next = newNode;
     }
@@ -88,7 +86,8 @@ void list<T>::remove(const T& removeData)
         if(tempNode != nullptr)
         {
             prev->next = tempNode->next;
-            tempNode->next = nullptr;
+            //tempNode->next = nullptr;
+            delete tempNode;
         }
     }
 }

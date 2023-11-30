@@ -9,6 +9,7 @@ class EmpManage : public Manage<Employee> {
     public:
         EmpManage();
         ~EmpManage();
+        void readfromfile(string);
         void add(const Employee&);
         void add();
         void remove(const Employee&);

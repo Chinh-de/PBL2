@@ -9,11 +9,12 @@ class CusManage : public Manage<Customer> {
     public:
         CusManage();
         ~CusManage();
+        void readfromfile(string);
         void add(const Customer&);
         void remove(const Customer&);
         void update(Customer&);
         void display();
         Node<Customer>* find(int&);
-        list<Customer> find(string&, string&);
+        Node<Customer>* find(string&, string&);
         int getNewID();
 };

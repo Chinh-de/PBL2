@@ -4,11 +4,41 @@ CusManage::CusManage()
 { }
 CusManage::~CusManage()
 { }
+void CusManage::readfromfile(string file){
+    ifstream input(file);
+    int n = 0, value;
+    string info[10];
+    while(!input.eof()){
+        n = 0;
+        Customer tempCus;
+        do{
+            char c;
+            string Data = "";
+            input.get(c);
+            while (c != '|' && c != '\n' && !input.eof()){
+                Data += c;
+                input.get(c);
+            }
+            info[n] = Data;
+            n++;
+        }while (n <= 5);
+
+        if (isdigit(info[0][0]))
+            value = stoi(info[0]); tempCus.setID(value);
+        tempCus.setName(info[1]);
+        tempCus.setPhone(info[2]);
+        tempCus.setEmail(info[3]);
+        tempCus.setGender((info[4] == "Nu"));
+        tempCus.setAddress(info[5]);
+        this->Cus.addAtEnd(tempCus);
+    }
+    input.close();
+}
 void CusManage::add(const Customer& c) {
     this->Cus.add(c);
 }
 void CusManage::remove(const Customer& c){
-    this->Cus.remove(c);
+    this->Cus.remove(c); 
 }
 void CusManage::display(){
     this->Cus.display();
@@ -59,11 +89,12 @@ void CusManage::update(Customer& _customer) {
                 case 4:
                     cout << "Nhap gioi tinh (1: Nu, 0: Nam): ";
                     cin >> gender;
-                    _customer.setGender;
+                    _customer.setGender(gender);
                     break;
                  case 5:
                     cout << "Nhap dia chi moi: ";
-                    getline(cin, _customer.Address);
+                    getline(cin, adress);
+                    _customer.setAddress(adress);
                     break;    
                 case 6:
                     cout << "Da thoat khoi cap nhat" << endl;
@@ -81,25 +112,25 @@ Node<Customer>* CusManage::find(int& ID)
     tempCus.setID(ID);
     return this->Cus.find(tempCus);
 }
-list<Customer> CusManage::find(string& name, string& phone)
+Node<Customer>* CusManage::find(string& name, string& phone)
 {
-    list<Customer> Found;
+    Node<Customer>* Found;
     if( name == "x" && phone == "x" ) return Found;
     Node<Customer>* tempNode;
     tempNode = this->Cus.getHead();
     while (tempNode != nullptr) 
     {
         if ( ( tempNode->data.getName() == name || name == "x" ) && ( tempNode->data.getPhone() == phone || phone == "x" ) ) 
-            Found.add(tempNode->data);
+            Found = tempNode;
         tempNode = tempNode->next;
     }
-    if ( Found.getHead() == nullptr ) cout << "khong tim thay!";
+    if ( Found == nullptr ) cout << "khong tim thay!";
     return Found;
 }
 
 int CusManage::getNewID()
 {
-    newID = this->Cus.getHead()->data.getID();
-    if (!(newID < 10000)) return 10000; //khach hang dau tien se co ID 10000
-    return this->Cus.getHead()->data.getID() + 1;
+    Node<Customer>* Ncus = this->Cus.getHead();
+    if(Ncus == nullptr) return 10000;
+    return Ncus->data.getID() + 1;
 }

@@ -117,7 +117,7 @@ list<order>& invoice::getOrder()
     return this->listOfOrder;
 }
 
-void invoice::removeOrder(const int& ID)
+void invoice::removeOrder(const string& ID)
 {
     if(status == false) 
     {

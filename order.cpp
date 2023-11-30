@@ -13,6 +13,14 @@ order::order()
 order::~order()
 {   }
 
+void order::setInvoiceID(int& i){
+    this->invoiceID = i;
+}
+
+int order::getInvoiceID(){
+    return this->invoiceID;
+}
+
 void order::updateTotal()
 {
     this->total = this->quantity * this->price;
@@ -40,6 +48,12 @@ bool order::operator!=(const order& other) const {
 bool order::operator==(const order& other) const {
     return this->getID() == other.getID();
 }
+
+list<string> order::getSerial()
+{
+    return this->serial;
+}
+
 
 
 

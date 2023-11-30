@@ -9,6 +9,7 @@ class ProdManage : public Manage<product> {
     public:
         ProdManage();
         ~ProdManage();
+        void readfromfile(string);
         void add(const product&);
         void add();
         void remove(const product&);
