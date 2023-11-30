@@ -49,7 +49,7 @@ ostream& operator<<(ostream& o, const product& p){
     << "O cung: " << p.hard_disk << endl
     << "GPU: " << p.GPU << endl
     << "He dieu hang: " << p.OS << endl
-    << "so luong con: " << this->getQuantity() << " may";
+    << "so luong con: " << p.quantity << " may";
     product *temp = new product();
     *temp = p;
     temp->serial.display();

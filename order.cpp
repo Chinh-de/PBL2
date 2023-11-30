@@ -13,6 +13,14 @@ order::order()
 order::~order()
 {   }
 
+void order::setInvoiceID(int& i){
+    this->invoiceID = i;
+}
+
+int order::getInvoiceID(){
+    return this->invoiceID;
+}
+
 void order::updateTotal()
 {
     this->total = this->quantity * this->price;

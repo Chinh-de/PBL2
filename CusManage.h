@@ -15,6 +15,6 @@ class CusManage : public Manage<Customer> {
         void update(Customer&);
         void display();
         Node<Customer>* find(int&);
-        list<Customer> find(string&, string&);
+        Node<Customer>* find(string&, string&);
         int getNewID();
 };

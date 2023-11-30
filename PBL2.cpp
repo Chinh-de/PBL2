@@ -15,6 +15,7 @@ ProdManage productManage;
 InvManage invoiceManage;
 Employee user;
 
+void read();
 void login();
 void MenuManager();
 void MenuEmployee();
@@ -23,8 +24,11 @@ int main()
     //docfile dang nhap
     //docfile person
     //docfile lichsumuahang
-    customerManage.read();
+    cout << "abc\n";
+    read();
+    cout << "abc\n";
     int Close;
+    cout << "abc\n";
     lg:;
     Close = 0;
     login();
@@ -37,6 +41,12 @@ int main()
     if (Close == 1) return 1;
     else goto lg;
 }
+void read(){
+    customerManage.readfromfile("customer.txt");
+    employeeManage.readfromfile("employee.txt");
+    //productManage.readfromfile("product.txt");
+    //invoiceManage.readfromfile("invoice.txt", "invoice_detail.txt");
+}
 void login(){
     int userID;
     string password;
@@ -45,13 +55,14 @@ void login(){
         cout << "DANG NHAP" << endl << "Ten tai khoan: "; cin >> userID; 
         cout << "Mat khau: "; cin >> password;
         Employee temp;
-        temp = employeeManage.find(userID);
-        if (temp != nullptr){
-            if (temp.getPassword() == password)
+        temp = employeeManage.find(userID)->data;
+        if (temp.getID() != 0){
+            if (temp.getPassword() == password){                
                 user = temp;
                 system("cls");
-                cout << "Dang nhap thanh cong";
+                cout << "Dang nhap thanh cong" << endl;
                 system("pause");
+            }
             else {
                 system("cls");
                 cout << "Sai mat khau!";
@@ -76,6 +87,8 @@ void MenuEmployee()
     */
     int option, t;
     bool over = false;
+    int id, next_option, d, m, y;
+    string sid;
     do{
         option = 1;
         do{
@@ -93,13 +106,14 @@ void MenuEmployee()
             if (option < 1) option = 7;
             if (option > 7) option = 1;
         } while (t != 13);
-        switch option{
+        switch (option){
             case 1:
                 system("cls");
                 user.Show();
+                system("pause");
                 break;
             case 2:
-                int next_option = 1;
+                next_option = 1;
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach san pham" << endl;
@@ -113,13 +127,14 @@ void MenuEmployee()
                     productManage.displayOption();
                 else {
                     system("cls");
-                    string id;
-                    cout << "Nhap ID san pham: "; cin >> id;
-                    productManage.find(id).show();
+                    sid;
+                    cout << "Nhap ID san pham: "; cin >> sid;
+                    productManage.find(sid)->data.show();
                 }
+                system("pause");
                 break;
             case 3:
-                int next_option = 1;
+                next_option = 1;
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach khach hang" << endl;
@@ -130,8 +145,11 @@ void MenuEmployee()
                     if (next_option < 1) next_option = 2;
                     if (next_option > 2) next_option = 1;
                 }while(t != 13);
-                if(next_option == 1)
+                if(next_option == 1){
+                    system("cls");
                     customerManage.display();
+                    system("pause");
+                }
                 else {
                     int find_option = 1;
                     do {
@@ -146,25 +164,27 @@ void MenuEmployee()
                     } while (t != 13);
                     if (find_option == 1) {
                         system("cls");
-                        int id;
                         cout << "Nhap ma khach hang: "; cin >> id;
-                        customerManage.find(id);
+                        customerManage.find(id)->data.Show();
+                        system("pause");
                     }
                     else {
                         system("cls");
                         string name, phone;
                         cout << "Ten khach hang: "; cin >> name;
                         cout << "So dien thoai: "; cin >> phone;
-                        customerManage.find(name, phone);
+                        customerManage.find(name, phone)->data.Show();
+                        system("pause");
                     }
                 }
                 break;
             case 4:
                 // user.sell(customerManage, productManage, invoiceManage);
                 cout << "Het hang roi";
+                system("pause");
                 break;                
             case 5:
-                int next_option = 1;
+                next_option = 1;
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Tim hoa don" << endl;
@@ -180,25 +200,26 @@ void MenuEmployee()
                 }while(t != 13);
                 switch (next_option){
                     case 1:
-                        int id;
                         cout << "Nhap ma hoa don: "; cin >> id;
                         invoiceManage.find(id).display();
+                        system("pause");
                     case 2:
-                        int y;
                         cout << "Nhap nam: "; cin >> y;
                         invoiceManage.find(y).display();
+                        system("pause");
                     case 3:
-                        int m, y;
                         cout << "Nhap lan luot thang, nam: "; cin >> m >> y;
                         invoiceManage.find(m, y).display();
+                        system("pause");
                     case 4:
-                        int d, m, y;
                         cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
                         invoiceManage.find(d, m, y).display();
+                        system("pause");
                 }
                 break;
             case 6:
                 user.changePassword();
+                system("pause");
                 break;
             case 7:
                 over = true;
@@ -210,6 +231,8 @@ void MenuManager()
 {
     int option, t;
     bool over = false;
+    int id, next_option, d, m, y;
+    string sid;
     do{
         option = 1;
         do{
@@ -234,9 +257,10 @@ void MenuManager()
             case 1:
                 system("cls");
                 user.Show();
+                system("pause");
                 break;
             case 2:
-                int next_option = 1;
+                next_option = 1;
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Hien thi theo nam: " <<endl;
@@ -249,23 +273,23 @@ void MenuManager()
                     if (next_option > 3) next_option = 1;
                 }while(t != 13);
                 if (next_option == 1){
-                    int y;
                     cout << "Nhap nam: "; cin >> y;
                     invoiceManage.statistic(invoiceManage.find(y));
+                    system("pause");
                 }
                 else if (next_option == 2){
-                    int m, y;
                     cout << "Nhap lan luot thang, nam: "; cin >> y;
                     invoiceManage.statistic(invoiceManage.find(m, y));
+                    system("pause");
                 }
                 else {
-                    int d, m, y;
                     cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
                     invoiceManage.statistic(invoiceManage.find(d, m, y));
+                    system("pause");
                 }
                 break;
             case 3:
-                int next_option = 1;
+                next_option = 1;
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach san pham" << endl;
@@ -283,12 +307,13 @@ void MenuManager()
                 switch(next_option){
                     case 1:
                         productManage.displayOption();
+                        system("pause");
                         break;
                     case 2:
                         system("cls");
-                        string id;
-                        cout << "Nhap ID san pham: "; cin >> id;
-                        productManage.find(id).show();
+                        cout << "Nhap ID san pham: "; cin >> sid;
+                        productManage.find(sid)->data.show();
+                        system("pause");
                         break;
                     case 3:
                         system("cls");
@@ -296,28 +321,28 @@ void MenuManager()
                         break;
                     case 4:
                         system("cls");
-                        string id;
-                        cout << "Nhap ID san pham can cap nhat: "; cin >> id;
-                        productManage.update(productManage.find(id));
+                        cout << "Nhap ID san pham can cap nhat: "; cin >> sid;
+                        // productManage.update(productManage.find(sid)->data);
+                        system("pause");
                         break;
                     case 5:
                         system("cls");
-                        string id;
-                        cout << "Nhap ID san pham can xoa: "; cin >> id;
-                        productManage.remove(productManage.find(id));
+                        cout << "Nhap ID san pham can xoa: "; cin >> sid;
+                        productManage.remove(productManage.find(sid)->data);
+                        system("pause");
                         break;
                     case 6:
                         system("cls");
-                        string id;
                         string seri;
-                        cout << "Nhap ID san pham can them so seri: "; cin >> id;
+                        cout << "Nhap ID san pham can them so seri: "; cin >> sid;
                         cout << "Nhap so seri: "; cin >> seri;
-                        productManage.find(id).addSerial(seri);
+                        productManage.find(sid)->data.addSerial(seri);
+                        system("pause");
                         break;
                 }
                 break;
             case 4:
-                int next_option = 1;
+                next_option = 1;
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach nhan vien" << endl;
@@ -334,27 +359,29 @@ void MenuManager()
                     case 1:
                         system("cls");
                         employeeManage.display();
+                        system("pause");
                         break;
                     case 2:
                         system("cls");
                         employeeManage.add();
+                        system("pause");
                         break;
                     case 3:
                         system("cls");
-                        int id;
                         cout << "Nhap ID nhan vien: "; cin >> id;
-                        employeeManage.update(employeeManage.find(id));
+                        //employeeManage.update(employeeManage.find(id)->data);
+                        system("pause");
                         break;
                     case 4:
                         system("cls");
-                        int id;
                         cout << "Nhap ID nhan vien: "; cin >> id;
-                        employeeManage.remove(employeeManage.find(id));
+                        employeeManage.remove(employeeManage.find(id)->data);
+                        system("pause");
                         break;
                 }
                 break;
             case 5:
-                int next_option = 1;
+                next_option = 1;
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach khach hang" << endl;
@@ -365,8 +392,10 @@ void MenuManager()
                     if (next_option < 1) next_option = 2;
                     if (next_option > 2) next_option = 1;
                 }while(t != 13);
-                if(next_option == 1)
+                if(next_option == 1){
                     customerManage.display();
+                    system("pause");
+                } 
                 else {
                     int find_option = 1;
                     do {
@@ -381,25 +410,27 @@ void MenuManager()
                     } while (t != 13);
                     if (find_option == 1) {
                         system("cls");
-                        int id;
                         cout << "Nhap ma khach hang: "; cin >> id;
-                        customerManage.find(id);
+                        customerManage.find(id)->data.Show();
+                        system("pause");
                     }
                     else {
                         system("cls");
                         string name, phone;
                         cout << "Ten khach hang: "; cin >> name;
                         cout << "So dien thoai: "; cin >> phone;
-                        customerManage.find(name, phone);
+                        customerManage.find(name, phone)->data.Show();
+                        system("pause");
                     }
                 }
                 break;
             case 6:
                 // user.sell(customerManage, productManage, invoiceManage);
                 cout << "Het hang roi";
+                system("pause");
                 break;
             case 7:
-                int next_option = 1;
+                next_option = 1;
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Tim hoa don" << endl;
@@ -415,25 +446,26 @@ void MenuManager()
                 }while(t != 13);
                 switch (next_option){
                     case 1:
-                        int id;
                         cout << "Nhap ma hoa don: "; cin >> id;
                         invoiceManage.find(id).display();
+                        system("pause");
                     case 2:
-                        int y;
                         cout << "Nhap nam: "; cin >> y;
                         invoiceManage.find(y).display();
+                        system("pause");
                     case 3:
-                        int m, y;
                         cout << "Nhap lan luot thang, nam: "; cin >> m >> y;
                         invoiceManage.find(m, y).display();
+                        system("pause");
                     case 4:
-                        int d, m, y;
                         cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
                         invoiceManage.find(d, m, y).display();
+                        system("pause");
                 }
                 break;
             case 8:
                 user.changePassword();
+                system("pause");
                 break;
             case 9:
                 over = true;

@@ -18,9 +18,10 @@ class InvManage : public Manage<invoice> {
         list<invoice> find(int&, int&, int&);
         list<invoice> find(int&, int&);
         list<invoice> find(int&);
-        void statistic(list<invoice>&);
+        void statistic(list<invoice>);
         invoice printInvoice(int&, list<Customer>&);
         int getNewID();
-        void sell(const int&, CusManage&, ProdManage&);
+        void sell(int&, CusManage&, ProdManage&);
         void updateCart(invoice&, ProdManage&, CusManage);
+        void readfromfile(string, string);
 };
