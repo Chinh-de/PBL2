@@ -21,14 +21,14 @@ void MenuManager();
 void MenuEmployee();
 int main()
 {
-    product bug;
-    string s1 = "seri1", s2 = "seri2";
-    bug.addSerial(s1);
-    bug.addSerial(s2);
-    cout << bug;
-    bug.show();
-    productManage.add(bug);
-    productManage.display();
+   // product bug;
+   // string s1 = "seri1", s2 = "seri2";
+   // bug.addSerial(s1);
+   // bug.addSerial(s2);
+   // cout << bug;
+   // bug.show();
+   // productManage.add(bug);
+    //productManage.display();
     //docfile dang nhap
     //docfile person
     //docfile lichsumuahang
@@ -41,7 +41,7 @@ int main()
     //employeeManage.display();
     //invoiceManage.display();
     //customerManage.display();
-    //system("pause");
+    system("pause");
     lg:;
     Close = 0;
     login();
@@ -57,7 +57,7 @@ int main()
 void read(){
     customerManage.readfromfile("customer.txt");
     employeeManage.readfromfile("employee.txt");
-    productManage.readfile("product.txt");
+    productManage.readfromfile("product.txt");
     //invoiceManage.readfromfile("invoice.txt", "invoice_detail.txt");
 }
 void login(){
