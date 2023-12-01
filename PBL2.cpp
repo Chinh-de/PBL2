@@ -24,11 +24,8 @@ int main()
     //docfile dang nhap
     //docfile person
     //docfile lichsumuahang
-    cout << "abc\n";
     read();
-    cout << "abc\n";
     int Close;
-    cout << "abc\n";
     //productManage.display();
     //employeeManage.display();
     //invoiceManage.display();
@@ -49,7 +46,7 @@ int main()
 void read(){
     customerManage.readfromfile("customer.txt");
     employeeManage.readfromfile("employee.txt");
-    productManage.readfromfile("product.txt");
+    //productManage.readfromfile("product.txt");
     //invoiceManage.readfromfile("invoice.txt", "invoice_detail.txt");
 }
 void login(){

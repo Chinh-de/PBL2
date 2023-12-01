@@ -8,13 +8,13 @@ ProdManage::~ProdManage()
 void ProdManage::readfromfile(string file){
     ifstream input(file);
     int n = 0;
-    int value;
+    int value, quantity;
+    string Data;
     string info[20];
-    while(input.eof() == 0){
+    while(1){
         n = 0;
         product tempProd;
         char c;
-        string Data;
         do {
             Data = "";
             input.get(c);
@@ -25,13 +25,13 @@ void ProdManage::readfromfile(string file){
             info[n] = Data;
             ++n;
         } while(n <= 10);
-        
+        tempProd.setQuantity(0);
         if (isdigit(info[2][0]) && isdigit(info[3][0]) && isdigit(info[5][0]) && isdigit(info[7][0]) && isdigit(info[10][0])){
             value = stoi(info[2]); tempProd.setPrice(value);
             value = stoi(info[3]); tempProd.setImportPrice(value);
             value = stoi(info[5]); tempProd.setRAM(value);
             value = stoi(info[7]); tempProd.setHardDisk(value);
-            value = stoi(info[10]); tempProd.setQuantity(value);
+            quantity = stoi(info[10]);
         }
 
         tempProd.setID(info[0]);
@@ -40,22 +40,17 @@ void ProdManage::readfromfile(string file){
         tempProd.setScreen(info[6]);
         tempProd.setGPU(info[8]);
         tempProd.setOS(info[9]);
-        if (tempProd.getQuantity() == 0)
-            break;
-        int m = (n) + tempProd.getQuantity();
-        do{
+        if (quantity != 0)
+        for (int i = 0; i < quantity; i++){
             Data = "";
             input.get(c);
             while (c!='|' && c != ',' && c != '\n' && !input.eof()){
                 Data += c;
                 input.get(c);
-            }
+            } 
             tempProd.addSerial(Data);
-            n++;
-        } while(n <= m);
-        cout << "before";
-        this->Prod.addAtEnd(tempProd);
-        cout << "after";
+        } 
+        this->Prod.add(tempProd);
     }
     input.close();
 }

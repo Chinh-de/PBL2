@@ -24,6 +24,11 @@ product::product(){
    // list<string> nullserial;
     //serial = nullserial; không cần thiết vì nó tự gọi hàm dựng
 }
+product::product(string ID, string _name, int _quantity, unsigned int _price, unsigned int _import_price, string _CPU, int _RAM, 
+                string _screen, int _hard_disk, string _GPU, string _OS)
+            : productID(ID), name(_name), quantity(_quantity), price(_price), import_price(_import_price), CPU(_CPU), RAM(_RAM),
+              screen(_screen),hard_disk(_hard_disk), GPU(_GPU), OS(_OS)
+{ }
 product::~product()
 { }
 void product::show(){
@@ -36,7 +41,7 @@ void product::show(){
     << "O cung: " << this->hard_disk << "GB" << endl
     << "GPU: " << this->GPU << endl
     << "He dieu hang: " << this->OS << endl
-    << "so luong con: " << this->getQuantity() << " may";
+    << "so luong con: " << this->getQuantity() << " may" << endl;
     this->serial.display();
 }
 ostream& operator<<(ostream& o, const product& p){
@@ -49,10 +54,10 @@ ostream& operator<<(ostream& o, const product& p){
     << "O cung: " << p.hard_disk << endl
     << "GPU: " << p.GPU << endl
     << "He dieu hang: " << p.OS << endl
-    << "so luong con: " << p.quantity << " may";
+    << "so luong con: " << p.quantity << " may" << endl;
     product *temp = new product();
     *temp = p;
-    temp->serial.display();
+    cout << "seri:";temp->serial.display();
     delete temp;
     return o;
 }
@@ -137,7 +142,7 @@ void product::setQuantity(int newQuantity)
 }
 void product::addSerial(string& newSerial)
 {
-    this->serial.add(newSerial);
+    this->serial.addAtEnd(newSerial);
     this->setQuantity (this->getQuantity() + 1);
 }
 void product::removeSerial(string& rSerial)
@@ -163,5 +168,7 @@ bool product::isSerial(string& s)
     }
     return false;
 }
-
+list<string> product::getsetial(){
+    return this->serial;
+}
 
