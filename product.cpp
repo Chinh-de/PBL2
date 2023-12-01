@@ -1,15 +1,7 @@
 #include "product.h"
+    list<string> lserial;
 
 product::product(){
-    //Random ma san pham
-    // cout << "Ten san pham: "; cin >> this->name;
-    // cout << "Ten san ban: "; cin >> this->price;
-    // cout << "Nhap thong so:" << endl
-    // << "CPU: "; cin >> this->CPU;
-    // cout << "RAM: "; cin >> this->RAM;
-    // cout << "Man hinh: "; cin >> this->screen;
-    // cout << "O cung: "; cin >> this->hard_disk;
-    // cout << "GPU: "; cin >> this->GPU;
     this->productID = "0";
     this->name = "";
     this->price = 0;
@@ -21,9 +13,13 @@ product::product(){
     this->screen = "";
     this->quantity = 0;
     this->OS = "";
-   // list<string> nullserial;
-    //serial = nullserial; không cần thiết vì nó tự gọi hàm dựng
+    this->serial = lserial;
 }
+product::product(string ID, string _name, int _quantity, unsigned int _price, unsigned int _import_price, string _CPU, int _RAM, 
+                string _screen, int _hard_disk, string _GPU, string _OS)
+            : productID(ID), name(_name), quantity(_quantity), price(_price), import_price(_import_price), CPU(_CPU), RAM(_RAM),
+              screen(_screen),hard_disk(_hard_disk), GPU(_GPU), OS(_OS)
+{ }
 product::~product()
 { }
 void product::show(){
@@ -36,10 +32,16 @@ void product::show(){
     << "O cung: " << this->hard_disk << "GB" << endl
     << "GPU: " << this->GPU << endl
     << "He dieu hang: " << this->OS << endl
-    << "so luong con: " << this->getQuantity() << " may";
-    this->serial.display();
+    << "so luong con: " << this->getQuantity() << " may" << endl;
+    cout << "Cac so serial: ";
+    Node<string>* Nserial = this->serial.getHead();
+    while (Nserial != nullptr) 
+    {
+        cout << Nserial->data << ", ";
+        Nserial = Nserial->next;
+    }
 }
-ostream& operator<<(ostream& o, const product& p){
+ostream& operator<<(ostream& o,const product& p){
     o << "Ten san pham: " << p.name << endl
     << "Gia ban: " << p.price << endl
     << "Thong so:" << endl
@@ -49,11 +51,15 @@ ostream& operator<<(ostream& o, const product& p){
     << "O cung: " << p.hard_disk << endl
     << "GPU: " << p.GPU << endl
     << "He dieu hang: " << p.OS << endl
-    << "so luong con: " << p.quantity << " may";
-    product *temp = new product();
-    *temp = p;
-    temp->serial.display();
-    delete temp;
+    << "so luong con: " << p.quantity << " may" << endl;  
+    o << "Serial Numbers: ";
+    Node<string>* Nserial = p.serial.getHead();
+    while (Nserial != nullptr) 
+    {
+        o << Nserial->data << ", ";
+        Nserial = Nserial->next;
+    }
+    o << endl;
     return o;
 }
 bool product::operator!=(const product& p){
@@ -144,6 +150,10 @@ void product::removeSerial(string& rSerial)
 {
     this->serial.remove(rSerial);
     this->setQuantity(this->getQuantity() - 1);
+}
+list<string> product::getSerial()
+{
+    return this->serial;
 }
 bool product::operator>(product& p)
 {

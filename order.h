@@ -16,5 +16,4 @@ class order : public product
         friend ostream& operator<<(ostream&, const order&);
         bool operator!=(const order&) const;
         bool operator==(const order&) const;
-        list<string> getSerial();
 };

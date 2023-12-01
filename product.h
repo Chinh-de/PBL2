@@ -23,6 +23,7 @@ class product
 
     public:
         product();
+        product(string, string, int, unsigned int, unsigned int, string, int, string, int, string , string);
         ~product();
         void show();
         friend ostream& operator<<(ostream&, const product&);
@@ -54,6 +55,7 @@ class product
         void addSerial(string&);
         void removeSerial(string&);
         bool isSerial(string&);
+        list<string> getSerial();
         bool operator>(product&); //so sanh gia
         bool operator<(product&); //so sanh gia
 };

@@ -2,13 +2,7 @@
 
 order::order()
 {
-    //this->productID = "";
-    // this->name = "";
-    // this->price = 0;
-    // this->quantity = 0;
     this->total = 0;
-   // list<string> nullserial;
-    //serial = nullserial;
 }
 order::~order()
 {   }
@@ -49,10 +43,7 @@ bool order::operator==(const order& other) const {
     return this->getID() == other.getID();
 }
 
-list<string> order::getSerial()
-{
-    return this->serial;
-}
+
 
 
 

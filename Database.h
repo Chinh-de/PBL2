@@ -2,6 +2,7 @@
 #include "EmpManage.h"
 #include "CusManage.h"
 #include "InvManage.h"
+
 using namespace std;
 class Database
 {

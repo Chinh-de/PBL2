@@ -1,5 +1,7 @@
 #include "ProdManage.h"
 #include <conio.h>
+#include <fstream>
+#include <sstream>
 
 ProdManage::ProdManage()
 { }
@@ -59,6 +61,53 @@ void ProdManage::readfromfile(string file){
     }
     input.close();
 }
+
+void ProdManage::readfile(string file)
+{
+    ifstream inputFile(file);
+    string ID, name, CPU, screen, GPU, OS, serial; 
+    int quantity, RAM, disk;
+    unsigned int price, import_price;
+    if (inputFile.is_open()) 
+    {
+        string line;
+        while (getline(inputFile, line))
+        {
+            istringstream iss(line);
+
+            getline(iss, ID, '|');
+          //  cout << ID << endl;
+            getline(iss, name, '|');
+        //  cout << name << endl;
+            iss >> price;
+            iss.ignore(); // bo ki tu '|'
+          //  cout << price;
+            iss >> import_price;
+            iss.ignore(); 
+            getline(iss, CPU, '|');
+            iss >> RAM;
+            iss.ignore(); 
+            getline(iss, screen, '|');
+            iss >> disk;
+            iss.ignore(); 
+            getline(iss, GPU, '|');
+            getline(iss, OS, '|');
+            iss >> quantity;
+            iss.ignore(); 
+            product newProd(ID, name, quantity, price, import_price, CPU, RAM, screen, disk, GPU, OS); 
+            for (int i = 1; i <= quantity; i++)
+            {
+                getline(iss, serial, ',');
+                newProd.addSerial(serial);
+            }
+            this->Prod.addAtEnd(newProd);
+        }
+        inputFile.close();   
+    } else {
+        cerr << "Unable to open file." << endl; //bao loi
+    }
+}
+
 void ProdManage::add(const product& p) {
     this->Prod.add(p);
 }
@@ -84,7 +133,13 @@ void ProdManage::remove(const product& p){
     this->Prod.remove(p);
 }
 void ProdManage::display(){
-    this->Prod.display();
+    //this->Prod.display();
+    Node<product>* Nserial = this->Prod.getHead();
+    while (Nserial != nullptr) 
+    {
+        cout << Nserial->data << endl;
+        Nserial = Nserial->next;
+    }
 }
 
 void ProdManage::display(bool type)
