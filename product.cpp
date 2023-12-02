@@ -1,5 +1,4 @@
 #include "product.h"
-    list<string> lserial;
 
 product::product(){
     this->productID = "0";
@@ -13,15 +12,71 @@ product::product(){
     this->screen = "";
     this->quantity = 0;
     this->OS = "";
-    this->serial = lserial;
+    this->serial = nullptr;
 }
-product::product(string ID, string _name, int _quantity, unsigned int _price, unsigned int _import_price, string _CPU, int _RAM, 
+product::product(string ID, string _name, unsigned int _price, unsigned int _import_price, string _CPU, int _RAM, 
                 string _screen, int _hard_disk, string _GPU, string _OS)
-            : productID(ID), name(_name), quantity(_quantity), price(_price), import_price(_import_price), CPU(_CPU), RAM(_RAM),
+            : productID(ID), name(_name), price(_price), import_price(_import_price), CPU(_CPU), RAM(_RAM),
               screen(_screen),hard_disk(_hard_disk), GPU(_GPU), OS(_OS)
-{ }
+{ 
+    this->quantity = 0;
+    this->serial = nullptr;
+}
+product::product(const product& other) 
+{
+    this->productID = other.productID;
+    this->name = other.name;
+    this->quantity = other.quantity;
+    this->price = other.price;
+    this->import_price = other.import_price;
+    this->CPU = other.CPU;
+    this->RAM = other.RAM;
+    this->screen = other.screen;
+    this->hard_disk = other.hard_disk;
+    this->GPU = other.GPU;
+    this->OS = other.OS;
+    if (other.serial != nullptr) {
+        this->serial = new string[other.quantity];
+        for (int i = 0; i < other.quantity; ++i) {
+            this->serial[i] = other.serial[i];
+        }
+    } else {
+        this->serial = nullptr;
+    }
+}
+
 product::~product()
-{ }
+{
+    delete[] serial;
+
+}
+
+product& product::operator=(const product& other) {
+    if (this != &other) {  
+        delete[] this->serial;
+        this->productID = other.productID;
+        this->name = other.name;
+        this->quantity = other.quantity;
+        this->price = other.price;
+        this->import_price = other.import_price;
+        this->CPU = other.CPU;
+        this->RAM = other.RAM;
+        this->screen = other.screen;
+        this->hard_disk = other.hard_disk;
+        this->GPU = other.GPU;
+        this->OS = other.OS;
+        if (other.serial != nullptr) {
+            this->serial = new string[other.quantity];
+            for (int i = 0; i < other.quantity; ++i) {
+                this->serial[i] = other.serial[i];
+            }
+        } else {
+            serial = nullptr;
+        }
+    }
+    return *this;
+}
+
 void product::show(){
     cout << "Ten san pham: " << this->name << endl
     << "Ten san ban: " << this->price << endl
@@ -32,14 +87,7 @@ void product::show(){
     << "O cung: " << this->hard_disk << "GB" << endl
     << "GPU: " << this->GPU << endl
     << "He dieu hang: " << this->OS << endl
-    << "so luong con: " << this->getQuantity() << " may" << endl;
-    cout << "Cac so serial: ";
-    Node<string>* Nserial = this->serial.getHead();
-    while (Nserial != nullptr) 
-    {
-        cout << Nserial->data << ", ";
-        Nserial = Nserial->next;
-    }
+    << "so luong con: " << this->quantity << " may";
 }
 ostream& operator<<(ostream& o,const product& p){
     o << "Ten san pham: " << p.name << endl
@@ -51,15 +99,12 @@ ostream& operator<<(ostream& o,const product& p){
     << "O cung: " << p.hard_disk << endl
     << "GPU: " << p.GPU << endl
     << "He dieu hang: " << p.OS << endl
-    << "so luong con: " << p.quantity << " may" << endl;  
-    o << "Serial Numbers: ";
-    Node<string>* Nserial = p.serial.getHead();
-    while (Nserial != nullptr) 
+    << "so luong con: " << p.quantity << " may" << endl;
+    o << "So serial: ";
+    for(int i = 0; i < p.quantity; i++)
     {
-        o << Nserial->data << ", ";
-        Nserial = Nserial->next;
+        o << *(p.serial + i ) << ", ";
     }
-    o << endl;
     return o;
 }
 bool product::operator!=(const product& p){
@@ -143,15 +188,43 @@ void product::setQuantity(int newQuantity)
 }
 void product::addSerial(string& newSerial)
 {
-    this->serial.add(newSerial);
-    this->setQuantity (this->getQuantity() + 1);
+    string* newSerialArray = new string[this->quantity + 1];
+    for (int i = 0; i < this->quantity; ++i) 
+    {
+        newSerialArray[i] = serial[i];
+    }
+    newSerialArray[this->quantity] = newSerial;
+    ++this->quantity;
+    delete[] this->serial;
+    this->serial = newSerialArray;
 }
 void product::removeSerial(string& rSerial)
 {
-    this->serial.remove(rSerial);
-    this->setQuantity(this->getQuantity() - 1);
+    int indexToRemove = -1;
+    for (int i = 0; i < this->quantity; ++i) 
+    {
+        if (this->serial[i] == rSerial) 
+        {
+            indexToRemove = i;
+            break;
+        }
+    }
+    if (indexToRemove != -1) 
+    {
+        string* newSerialArray = new string[this->quantity - 1];
+        for (int i = 0, j = 0; i < this->quantity; ++i) 
+        {
+            if (i != indexToRemove) 
+            {
+                newSerialArray[j++] = serial[i];
+            }
+        }
+        --this->quantity;
+        delete[] this->serial;
+        this->serial = newSerialArray;
+    }
 }
-list<string> product::getSerial()
+string* product::getSerial()
 {
     return this->serial;
 }
@@ -163,15 +236,11 @@ bool product::operator<(product& p)
 {
     return this->getPrice() < p.getPrice();
 }
-bool product::isSerial(string& s)
+bool product::isSerial(const string& s)
 {
-    Node<string>* tempNode = this->serial.getHead();
-     while (tempNode != nullptr) 
-    {
-        if (tempNode->data == s) return true;
-        tempNode = tempNode->next;
-    }
-    return false;
+    for (int i = 0; i < this->quantity; ++i)
+        if (this->serial[i] == s) return true;
+    return false;  
 }
 
 

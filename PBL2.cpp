@@ -6,13 +6,14 @@
 #include "EmpManage.h"
 #include "InvManage.h"
 #include "ProdManage.h"
+#include "Database.h"
 using namespace std;
 // khai bao them tai nguyen
-
-CusManage customerManage;
-EmpManage employeeManage;
-ProdManage productManage;
-InvManage invoiceManage;
+Database& myDatabase = Database::DB_Instance();
+CusManage& customerManage = myDatabase.getCusManage();
+EmpManage employeeManage = myDatabase.getEmpManage();
+ProdManage productManage = myDatabase.getProdManage();
+InvManage invoiceManage = myDatabase.getInvManage();
 Employee user;
 
 void read();
@@ -21,22 +22,13 @@ void MenuManager();
 void MenuEmployee();
 int main()
 {
-   // product bug;
-   // string s1 = "seri1", s2 = "seri2";
-   // bug.addSerial(s1);
-   // bug.addSerial(s2);
-   // cout << bug;
-   // bug.show();
-   // productManage.add(bug);
-    //productManage.display();
+
     //docfile dang nhap
     //docfile person
     //docfile lichsumuahang
-    cout << "abc\n";
     read();
-    cout << "abc\n";
     int Close;
-    cout << "abc\n";
+     productManage.writetofile("output.txt");
     //productManage.display();
     //employeeManage.display();
     //invoiceManage.display();
@@ -53,6 +45,7 @@ int main()
     cin >> Close;
     if (Close == 1) return 1;
     else goto lg;
+    return 0;
 }
 void read(){
     customerManage.readfromfile("customer.txt");

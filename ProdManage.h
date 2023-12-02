@@ -10,7 +10,7 @@ class ProdManage : public Manage<product> {
         ProdManage();
         ~ProdManage();
         void readfromfile(string);
-       // void readfile(string file);
+        void writetofile(string file);
         void add(const product&);
         void add();
         void remove(const product&);

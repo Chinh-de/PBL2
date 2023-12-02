@@ -218,7 +218,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage Cust
         Node<product>* Nprod;
         Node<order>* Norder;
         order newOrder;
-        int newQuantity;
+        int newQuantity, i;
         bool isSerial;
         string newSerial;
         if(input == 13)  //phim enter
@@ -282,12 +282,12 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage Cust
                     cin >> newSerial;
                     if (newSerial == "0") 
                     {
-                        Node<string>* tempNode = newInv.getOrder().find(Norder->data)->data.getSerial().getHead(); //lay Node<string> cua list serial trong order tuong ung
-                        while (tempNode != nullptr) 
+                        newQuantity = newInv.getOrder().find(Norder->data)->data.getQuantity();
+                        string* serials = newInv.getOrder().find(Norder->data)->data.getSerial();
+                        for(i = 0; i < newQuantity ; i++)
                         {
-                            Nprod->data.addSerial(tempNode->data);
-                            tempNode = tempNode->next;
-                        }    
+                            Nprod->data.addSerial(serials[i]);
+                        } 
                         newInv.getOrder().remove(Norder->data);
                     }    
                     else if(Norder->data.isSerial(newSerial))

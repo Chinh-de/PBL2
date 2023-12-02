@@ -10,7 +10,7 @@ class product
         string productID;
         string name;
         int quantity;
-        list<string> serial;
+        string* serial;
         unsigned int price;
     private:    
         unsigned int import_price;
@@ -20,11 +20,12 @@ class product
         int hard_disk;
         string GPU;
         string OS;
-
     public:
         product();
-        product(string, string, int, unsigned int, unsigned int, string, int, string, int, string , string);
+        product(string, string, unsigned int, unsigned int, string, int, string, int, string , string);
+        product(const product&);
         ~product();
+        product& operator=(const product&);
         void show();
         friend ostream& operator<<(ostream&, const product&);
         bool operator!=(const product&);
@@ -54,8 +55,8 @@ class product
         void setQuantity(int);
         void addSerial(string&);
         void removeSerial(string&);
-        bool isSerial(string&);
-        list<string> getSerial();
+        bool isSerial(const string&);
+        string* getSerial();
         bool operator>(product&); //so sanh gia
         bool operator<(product&); //so sanh gia
 };

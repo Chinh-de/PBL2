@@ -20,7 +20,7 @@ class Database
     CusManage customerM;
     InvManage invoiceM;
     static Database instance;
-
+    
     Database();
     ~Database();
     Database(const Database&) = delete;

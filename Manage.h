@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <conio.h>
 #pragma once
 using namespace std;

@@ -1,2 +1,2 @@
 200|Tuan|113|a@gmail|Nam|Da Nang|100|manager|admin
-201|Tuan|113|a@gmail|Nam|Da Nang|100|quan li|admin
+201|Tuan|113|a@gmail|Nam|Da Nang|100|salesperson|admin

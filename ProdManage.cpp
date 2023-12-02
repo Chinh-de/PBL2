@@ -20,14 +20,10 @@ void ProdManage::readfromfile(string file)
         while (getline(inputFile, line))
         {
             istringstream iss(line);
-
             getline(iss, ID, '|');
-          //  cout << ID << endl;
             getline(iss, name, '|');
-        //  cout << name << endl;
             iss >> price;
-            iss.ignore(); // bo ki tu '|'
-          //  cout << price;
+            iss.ignore(); 
             iss >> import_price;
             iss.ignore(); 
             getline(iss, CPU, '|');
@@ -38,21 +34,59 @@ void ProdManage::readfromfile(string file)
             iss.ignore(); 
             getline(iss, GPU, '|');
             getline(iss, OS, '|');
+            product newProd(ID, name, price, import_price, CPU, RAM, screen, disk, GPU, OS); 
             iss >> quantity;
             iss.ignore(); 
-            product newProd(ID, name, quantity, price, import_price, CPU, RAM, screen, disk, GPU, OS); 
-            for (int i = 1; i <= quantity; i++)
+            for (int i = 0; i < quantity; i++)
             {
                 getline(iss, serial, ',');
                 newProd.addSerial(serial);
             }
             this->Prod.addAtEnd(newProd);
         }
-        inputFile.close();   
+        inputFile.close();
     } else {
         cerr << "Unable to open file." << endl; //bao loi
     }
 }
+
+void ProdManage::writetofile(string file) {
+    ofstream outputFile(file);
+
+    if (outputFile.is_open()) {
+        for (Node<product>* current = Prod.getHead(); current != nullptr; current = current->next) {
+            product currentProd = current->data;
+            outputFile << currentProd.getID() << "|"
+                       << currentProd.getName() << "|"
+                       << currentProd.getPrice() << "|"
+                       << currentProd.getImportPrice() << "|"
+                       << currentProd.getCPU() << "|"
+                       << currentProd.getRAM() << "|"
+                       << currentProd.getScreen() << "|"
+                       << currentProd.getHardDisk() << "|"
+                       << currentProd.getGPU() << "|"
+                       << currentProd.getOS() << "|"
+                       << currentProd.getQuantity() << "|";
+
+            string* serials = currentProd.getSerial();
+            for (int i = 0; i < currentProd.getQuantity(); i++) {
+                outputFile << serials[i];
+                if (i < currentProd.getQuantity() - 1) {
+                    outputFile << ",";
+                }
+            }
+
+            outputFile << endl;
+        }
+
+        outputFile.close();
+        cout << "Du lieu luu thanh cong" << endl;
+        system("pause");
+    } else {
+        cerr << "Unable to open file for writing." << endl;
+    }
+}
+
 
 void ProdManage::add(const product& p) {
     this->Prod.add(p);
@@ -79,13 +113,7 @@ void ProdManage::remove(const product& p){
     this->Prod.remove(p);
 }
 void ProdManage::display(){
-    //this->Prod.display();
-    Node<product>* Nserial = this->Prod.getHead();
-    while (Nserial != nullptr) 
-    {
-        cout << Nserial->data << endl;
-        Nserial = Nserial->next;
-    }
+    this->Prod.display();
 }
 
 void ProdManage::display(bool type)
