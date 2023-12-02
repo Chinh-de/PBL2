@@ -33,7 +33,6 @@ int main()
     //employeeManage.display();
     //invoiceManage.display();
     //customerManage.display();
-    system("pause");
     lg:;
     Close = 0;
     login();

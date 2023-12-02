@@ -105,6 +105,7 @@ ostream& operator<<(ostream& o,const product& p){
     {
         o << *(p.serial + i ) << ", ";
     }
+    o << endl;
     return o;
 }
 bool product::operator!=(const product& p){
