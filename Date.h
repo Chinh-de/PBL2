@@ -10,6 +10,8 @@ class Date{
     public:
         Date();
         Date(int, int, int);
+        Date(const Date&);
+        Date& operator=(const Date&);
         ~Date();
         int getYear();
         int getMonth();

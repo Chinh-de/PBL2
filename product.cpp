@@ -12,51 +12,34 @@ product::product(){
     this->screen = "";
     this->quantity = 0;
     this->OS = "";
-    this->serial = nullptr;
+    this->brand = "";
+    //serial duoc tu dong tao bang ham dung;
 }
 product::product(string ID, string _name, unsigned int _price, unsigned int _import_price, string _CPU, int _RAM, 
-                string _screen, int _hard_disk, string _GPU, string _OS)
+                string _screen, int _hard_disk, string _GPU, string _OS, string _brand)
             : productID(ID), name(_name), price(_price), import_price(_import_price), CPU(_CPU), RAM(_RAM),
-              screen(_screen),hard_disk(_hard_disk), GPU(_GPU), OS(_OS)
+              screen(_screen),hard_disk(_hard_disk), GPU(_GPU), OS(_OS), brand(_brand)
 { 
     this->quantity = 0;
-    this->serial = nullptr;
+    //serial duoc tu dong tao bang ham dung;
 }
-product::product(const product& other) 
-{
-    this->productID = other.productID;
-    this->name = other.name;
-    this->quantity = other.quantity;
-    this->price = other.price;
-    this->import_price = other.import_price;
-    this->CPU = other.CPU;
-    this->RAM = other.RAM;
-    this->screen = other.screen;
-    this->hard_disk = other.hard_disk;
-    this->GPU = other.GPU;
-    this->OS = other.OS;
-    if (other.serial != nullptr) {
-        this->serial = new string[other.quantity];
-        for (int i = 0; i < other.quantity; ++i) {
-            this->serial[i] = other.serial[i];
-        }
-    } else {
-        this->serial = nullptr;
-    }
-}
-
+product::product(const product& other)
+    : productID(other.productID), name(other.name), quantity(other.quantity),
+      serial(other.serial), price(other.price), import_price(other.import_price),
+      CPU(other.CPU), RAM(other.RAM), screen(other.screen),
+      hard_disk(other.hard_disk), GPU(other.GPU), OS(other.OS), brand(other.brand)
+{ }
 product::~product()
+{ }
+
+
+product& product::operator=(const product& other)
 {
-    delete[] serial;
-
-}
-
-product& product::operator=(const product& other) {
-    if (this != &other) {  
-        delete[] this->serial;
+    if (this != &other) {
         this->productID = other.productID;
         this->name = other.name;
         this->quantity = other.quantity;
+        this->serial = other.serial;
         this->price = other.price;
         this->import_price = other.import_price;
         this->CPU = other.CPU;
@@ -65,21 +48,15 @@ product& product::operator=(const product& other) {
         this->hard_disk = other.hard_disk;
         this->GPU = other.GPU;
         this->OS = other.OS;
-        if (other.serial != nullptr) {
-            this->serial = new string[other.quantity];
-            for (int i = 0; i < other.quantity; ++i) {
-                this->serial[i] = other.serial[i];
-            }
-        } else {
-            serial = nullptr;
-        }
+        this->brand = other.brand;
     }
     return *this;
 }
 
 void product::show(){
     cout << "Ten san pham: " << this->name << endl
-    << "Ten san ban: " << this->price << endl
+    << "Hang: " << this->brand << endl
+    << "Gia ban: " << this->price << endl
     << "Thong so:" << endl
     << "CPU: " << this->CPU << endl
     << "RAM: " << this->RAM << "GB" << endl
@@ -91,6 +68,7 @@ void product::show(){
 }
 ostream& operator<<(ostream& o,const product& p){
     o << "Ten san pham: " << p.name << endl
+    << "Hang: " << p.brand << endl
     << "Gia ban: " << p.price << endl
     << "Thong so:" << endl
     << "CPU: " << p.CPU << endl
@@ -101,10 +79,13 @@ ostream& operator<<(ostream& o,const product& p){
     << "He dieu hang: " << p.OS << endl
     << "so luong con: " << p.quantity << " may" << endl;
     o << "So serial: ";
-    for(int i = 0; i < p.quantity; i++)
+    Node<string>* currentNode = p.serial.getHead();
+    while (currentNode != nullptr) 
     {
-        o << *(p.serial + i ) << ", ";
+        o << currentNode->data << ", ";
+        currentNode = currentNode->next;
     }
+    o << endl;
     return o;
 }
 bool product::operator!=(const product& p){
@@ -152,6 +133,10 @@ int product::getQuantity()
 {
     return this->quantity;
 }
+string product::getBrand()
+{
+    return this->brand;
+}
 void product::setName(string n){
     this->name = n;
 }
@@ -186,45 +171,26 @@ void product::setQuantity(int newQuantity)
 {
     this->quantity = newQuantity;
 }
+void product::setBrand(string& newBrand)
+{
+    this->brand = newBrand;
+}
 void product::addSerial(string& newSerial)
 {
-    string* newSerialArray = new string[this->quantity + 1];
-    for (int i = 0; i < this->quantity; ++i) 
+    if (!this->isSerial(newSerial)) 
     {
-        newSerialArray[i] = serial[i];
+        this->serial.add(newSerial);
+        quantity++;
     }
-    newSerialArray[this->quantity] = newSerial;
-    ++this->quantity;
-    delete[] this->serial;
-    this->serial = newSerialArray;
 }
 void product::removeSerial(string& rSerial)
 {
-    int indexToRemove = -1;
-    for (int i = 0; i < this->quantity; ++i) 
-    {
-        if (this->serial[i] == rSerial) 
-        {
-            indexToRemove = i;
-            break;
-        }
-    }
-    if (indexToRemove != -1) 
-    {
-        string* newSerialArray = new string[this->quantity - 1];
-        for (int i = 0, j = 0; i < this->quantity; ++i) 
-        {
-            if (i != indexToRemove) 
-            {
-                newSerialArray[j++] = serial[i];
-            }
-        }
-        --this->quantity;
-        delete[] this->serial;
-        this->serial = newSerialArray;
+    if (this->isSerial(rSerial)) {
+        this->serial.remove(rSerial);
+        quantity--;
     }
 }
-string* product::getSerial()
+list<string>& product::getSerial()
 {
     return this->serial;
 }
@@ -236,11 +202,16 @@ bool product::operator<(product& p)
 {
     return this->getPrice() < p.getPrice();
 }
-bool product::isSerial(const string& s)
+bool product::isSerial(string& s)
 {
-    for (int i = 0; i < this->quantity; ++i)
-        if (this->serial[i] == s) return true;
-    return false;  
+    Node<string>* currentNode = this->serial.getHead();
+    while (currentNode != nullptr) {
+        if (currentNode->data == s) {
+            return true;
+        }
+        currentNode = currentNode->next;
+    }
+    return false;
 }
 
 

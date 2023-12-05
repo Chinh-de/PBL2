@@ -10,6 +10,18 @@ Node<T>::Node(T data)
     : next(nullptr), data(data)
 { }
 template <typename T>
+Node<T>::Node(const Node<T>& other)
+    : data(other.data), next(nullptr)
+{ }
+
+template <typename T>
+Node<T>& Node<T>::operator=(const Node<T>& other) {
+    if (this != &other) {
+        this->data = other.data;
+    }
+    return *this;
+}
+template <typename T>
 Node<T>::~Node()
 {
     this->next = nullptr;
@@ -20,6 +32,34 @@ list<T>::list()
 {
     this->head = nullptr;
 }
+
+template <typename T>
+list<T>::list(const list<T>& other)
+    : head(nullptr) {
+    Node<T>* otherNode = other.head;
+    while (otherNode != nullptr) {
+        this->addAtEnd(otherNode->data);
+        otherNode = otherNode->next;
+    }
+}
+
+template <typename T>
+list<T>& list<T>::operator=(const list<T>& other) {
+    if (this != &other) {
+        while (this->head != nullptr) {
+            Node<T>* temp = this->head;
+            this->head = this->head->next;
+            delete temp;
+        }
+        Node<T>* otherNode = other.head;
+        while (otherNode != nullptr) {
+            addAtEnd(otherNode->data);
+            otherNode = otherNode->next;
+        }
+    }
+    return *this;
+}
+
 template <typename T>
 list<T>::~list()
 {

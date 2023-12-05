@@ -1,28 +1,54 @@
 #include "invoice.h"
 
-invoice::invoice()
+invoice::invoice() 
+    : invoiceID(0), employeeID(0), customerID(0),
+     total(0), payment(""), status(false)
+{   }
+invoice::invoice(int invoiceID, int employeeID, int customerID,
+         unsigned int total, string payment, const Date& date)
+        : invoiceID(invoiceID), employeeID(employeeID), customerID(customerID),
+         total(total), payment(payment), date(date), status(false)
+{   }
+invoice::invoice(const invoice& other)
 {
-    this->invoiceID = 0;
-    this->customerID = 0;
-    this->employeeID = 0;
-    this->total = 0;
-    this->status = false;
+    this->invoiceID = other.invoiceID;
+    this->employeeID = other.employeeID;
+    this->customerID = other.customerID;
+    this->date = other.date;
+    this->total = other.total;
+    this->payment = other.payment;
+    this->listOfOrder = other.listOfOrder;
+    this->status = other.status;
 }
-
 invoice::~invoice()
 {   }
 void invoice::show(){
     cout << "Ma hoa don: " << this->invoiceID << endl;
     cout << "Ma khach hang: " << this->customerID << endl;
     cout << "Ma nhan vien: " << this->employeeID << endl;
+    cout << "Phuong thuc thanh toan: " << this->payment << endl;
     cout << "Tong tien: " << this->total << endl;
     this->listOfOrder.display();
+}
+invoice& invoice::operator=(const invoice& other) {
+    if (this != &other) {
+        this->invoiceID = other.invoiceID;
+        this->employeeID = other.employeeID;
+        this->customerID = other.customerID;
+        this->total = other.total;
+        this->payment = other.payment;
+        this->date = other.date;
+        this->listOfOrder = other.listOfOrder;
+        this->status = other.status;
+    }
+    return *this;
 }
 ostream& operator<<(ostream& o, const invoice& i)
 {
     o << "Ma hoa don: " << i.invoiceID << endl;
     o << "Ma khach hang: " << i.customerID << endl;
     o << "Ma nhan vien: " << i.employeeID << endl;
+    o << "Phuong thuc thanh toan: " << i.payment << endl;
     o << "Tong tien: " << i.total << endl;
     invoice *temp = new invoice();
     *temp = i;
@@ -67,6 +93,10 @@ unsigned int invoice::getTotal()
     this->updateTotal();
     return this->total;
 }
+string invoice::getPayment()
+{
+    return this->payment;
+}
 unsigned int invoice::getProfit(){
     unsigned int p = 0;
     Node<order>* tempNode = this->listOfOrder.getHead();
@@ -106,7 +136,10 @@ void invoice::setCustomerID(int& ID)
 {
    if(status == false) this->customerID = ID;
 }
-
+void invoice::setPayment(string& pay)
+{
+    if(status == false) this->payment = pay;
+}
 void invoice::addOrder(order& o)
 {
     if(status == false) this->listOfOrder.add(o);

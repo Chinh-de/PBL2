@@ -11,7 +11,7 @@ ProdManage::~ProdManage()
 void ProdManage::readfromfile(string file)
 {
     ifstream inputFile(file);
-    string ID, name, CPU, screen, GPU, OS, serial; 
+    string ID, name, CPU, screen, GPU, OS, serial, brand; 
     int quantity, RAM, disk;
     unsigned int price, import_price;
     if (inputFile.is_open()) 
@@ -22,6 +22,7 @@ void ProdManage::readfromfile(string file)
             istringstream iss(line);
             getline(iss, ID, '|');
             getline(iss, name, '|');
+            getline(iss, brand, '|');
             iss >> price;
             iss.ignore(); 
             iss >> import_price;
@@ -34,7 +35,7 @@ void ProdManage::readfromfile(string file)
             iss.ignore(); 
             getline(iss, GPU, '|');
             getline(iss, OS, '|');
-            product newProd(ID, name, price, import_price, CPU, RAM, screen, disk, GPU, OS); 
+            product newProd(ID, name, price, import_price, CPU, RAM, screen, disk, GPU, OS, brand); 
             iss >> quantity;
             iss.ignore(); 
             for (int i = 0; i < quantity; i++)
@@ -46,7 +47,7 @@ void ProdManage::readfromfile(string file)
         }
         inputFile.close();
     } else {
-        cerr << "Unable to open file." << endl; //bao loi
+        cerr << "Khong the mo file" << file << endl; //bao loi
     }
 }
 
@@ -58,6 +59,7 @@ void ProdManage::writetofile(string file) {
             product currentProd = current->data;
             outputFile << currentProd.getID() << "|"
                        << currentProd.getName() << "|"
+                       << currentProd.getBrand() << "|"
                        << currentProd.getPrice() << "|"
                        << currentProd.getImportPrice() << "|"
                        << currentProd.getCPU() << "|"
@@ -68,22 +70,19 @@ void ProdManage::writetofile(string file) {
                        << currentProd.getOS() << "|"
                        << currentProd.getQuantity() << "|";
 
-            string* serials = currentProd.getSerial();
-            for (int i = 0; i < currentProd.getQuantity(); i++) {
-                outputFile << serials[i];
-                if (i < currentProd.getQuantity() - 1) {
-                    outputFile << ",";
-                }
+            Node<string>* serials = current->data.getSerial().getHead();
+            while (serials != nullptr) 
+            {
+                
+                outputFile << serials->data << ", ";
+                serials = serials->next;
             }
-
             outputFile << endl;
         }
 
         outputFile.close();
-        cout << "Du lieu luu thanh cong" << endl;
-        system("pause");
     } else {
-        cerr << "Unable to open file for writing." << endl;
+        cerr << "Khong the ghi du lieu" << endl;
     }
 }
 
@@ -94,11 +93,12 @@ void ProdManage::add(const product& p) {
 void ProdManage::add(){
     product p;
     int RAM, Disk;
-    string id, name, CPU, Screen, GPU, OS; 
+    string id, name, CPU, Screen, GPU, OS, brand; 
     unsigned int price, imprice; 
     cout << "Nhap thong tin san pham:" << endl
     << "Ma san pham: "; cin >> id; p.setID(id);
     cout << "Ten san pham: "; cin >> name; p.setName(name);
+    cout << "Hang: "; cin >> brand; p.setBrand(brand);
     cout << "Gia ban: "; cin >> price; p.setPrice(price);
     cout << "Gia nhap: "; cin >> imprice; p.setImportPrice(imprice);
     cout << "CPU: "; cin >> CPU; p.setCPU(CPU);
@@ -152,20 +152,21 @@ void ProdManage::displayOption(){
  void ProdManage::update(product& _product)
  {
     bool over = false;
-    int input, option = 1, MaxOption = 10;
+    int input, option = 1, MaxOption = 11;
     do{
         system("cls");
         cout<<"Chon thong tin muon thay doi:"<< endl;
             cout << (option == 1 ? "->":"  ") << "Ten san pham: " << _product.getName() << endl;
-            cout << (option == 2 ? "->":"  ") << "Gia ban: " << _product.getPrice() << endl;
-            cout << (option == 3 ? "->":"  ") << "Gia nhap: " << _product.getImportPrice() << endl;
-            cout << (option == 4 ? "->":"  ") << "CPU: " << _product.getCPU() << endl;
-            cout << (option == 5 ? "->":"  ") << "RAM: " << _product.getRAM() << " GB" << endl;
-            cout << (option == 6 ? "->":"  ") << "Man hinh: " << _product.getScreen() << endl;
-            cout << (option == 7 ? "->":"  ") << "O cung: " << _product.getHardDisk() << " GB" << endl;
-            cout << (option == 8 ? "->":"  ") << "GPU: " << _product.getGPU() << endl;
-            cout << (option == 9 ? "->":"  ") << "He Dieu Hanh: " << _product.getOS() << endl;
-            cout << (option == 10 ? "->":"  ") << "Thoat! " << endl;
+            cout << (option == 2 ? "->":"  ") << "Hang: " << _product.getBrand() << endl;
+            cout << (option == 3 ? "->":"  ") << "Gia ban: " << _product.getPrice() << endl;
+            cout << (option == 4 ? "->":"  ") << "Gia nhap: " << _product.getImportPrice() << endl;
+            cout << (option == 5 ? "->":"  ") << "CPU: " << _product.getCPU() << endl;
+            cout << (option == 6 ? "->":"  ") << "RAM: " << _product.getRAM() << " GB" << endl;
+            cout << (option == 7 ? "->":"  ") << "Man hinh: " << _product.getScreen() << endl;
+            cout << (option == 8 ? "->":"  ") << "O cung: " << _product.getHardDisk() << " GB" << endl;
+            cout << (option == 9 ? "->":"  ") << "GPU: " << _product.getGPU() << endl;
+            cout << (option == 10 ? "->":"  ") << "He Dieu Hanh: " << _product.getOS() << endl;
+            cout << (option == 11 ? "->":"  ") << "Thoat! " << endl;
             input = getch();
 
             if (input == 80) //phim mui ten xuong
@@ -189,54 +190,60 @@ void ProdManage::displayOption(){
             int _Disk;
             string _GPU;
             string _OS;
+            string _brand;
             switch (option)
             {
                 case 1:
-                    cout << "Nhap ten san pham : ";
+                    cout << "Nhap ten san pham: ";
                     getline(cin, _name);
                     _product.setName(_name);
                     break;
                 case 2:
+                    cout << "Nhap hang: ";
+                    cin >> _brand;
+                    _product.setBrand(_brand);
+                    break;    
+                case 3:
                     cout << "Nhap gia ban : ";
                     cin >> _price;
                     _product.setPrice(_price);
                     break;
-                case 3:
-                    cout << "Nhap gia nhap : ";
+                case 4:
+                    cout << "Nhap gia nhap: ";
                     cin >> _iprice;
                     _product.setImportPrice(_iprice);
                     break;
-                case 4:
-                    cout << "Cap nhat CPU : ";
+                case 5:
+                    cout << "Cap nhat CPU: ";
                     getline(cin,_CPU);
                     _product.setCPU(_CPU);
                     break;
-                case 5:
+                case 6:
                     cout << "Cap nhat dung luong RAM (GB): ";
                     cin >> _RAM;
                     _product.setRAM(_RAM);
                     break; 
-                case 6:
-                    cout << "Cap nhat thong so man hinh : ";
+                case 7:
+                    cout << "Cap nhat thong so man hinh: ";
                     getline(cin,_Screen);
                     _product.setScreen(_Screen);
                     break;                      
-                case 7:
+                case 8:
                     cout << "Cap nhat dung luong o cung (GB): ";
                     cin >> _Disk;
                     _product.setHardDisk(_Disk);
                     break;                      
-                case 8:
-                    cout << "Cap nhat GPU moi : ";
+                case 9:
+                    cout << "Cap nhat GPU moi: ";
                     getline(cin,_GPU);
                     _product.setGPU(_GPU);
                     break;
-                case 9:
-                    cout << "Cap nhat He dieu hanh : ";
+                case 10:
+                    cout << "Cap nhat He dieu hanh: ";
                     getline(cin,_OS);
                     _product.setOS(_OS);
                     break;                                                   
-                case 10:
+                case 11:
                     over = true;
                     break;
                 default: cout << "Loi du lieu";

@@ -18,6 +18,7 @@ class InvManage : public Manage<invoice> {
         list<invoice> find(int&, int&, int&);
         list<invoice> find(int&, int&);
         list<invoice> find(int&);
+        Node<invoice>* findID(int&);
         void statistic(list<invoice>);
         invoice printInvoice(int&, list<Customer>&);
         int getNewID();

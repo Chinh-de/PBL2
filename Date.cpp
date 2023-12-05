@@ -5,9 +5,20 @@ Date::Date()
 Date::Date(int D, int M, int Y)
     : Day(D), Month(M), Year(Y)
 { }
+Date::Date(const Date& other)
+    : Year(other.Year), Month(other.Month), Day(other.Day)
+{   }
 Date::~Date()
 { }
-
+Date& Date::operator=(const Date& other)
+{
+    if (this != &other) {
+        this->Year = other.Year;
+        this->Month = other.Month;
+        this->Day = other.Day;
+    }
+    return *this;
+}
 int Date::getYear(){
     return this->Year;
 }

@@ -28,12 +28,7 @@ int main()
     //docfile lichsumuahang
     read();
     int Close;
-     productManage.writetofile("output.txt");
-    //productManage.display();
-    //employeeManage.display();
-    //invoiceManage.display();
-    //customerManage.display();
-    system("pause");
+    //productManage.writetofile("output.txt");
     lg:;
     Close = 0;
     login();
@@ -51,7 +46,7 @@ void read(){
     customerManage.readfromfile("customer.txt");
     employeeManage.readfromfile("employee.txt");
     productManage.readfromfile("product.txt");
-    //invoiceManage.readfromfile("invoice.txt", "invoice_detail.txt");
+    invoiceManage.readfromfile("invoice.txt", "invoice_detail.txt");
 }
 void login(){
     int userID;
@@ -345,7 +340,7 @@ void MenuManager()
                         system("cls");
                         string seri;
                         cout << "Nhap ID san pham can them so seri: "; cin >> sid;
-                        cout << "Nhap so seri: "; cin >> seri;
+                        cout << "Nhap so serial: "; cin >> seri;
                         productManage.find(sid)->data.addSerial(seri);
                         system("pause");
                         break;

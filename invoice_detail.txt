@@ -1,1 +1,1 @@
-1000000|HX5020|laptop lenovo ideapad 3|10000000|2|1,2,
+100000|HX5020|laptop lenovo ideapad 3|10000000|20000000|2|1,2,

@@ -13,12 +13,16 @@ class invoice
         int employeeID;
         int customerID;
         unsigned int total;
+        string payment;
         Date date;
         list<order> listOfOrder;
         bool status; //true da hoan thanh; false chua hoan thanh 
     public:
         invoice();
+        invoice(int, int, int, unsigned int, string, const Date&);
+        invoice(const invoice&);
         ~invoice();
+        invoice& operator=(const invoice&);
         void show();
         friend ostream& operator<<(ostream&, const invoice&);
         bool operator!=(const invoice&);
@@ -31,9 +35,11 @@ class invoice
         unsigned int getProfit();
         unsigned int productSales();
         Date getDate();
+        string getPayment();
         void setInvoiceID(int&);
         void setEmployeeID(int&);
         void setCustomerID(int&);
+        void setPayment(string&);
         void addOrder(order&);
         list<order>& getOrder();
         void removeOrder(const string&);

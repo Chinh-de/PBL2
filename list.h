@@ -10,6 +10,8 @@ class Node
     public:
         Node();
         Node(T);
+        Node(const Node&);
+        Node& operator=(const Node&);
         ~Node();    
 };
 template <typename T>
@@ -19,6 +21,8 @@ class list
         Node<T> *head;
     public:
         list();
+        list(const list&);
+        list& operator=(const list&);
         ~list();
         Node<T>* getHead() const;
         void add(const T&);
