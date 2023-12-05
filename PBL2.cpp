@@ -28,7 +28,8 @@ int main()
     //docfile lichsumuahang
     read();
     int Close;
-    //productManage.writetofile("output.txt");
+    productManage.writetofile("output.txt");
+    system("pause");
     lg:;
     Close = 0;
     login();
