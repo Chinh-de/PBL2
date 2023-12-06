@@ -17,7 +17,8 @@ InvManage invoiceManage = myDatabase.getInvManage();
 Employee* user;
 
 void read();
-void login();
+bool login();
+bool check_userID(string);
 void MenuManager();
 void MenuEmployee();
 int main()
@@ -30,9 +31,14 @@ int main()
     int Close;
     productManage.writetofile("output.txt");
     system("pause");
-    lg:;
+    lg1:;
     Close = 0;
-    login();
+    if(login()){
+        system("cls");
+        cout << "Dang nhap thanh cong" << endl;
+        system("pause");
+    }
+    else goto lg2;
     if (user->getID() == 0){
         return 0;
     }
@@ -40,10 +46,11 @@ int main()
         MenuManager();
     else if (user->getPosition() == salesperson)
         MenuEmployee();
+    lg2:;
     cout << "\n\t Dong chuong trinh?\n\t\t1:Co   0:Khong\n";
     cin >> Close;
     if (Close == 1) return 1;
-    else goto lg;
+    else goto lg1;
     return 0;
 }
 void read(){
@@ -52,38 +59,48 @@ void read(){
     productManage.readfromfile("product.txt");
     invoiceManage.readfromfile("invoice.txt", "invoice_detail.txt");
 }
-void login(){
+bool login(){
     int userID;
+    string id;
     string password;
-    bool status = false;
+    bool check = false;
     system("cls");
-    do{
-        cout << endl << "DANG NHAP" << endl;
-        cout << "Ten tai khoan: "; cin >> userID; 
-        cout << "Mat khau: "; cin >> password;
-        Node<Employee>* temp;
-        temp = employeeManage.find(userID);
-        if (temp != nullptr){ 
-            if (temp->data.getPassword() == password){                
-                user = &(temp->data);
-                system("cls");
-                cout << "Dang nhap thanh cong" << endl;
-                system("pause");
-                status = true;
-            }
-            else {
-                system("cls");
-                cout << "Sai mat khau!";
-            }
+    Node<Employee>* temp;
+    cout << endl << "DANG NHAP" << endl;
+    cout << "Ten tai khoan: "; cin >> id;
+    while (1){
+        if (id == "x") return false;
+        if (!check_userID(id)){
+            cout << "Ten tai khoan khong chua chu: ";
+            cin >> id;
         }
-        else
-        {
-            system("cls");
-            cout << "Sai ten tai khoan!";
+        else {
+            userID = stoi(id);
+            temp = employeeManage.find(userID);
         }
-    } while (status == false);
+        if (temp == nullptr){
+            cout << "Ten tai khoan khong ton tai: ";
+            cin >> id;
+        }
+        else break;
+    } 
+    cout << "Mat khau: "; cin >> password;
+    while (temp->data.getPassword() != password){
+        system("cls"); 
+        if (password == "x") return false;               
+        cout << "Sai mat khau, vui long nhap lai: ";
+        cin >> password;
+    }
+    user = &(temp->data);
+    return true;
 }
-
+bool check_userID(string id){
+    for (int i = 0; i < id.length(); i++){
+        if (!isdigit(id[i]))
+            return false;
+    }
+    return true;
+}
 void MenuEmployee()
 {
     //swichcase
