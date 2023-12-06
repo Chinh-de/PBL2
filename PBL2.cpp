@@ -63,7 +63,8 @@ void login(){
         temp = employeeManage.find(userID);
         system("pause");
         if (temp != nullptr){
-            if (temp->data.getPassword() == password){                
+            if (temp->data.getPassword() == password){ 
+                cout << "123";               
                 user = temp->data;
                 system("cls");
                 cout << "Dang nhap thanh cong" << endl;
@@ -74,7 +75,7 @@ void login(){
                 cout << "Sai mat khau!";
             }
         }
-        else if (userID != 0 && password != "x"){
+        else if (userID != 0){
             system("cls");
             cout << "Sai ten tai khoan!";
         }
