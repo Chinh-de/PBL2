@@ -63,7 +63,6 @@ bool login(){
     int userID;
     string id;
     string password;
-    bool check = false;
     system("cls");
     Node<Employee>* temp;
     cout << endl << "DANG NHAP" << endl;
