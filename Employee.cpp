@@ -62,6 +62,7 @@ bool Employee::changePassword(){
     this->setPassword(new_pass);
     cout << "Doi mat khau thanh cong" << endl
     << "Mat khau moi" << this->getPassword();
+    system("pause");
     return true;
 }
 
