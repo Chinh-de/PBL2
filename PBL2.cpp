@@ -14,7 +14,7 @@ CusManage& customerManage = myDatabase.getCusManage();
 EmpManage employeeManage = myDatabase.getEmpManage();
 ProdManage productManage = myDatabase.getProdManage();
 InvManage invoiceManage = myDatabase.getInvManage();
-Employee user;
+Employee* user;
 
 void read();
 void login();
@@ -33,12 +33,12 @@ int main()
     lg:;
     Close = 0;
     login();
-    if (user.getID() == 0){
+    if (user->getID() == 0){
         return 0;
     }
-    if (user.getPosition() == manager)
+    if (user->getPosition() == manager)
         MenuManager();
-    else if (user.getPosition() == salesperson)
+    else if (user->getPosition() == salesperson)
         MenuEmployee();
     cout << "\n\t Dong chuong trinh?\n\t\t1:Co   0:Khong\n";
     cin >> Close;
@@ -55,31 +55,33 @@ void read(){
 void login(){
     int userID;
     string password;
+    bool status = false;
     system("cls");
     do{
-        cout << "DANG NHAP" << endl << "Ten tai khoan: "; cin >> userID; 
+        cout << endl << "DANG NHAP" << endl;
+        cout << "Ten tai khoan: "; cin >> userID; 
         cout << "Mat khau: "; cin >> password;
         Node<Employee>* temp;
         temp = employeeManage.find(userID);
-        system("pause");
-        if (temp != nullptr){
-            if (temp->data.getPassword() == password){ 
-                cout << "123";               
-                user = temp->data;
+        if (temp != nullptr){ 
+            if (temp->data.getPassword() == password){                
+                user = &(temp->data);
                 system("cls");
                 cout << "Dang nhap thanh cong" << endl;
                 system("pause");
+                status = true;
             }
             else {
                 system("cls");
                 cout << "Sai mat khau!";
             }
         }
-        else if (userID != 0){
+        else
+        {
             system("cls");
             cout << "Sai ten tai khoan!";
         }
-    } while (user.getID() == 0 && userID != 0 && password != "x");
+    } while (status == false);
 }
 
 void MenuEmployee()
@@ -116,7 +118,7 @@ void MenuEmployee()
         switch (option){
             case 1:
                 system("cls");
-                user.Show();
+                user->Show();
                 system("pause");
                 break;
             case 2:
@@ -229,7 +231,7 @@ void MenuEmployee()
                 }
                 break;
             case 6:
-                user.changePassword();
+                user->changePassword();
                 system("pause");
                 break;
             case 7:
@@ -267,7 +269,7 @@ void MenuManager()
         switch(option){
             case 1:
                 system("cls");
-                user.Show();
+                user->Show();
                 system("pause");
                 break;
             case 2:
@@ -436,7 +438,7 @@ void MenuManager()
                 }
                 break;
             case 6:
-                invoiceManage.sell(user.getID(), customerManage, productManage);
+                invoiceManage.sell(user->getID(), customerManage, productManage);
                 cout << "Het hang roi";
                 system("pause");
                 break;
@@ -479,10 +481,11 @@ void MenuManager()
                 }
                 break;
             case 8:
-                user.changePassword();
+                user->changePassword();
                 system("pause");
                 break;
             case 9:
+                user = nullptr;
                 over = true;
                 break;
         } 
