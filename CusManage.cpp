@@ -4,35 +4,33 @@ CusManage::CusManage()
 { }
 CusManage::~CusManage()
 { }
-void CusManage::readfromfile(string file){
-    ifstream input(file);
-    int n = 0, value;
-    string info[10];
-    while(!input.eof()){
-        n = 0;
-        Customer tempCus;
-        do{
-            char c;
-            string Data = "";
-            input.get(c);
-            while (c != '|' && c != '\n' && !input.eof()){
-                Data += c;
-                input.get(c);
-            }
-            info[n] = Data;
-            n++;
-        }while (n <= 5);
-
-        if (isdigit(info[0][0]))
-            value = stoi(info[0]); tempCus.setID(value);
-        tempCus.setName(info[1]);
-        tempCus.setPhone(info[2]);
-        tempCus.setEmail(info[3]);
-        tempCus.setGender((info[4] == "Nu"));
-        tempCus.setAddress(info[5]);
-        this->Cus.addAtEnd(tempCus);
+void CusManage::readfromfile(string file)
+{
+     ifstream inputFile(file);
+    int ID; bool gender;
+    string temp, name, phone, email, address;
+    if (inputFile.is_open()) 
+    {
+        string line;
+        while (getline(inputFile, line))
+        {
+            istringstream iss(line);
+            getline(iss, temp, '|');
+            ID = stoi(temp);
+            getline(iss, name, '|');
+            getline(iss, phone, '|');
+            getline(iss, email, '|');
+            getline(iss, temp, '|');
+            if(temp == "Nu") gender = true;
+            else gender = false;
+            getline(iss, address, '|');
+            Customer newcus(ID, name, phone, email, gender, address);
+            this->Cus.addAtEnd(newcus);
+        }
+        inputFile.close();
+    } else {
+        cerr << "Khong the mo file" << file << endl; //bao loi
     }
-    input.close();
 }
 
 void CusManage::writetofile(string file)
@@ -47,7 +45,7 @@ void CusManage::writetofile(string file)
             outputFile << currentCus.getEmail() << "|";
             if (currentCus.getGender() == true) outputFile << "Nu|";
             else outputFile << "Nam|";
-            outputFile << currentCus.getAddress();
+            outputFile << currentCus.getAddress() << "|";
             outputFile << endl;
         }
         outputFile.close();

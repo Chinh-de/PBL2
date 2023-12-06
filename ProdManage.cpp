@@ -74,7 +74,7 @@ void ProdManage::writetofile(string file) {
             while (serials != nullptr) 
             {
                 
-                outputFile << serials->data << ", ";
+                outputFile << serials->data << ",";
                 serials = serials->next;
             }
             outputFile << endl;

@@ -193,9 +193,6 @@ Node<T>* list<T>::mergeSort(Node<T>* head, bool ascending) {
 
 template <typename T>
 Node<T>* list<T>::merge(Node<T>* left, Node<T>* right, bool type) {
-    //type true tang, false
-    Node<T>* result = nullptr;
-
     if (left == nullptr) {
         return right;
     }
@@ -204,12 +201,10 @@ Node<T>* list<T>::merge(Node<T>* left, Node<T>* right, bool type) {
     }
 
     if (type ? (left->data < right->data) : (left->data > right->data)) {
-        result = left;
-        result->next = merge(left->next, right, type);
+        left->next = merge(left->next, right, type);
+        return left;
     } else {
-        result = right;
-        result->next = merge(left, right->next, type);
+        right->next = merge(left, right->next, type);
+        return right;
     }
-
-    return result;
 }

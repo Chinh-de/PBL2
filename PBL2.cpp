@@ -24,8 +24,10 @@ void MenuEmployee();
 int main()
 {
     int Close;
-    Database::readData();
     lg1:;
+    Database::readData();
+    employeeManage.display();
+    system("cls");
     Close = 0;
     if(login()){
         system("cls");
