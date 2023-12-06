@@ -47,7 +47,7 @@ int main()
     else if (user->getPosition() == salesperson)
         MenuEmployee();
     lg2:;
-    cout << "\n\t Dong chuong trinh?\n\t\t1:Co   0:Khong\n";
+    cout << "\n\t Dong chuong trinh?\n\t   1:Co   0:Khong\n";
     cin >> Close;
     if (Close == 1) return 1;
     else goto lg1;
