@@ -45,3 +45,8 @@ void getCurrent(Date& Current)
     Current.setMonth(1 + ltm->tm_mon);
     Current.setDay(ltm->tm_mday);
 }
+ostream& operator<<(ostream& o, const Date& date)
+{
+    o << date.Day << "/" << date.Month << "/" << date.Year;
+    return o;
+}

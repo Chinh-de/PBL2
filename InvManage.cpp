@@ -337,93 +337,6 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage Cust
         }
     } while(input != '0');
 } 
-// void InvManage::readfromfile(string file, string detail_file){
-//     ifstream input(detail_file);
-//     list<order> tempList;
-//     int value;
-//     while (!input.eof()){
-//         int n = 0;
-//         string info[20];
-//         order tempOrder;
-//         char c;
-//         string Data;
-//         do {
-//             Data = "";
-//             input.get(c);
-//             while (c != '|' && c != '\n' && c != ',' && !input.eof()){
-//                 Data += c;
-//                 input.get(c);
-//             }
-//             info[n] = Data;
-//             n++;
-//         } while(n <= 4);
-        
-//         if (isdigit(info[0][0]) && isdigit(info[3][0]) && isdigit(info[4][0])){
-//             // value = stoi(info[0]); tempOrder.setInvoiceID(value);
-//             value = stoi(info[3]); tempOrder.setPrice(value);
-//             value = stoi(info[4]); tempOrder.setQuantity(value);
-//         }
-        
-//         tempOrder.setID(info[1]);
-//         tempOrder.setName(info[2]);
-//         int m = 4 + tempOrder.getQuantity();
-//         do {
-//             Data = "";
-//             input.get(c);
-//             while (c != '|' && c != ',' && c != '\n' && !input.eof()){
-//                 Data += c;
-//                 input.get(c);
-//             }
-//             tempOrder.addSerial(Data);
-//             n++;
-//         } while(n <= m);
-//         tempList.addAtEnd(tempOrder);
-//     }
-//     input.close();
-//     ifstream input2(file);
-//     invoice tempInv;
-//     while(!input2.eof()){
-//         int n = 0;
-//         string info[10];
-//         char c;
-//         string Data;
-//         do {
-//             string Data = "";
-//             input2.get(c);
-//             while (c != '|' && c != '\n' && c != '/' && !input2.eof()){
-//                 Data += c;
-//                 input2.get(c);
-//             }
-//             info[n] = Data;
-//             n++;
-//         } while(n <= 2);
-//         if (isdigit(info[0][0]) && isdigit(info[0][1]) && isdigit(info[0][2])){
-//         value = stoi(info[0]); tempInv.setInvoiceID(value);
-//         value = stoi(info[1]); tempInv.setEmployeeID(value);
-//         value = stoi(info[2]); tempInv.setCustomerID(value);
-//         }
-//         do {
-//             Data = "";
-//             input2.get(c);
-//             while (c != '/' && c != '\n' && !input2.eof()){
-//                 Data += c;
-//                 input2.get(c);
-//             }
-//             info[n] = Data;
-//             n++;
-//         } while(n <= 5);
-//         value = stoi(info[3]); tempInv.getDate().setDay(value);
-//         value = stoi(info[4]); tempInv.getDate().setMonth(value);
-//         value = stoi(info[5]); tempInv.getDate().setYear(value);
-//         order* tempOrder = &tempList.getHead()->data;
-// //         while(tempOrder != nullptr){
-// //  //           if(tempOrder->getInvoiceID() == tempInv.getInvoiceID())
-// //                 tempInv.addOrder(*tempOrder); 
-// //         }
-//     }
-//     this->Inv.addAtEnd(tempInv);
-//     input2.close();
-// }
 
 void InvManage::readfromfile(string file, string detail_file)
 {
@@ -451,7 +364,7 @@ void InvManage::readfromfile(string file, string detail_file)
             getline(iss, temp, '|');
             year = stoi(temp);
             getline(iss, temp, '|');
-            total = stoi(temp);
+            total = stoul(temp);
             getline(iss, payment, '|');
             date.setDay(day); date.setMonth(month); date.setYear(year);
             invoice newInv(ID, empID, cusID, total, payment, date);
@@ -476,9 +389,9 @@ void InvManage::readfromfile(string file, string detail_file)
             getline(iss, productID, '|');
             getline(iss, name, '|');
             getline(iss, temp, '|');
-            price = stoi(temp);
+            price = stoul(temp);
             getline(iss, temp, '|');
-            total = stoi(temp);
+            total = stoul(temp);
             order neworder(productID, name, price, total);
             getline(iss, temp, '|');
             quantity= stoi(temp);
@@ -491,13 +404,58 @@ void InvManage::readfromfile(string file, string detail_file)
             if(found != nullptr) 
             {
                 found->data.addOrder(neworder);
-                found->data.complete();
             }
             else cout << endl << "Loi du lieu! Khong tim thay hoa don so " << ID << endl;
+        }
+        for( Node<invoice>* Ninv = this->Inv.getHead(); Ninv != nullptr; Ninv = Ninv->next)
+        {
+            Ninv->data.complete(); //dua hoa don ve trang thai hoan thanh;
         }
         inputFileOrder.close();
     } else {
         cerr << "Khong the mo file" << file << endl; //bao loi
     }
 
+}
+
+void InvManage::writetofile(string file, string detail_file)
+{
+    ofstream outputInvoice(file);
+    ofstream outputOrderDetail(detail_file);
+    if (outputInvoice.is_open() && outputOrderDetail.is_open())
+    {
+        for (Node<invoice>* current = this->Inv.getHead(); current != nullptr; current = current->next) 
+        {
+            invoice currentInv = current->data;
+            outputInvoice << currentInv.getInvoiceID() << "|";
+            outputInvoice << currentInv.getEmployeeID() << "|";
+            outputInvoice << currentInv.getCustomerID() << "|";
+            outputInvoice << currentInv.getDate() << "|";
+            outputInvoice << currentInv.getTotal() << "|";
+            outputInvoice << currentInv.getPayment() << "|";
+            outputInvoice << endl;
+            for (Node<order>* Norder = currentInv.getOrder().getHead(); Norder != nullptr; Norder = Norder->next)
+            {
+               order currentOrder = Norder->data;
+               outputOrderDetail << currentInv.getInvoiceID() << "|";
+               outputOrderDetail << currentOrder.getID() << "|";
+               outputOrderDetail << currentOrder.getName() << "|";
+               outputOrderDetail << currentOrder.getPrice() << "|";
+               outputOrderDetail << currentOrder.getTotal() << "|";
+               outputOrderDetail << currentOrder.getQuantity() << "|";
+               Node<string>* serial = currentOrder.getSerial().getHead();
+               while(serial != nullptr)
+               {
+                    outputOrderDetail << serial->data << ",";
+                    serial = serial->next;
+               }
+                outputOrderDetail << endl;
+            }
+        }
+        outputInvoice.close();
+        outputOrderDetail.close();       
+    } else
+    {
+        cerr << "Khong the ghi du lieu" << endl;
+    }
 }

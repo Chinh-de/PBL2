@@ -19,5 +19,6 @@ class Date{
         void setYear(int);
         void setMonth(int);
         void setDay(int);
+        friend ostream& operator<<(ostream&, const Date&);
         friend void getCurrent(Date&);
 };

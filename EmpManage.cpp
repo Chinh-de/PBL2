@@ -41,6 +41,30 @@ void EmpManage::readfromfile(string file){
     }
     input.close();
 }
+void EmpManage::writetofile(string file)
+{
+    ofstream outputFile(file);
+    if (outputFile.is_open()) {
+        for (Node<Employee>* current = this->Emp.getHead(); current != nullptr; current = current->next) {
+            Employee currentEmp = current->data;
+            outputFile << currentEmp.getID() << "|";
+            outputFile << currentEmp.getName() << "|";
+            outputFile << currentEmp.getPhone() << "|";
+            outputFile << currentEmp.getEmail() << "|";
+            if (currentEmp.getGender() == true) outputFile << "Nu|";
+            else outputFile << "Nam|";
+            outputFile << currentEmp.getAddress() << "|";
+            outputFile << currentEmp.getSalary() << "|";
+            if (currentEmp.getPosition() == manager ) outputFile << "manager|";
+            else if (currentEmp.getPosition() == salesperson ) outputFile << "salesperson|";
+            outputFile << currentEmp.getPassword();
+            outputFile << endl;
+        }
+        outputFile.close();
+    } else {
+        cerr << "Khong the ghi du lieu" << endl;
+    }
+}
 void EmpManage::add(){
     int ID; unsigned int salary;
     string name, phone, email, address, password, pos;

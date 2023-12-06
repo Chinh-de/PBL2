@@ -11,9 +11,9 @@ using namespace std;
 // khai bao them tai nguyen
 Database& myDatabase = Database::DB_Instance();
 CusManage& customerManage = myDatabase.getCusManage();
-EmpManage employeeManage = myDatabase.getEmpManage();
-ProdManage productManage = myDatabase.getProdManage();
-InvManage invoiceManage = myDatabase.getInvManage();
+EmpManage& employeeManage = myDatabase.getEmpManage();
+ProdManage& productManage = myDatabase.getProdManage();
+InvManage& invoiceManage = myDatabase.getInvManage();
 Employee* user;
 
 void read();
@@ -23,14 +23,8 @@ void MenuManager();
 void MenuEmployee();
 int main()
 {
-
-    //docfile dang nhap
-    //docfile person
-    //docfile lichsumuahang
-    read();
     int Close;
-    productManage.writetofile("output.txt");
-    system("pause");
+    Database::readData();
     lg1:;
     Close = 0;
     if(login()){
@@ -47,17 +41,12 @@ int main()
     else if (user->getPosition() == salesperson)
         MenuEmployee();
     lg2:;
+    Database::saveData();
     cout << "\n\t Dong chuong trinh?\n\t   1:Co   0:Khong\n";
     cin >> Close;
     if (Close == 1) return 1;
     else goto lg1;
     return 0;
-}
-void read(){
-    customerManage.readfromfile("customer.txt");
-    employeeManage.readfromfile("employee.txt");
-    productManage.readfromfile("product.txt");
-    invoiceManage.readfromfile("invoice.txt", "invoice_detail.txt");
 }
 bool login(){
     int userID;
@@ -66,22 +55,23 @@ bool login(){
     system("cls");
     Node<Employee>* temp;
     cout << endl << "DANG NHAP" << endl;
-    cout << "Ten tai khoan: "; cin >> id;
+    cout << "Ma nhan vien: "; cin >> id;
     while (1){
         if (id == "x") return false;
         if (!check_userID(id)){
-            cout << "Ten tai khoan khong chua chu: ";
+            cout << "Ma nhan vien chi duoc chua so 0-9: ";
             cin >> id;
         }
-        else {
+        else 
+        {
             userID = stoi(id);
             temp = employeeManage.find(userID);
+            if (temp == nullptr){
+                cout << "Ma nhan vien khong ton tai: ";
+                cin >> id;
+            }
+            else break;
         }
-        if (temp == nullptr){
-            cout << "Ten tai khoan khong ton tai: ";
-            cin >> id;
-        }
-        else break;
     } 
     cout << "Mat khau: "; cin >> password;
     while (temp->data.getPassword() != password){
@@ -96,7 +86,7 @@ bool login(){
 bool check_userID(string id){
     for (int i = 0; i < id.length(); i++){
         if (!isdigit(id[i]))
-            return false;
+          return false;
     }
     return true;
 }
@@ -135,6 +125,7 @@ void MenuEmployee()
             case 1:
                 system("cls");
                 user->Show();
+                cout << endl;
                 system("pause");
                 break;
             case 2:

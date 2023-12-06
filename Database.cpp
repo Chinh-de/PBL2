@@ -33,11 +33,17 @@ InvManage& Database::getInvManage()
 
 void Database::readData()
 {
-    //readallData;
+    instance.customerM.readfromfile("customer.txt");
+    instance.employeeM.readfromfile("employee.txt");
+    instance.productM.readfromfile("product.txt");
+    instance.invoiceM.readfromfile("invoice.txt", "invoice_detail.txt");
 }
 
 void Database::saveData()
 {
-    //writeallData;
+    instance.customerM.writetofile("customer.txt");
+    instance.employeeM.writetofile("employee.txt");
+    instance.productM.writetofile("product.txt");
+    instance.invoiceM.writetofile("invoice.txt", "invoice_detail.txt");
 }
 

@@ -179,7 +179,7 @@ void product::addSerial(string& newSerial)
 {
     if (!this->isSerial(newSerial)) 
     {
-        this->serial.add(newSerial);
+        this->serial.addAtEnd(newSerial);
         quantity++;
     }
 }

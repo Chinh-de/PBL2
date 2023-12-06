@@ -12,8 +12,8 @@ class Database
     EmpManage& getEmpManage();
     CusManage& getCusManage();
     InvManage& getInvManage();
-    void readData();
-    void saveData();
+    static void readData();
+    static void saveData();
     private:
     ProdManage productM;
     EmpManage employeeM;

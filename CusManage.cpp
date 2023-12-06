@@ -34,6 +34,28 @@ void CusManage::readfromfile(string file){
     }
     input.close();
 }
+
+void CusManage::writetofile(string file)
+{
+    ofstream outputFile(file);
+    if (outputFile.is_open()) {
+        for (Node<Customer>* current = this->Cus.getHead(); current != nullptr; current = current->next) {
+            Customer currentCus = current->data;
+            outputFile << currentCus.getID() << "|";
+            outputFile << currentCus.getName() << "|";
+            outputFile << currentCus.getPhone() << "|";
+            outputFile << currentCus.getEmail() << "|";
+            if (currentCus.getGender() == true) outputFile << "Nu|";
+            else outputFile << "Nam|";
+            outputFile << currentCus.getAddress();
+            outputFile << endl;
+        }
+        outputFile.close();
+    } else {
+        cerr << "Khong the ghi du lieu" << endl;
+    }
+}
+
 void CusManage::add(const Customer& c) {
     this->Cus.add(c);
 }

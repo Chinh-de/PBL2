@@ -10,6 +10,7 @@ class CusManage : public Manage<Customer> {
         CusManage();
         ~CusManage();
         void readfromfile(string);
+        void writetofile(string);
         void add(const Customer&);
         void remove(const Customer&);
         void update(Customer&);

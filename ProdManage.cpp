@@ -55,7 +55,7 @@ void ProdManage::writetofile(string file) {
     ofstream outputFile(file);
 
     if (outputFile.is_open()) {
-        for (Node<product>* current = Prod.getHead(); current != nullptr; current = current->next) {
+        for (Node<product>* current = this->Prod.getHead(); current != nullptr; current = current->next) {
             product currentProd = current->data;
             outputFile << currentProd.getID() << "|"
                        << currentProd.getName() << "|"

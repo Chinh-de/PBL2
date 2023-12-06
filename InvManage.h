@@ -25,4 +25,5 @@ class InvManage : public Manage<invoice> {
         void sell(int, CusManage&, ProdManage&);
         void updateCart(invoice&, ProdManage&, CusManage);
         void readfromfile(string, string);
+        void writetofile(string, string);
 };
