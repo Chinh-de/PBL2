@@ -33,6 +33,9 @@ int main()
     lg:;
     Close = 0;
     login();
+    if (user.getID() == 0){
+        return 0;
+    }
     if (user.getPosition() == manager)
         MenuManager();
     else if (user.getPosition() == salesperson)
@@ -56,11 +59,12 @@ void login(){
     do{
         cout << "DANG NHAP" << endl << "Ten tai khoan: "; cin >> userID; 
         cout << "Mat khau: "; cin >> password;
-        Employee temp;
-        temp = employeeManage.find(userID)->data;
-        if (temp.getID() != 0){
-            if (temp.getPassword() == password){                
-                user = temp;
+        Node<Employee>* temp;
+        temp = employeeManage.find(userID);
+        system("pause");
+        if (temp != nullptr){
+            if (temp->data.getPassword() == password){                
+                user = temp->data;
                 system("cls");
                 cout << "Dang nhap thanh cong" << endl;
                 system("pause");
@@ -70,7 +74,7 @@ void login(){
                 cout << "Sai mat khau!";
             }
         }
-        else {
+        else if (userID != 0 && password != "x"){
             system("cls");
             cout << "Sai ten tai khoan!";
         }
@@ -455,18 +459,22 @@ void MenuManager()
                         cout << "Nhap ma hoa don: "; cin >> id;
                         invoiceManage.find(id).display();
                         system("pause");
+                        break;
                     case 2:
                         cout << "Nhap nam: "; cin >> y;
                         invoiceManage.find(y).display();
                         system("pause");
+                        break;
                     case 3:
                         cout << "Nhap lan luot thang, nam: "; cin >> m >> y;
                         invoiceManage.find(m, y).display();
                         system("pause");
+                        break;
                     case 4:
                         cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
                         invoiceManage.find(d, m, y).display();
                         system("pause");
+                        break;
                 }
                 break;
             case 8:

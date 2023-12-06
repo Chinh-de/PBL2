@@ -54,12 +54,14 @@ bool Employee::changePassword(){
         cout << "Nhap mat khau cu: "; cin >> old_pass;
         if (old_pass != this->password)
             cout << "SAI MAT KHAU, vui long nhap lai hoac nhan 'x' de quay ve menu chinh" << endl;
+        else break;
     } while (old_pass != this->password || old_pass != "x");
     if (old_pass == "x")
         return false;
     cout << "Nhap mat khau moi: "; cin >> new_pass;
     this->setPassword(new_pass);
-    cout << "Doi mat khau thanh cong";
+    cout << "Doi mat khau thanh cong" << endl
+    << "Mat khau moi" << this->getPassword();
     return true;
 }
 

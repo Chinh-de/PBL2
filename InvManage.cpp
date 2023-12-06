@@ -50,7 +50,7 @@ list<invoice> InvManage::find(int& y){
     {
         if (tempNode->data.getDate().getYear() == y)   
             tempList.add(tempNode->data);
-        else if (tempNode->data.getCustomerID() == y)   
+        else if (tempNode->data.getInvoiceID() == y)   
             tempList.add(tempNode->data);
         tempNode = tempNode->next;
     }
