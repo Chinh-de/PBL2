@@ -25,9 +25,10 @@ int main()
 {
     int Close;
     Database::readData();
+    int ak47 = 100000;
+    invoiceManage.printInvoice(ak47,customerManage, employeeManage);
+    system("pause");
     lg1:;
-    employeeManage.display();
-    system("cls");
     Close = 0;
     if(login()){
         system("cls");

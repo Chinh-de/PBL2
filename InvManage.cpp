@@ -83,47 +83,86 @@ void InvManage::statistic(list<invoice> List){
     delete tempNode;
 }
 
-// void InvManage::printInvoice(int&, CusManage CustomerM, Employee user)
-// {
-    
+void InvManage::printInvoice(int& invID, CusManage CustomerM, EmpManage EmployeeM)
+{
+    string filePath = "invoice/";
+    filePath += "invoice_" + to_string(invID) + ".txt";
+    ofstream outfile(filePath);
+    if (!outfile.is_open()) {
+        cerr << "Loi mo file de ghi." << endl;
+        return;
+    }
 
-//     // Node<invoice>* tempInv;
-//     // tempInv = this->Inv.getHead();
-//     // while (tempInv != nullptr){
-//     //     if(tempInv->data.getInvoiceID() == ID)
-//     //         break;
-//     //     else tempInv = tempInv->next;
-//     // }
-//     // if (tempInv == nullptr) return tempInv->data;
-//     // Node<Customer>* tempCus;
-//     // tempCus = cusList.getHead();
-//     // while (tempCus != nullptr){
-//     //     if(tempCus->data.getID() == tempInv->data.getCustomerID())
-//     //         break;
-//     //     else tempCus = tempCus->next;
-//     // }
-//     // if (tempCus == nullptr) return tempInv->data;
-//     // cout << "Ten khach hang: " << tempCus->data.getName() << endl
-//     // << "So dien thoai: " <<tempCus->data.getPhone() << endl;
-//     // Node<order>* tempOrder;
-//     // Node<string>* tempSerial;
-//     // tempOrder = tempInv->data.getOrder().getHead();
-//     // tempSerial = tempOrder->data.get.getHead();
-//     // while (tempOrder != nullptr){
-//     //     cout << "Ten hang: " << tempOrder->data.getName() << endl
-//     //     << "So luong: " << tempOrder->data.getQuantity() << endl
-//     //     << "Don gia: " << tempOrder->data.getPrice() << endl
-//     //     << "Thanh tien: " << tempOrder->data.getTotal() << endl;
-//     //     while (tempSerial != nullptr){
-//     //         if (tempSerial->next == nullptr)
-//     //             cout << tempSerial->data << endl;
-//     //         else 
-//     //             cout << tempSerial->data << ", ";
-//     //     }
-//     //     cout << "Tong cong: " << tempInv->data.getTotal() << endl;
-//     // }
-//     // return tempInv->data;
-// }
+    invoice inv = this->findID(invID)->data;
+    int cusID = inv.getCustomerID();
+    Customer cus = CustomerM.find(cusID)->data;
+    int empID = inv.getEmployeeID(); 
+    Employee emp = EmployeeM.find(empID)->data;
+
+	outfile << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
+    outfile << "|" << setw(151) << right << "ITF Store|" << endl;
+    outfile << "|" << setw(151) << right << "Dia chi: Lien Chieu, Da Nang|" << endl;
+    outfile << "|" << setw(151) << right << "Website: ITFstore.dut|" << endl;
+    outfile << "|" << setw(151) << right << "So dien thoai: 0123456xxx|" << endl;
+	outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+	outfile << "|" << setw(83) << right << "HOA DON BAN HANG" << setw(68) << right << "|" << endl;
+    
+    outfile << "|Ma hoa don: " << setw(138) << left << inv.getInvoiceID() << "|" << endl;
+    string date = to_string(inv.getDate().getDay()) + "/" + to_string(inv.getDate().getMonth()) + "/" + to_string(inv.getDate().getYear());
+    outfile << "|Ngay ban: " << setw(140) << date <<"|" << endl;
+    outfile << "|Ma khach hang: " << setw(135) << left << inv.getCustomerID() << "|" << endl;
+    outfile << "|Ten khach hang: " << setw(134) << left << cus.getName() << "|" << endl;
+    outfile << "|So dien thoai: " << setw(135) << left << cus.getPhone() << "|" << endl;
+    outfile << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
+    outfile << "|Dia chi: " << setw(141) << left << cus.getAddress() << "|" << endl;
+    outfile << "|Nhan vien ban: " << setw(135) << " " << "|"  << endl;
+    outfile << "|Ma nhan vien: " << setw(136) << left << emp.getID() << "|" << endl;
+    outfile << "|Ten nhan vien: " << setw(135) << left << emp.getName() << "|" << endl;
+    outfile << "|" << setw(150) << " " << "|"  << endl;
+    outfile << "|" << setw(3) << left << "STT";
+    outfile << setw(18) << left << "|Ma san pham";
+    outfile << setw(51) << left << "|Ten san pham";
+    outfile << setw(3) << left << "|SL";
+    outfile << setw(49) << left << "|So serial";
+    outfile << setw(13) << left << "|Don gia";
+    outfile << setw(13) << left << "|Thanh tien" << "|"<< endl;
+    outfile << "|" << setfill('_') << setw(151) << right << "|" << endl << setfill(' ') ;
+    int i = 0;
+    string serial = "";
+    for (Node<order>* Norder = inv.getOrder().getHead(); Norder != nullptr; Norder = Norder->next)
+    {
+        outfile << "|" << setw(3) << left << ++i;
+        outfile << "|" << setw(17) << left << Norder->data.getID();
+        outfile << "|" << setw(50) << left << Norder->data.getName();
+        outfile << "|" << setw(2) << left << Norder->data.getQuantity();
+        serial = "";
+        for (Node<string>* Nstring = Norder->data.getSerial().getHead(); Nstring != nullptr; Nstring = Nstring->next)
+        {
+            serial += Nstring->data;
+            serial += ",";
+        }
+        outfile << "|"<< setw(48) << left << serial;
+        outfile << "|" << setw(12) << left << Norder->data.getPrice();
+        outfile << "|" << setw(12) << left << Norder->data.getTotal() << "|"<< endl;
+        outfile << "|" << setfill('_') << setw(151) << right << "|" << endl << setfill(' ') ;
+    }
+    outfile << "|" << setw(138) << right << "Tong tien: " << setw(12) << left << inv.getTotal() << "|"<< endl;
+    outfile << "|" << "Thanh toan: " << setw(138) << left << inv.getPayment() << "|" << endl;
+    outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+    outfile.close();
+    //in hoa don ra ma hinh
+    ifstream inFile(filePath);
+    if (!inFile.is_open()) {
+        cerr << "Khong the mo file de doc" << endl;
+        return;
+    }
+    string line;
+    while (getline(inFile, line)) {
+        cout << line << endl;
+    }
+    inFile.close();
+
+}
 
 int InvManage::getNewID()
 {
@@ -132,7 +171,7 @@ int InvManage::getNewID()
     return Ninv->data.getInvoiceID() + 1;
 }
 
-void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM)
+void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, EmpManage& EmployeeM)
 {
     invoice newInvoice;
     int cusID;
@@ -194,10 +233,10 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM)
     } while(over != true);    
     newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
     //Tuong tac voi gio hang
-    this->updateCart(newInvoice,productM,customerM);
+    this->updateCart(newInvoice,productM,customerM,EmployeeM);
 }
 
-void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage CustomerM)
+void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& CustomerM, EmpManage& EmployeeM)
 {
     int input;
     int option = 1;
@@ -329,7 +368,9 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage Cust
                     newInv.setPayment(pay);
                     newInv.complete();
                     this->add(newInv);
-                    //this->printInvoice(newInv.getInvoiceID(),CustomerM);
+                    this->printInvoice(newInv.getInvoiceID(),CustomerM,EmployeeM);
+                    cout << endl;
+                    system("pause");
                     input = '0';
                     break;
                 default: cout << "Loi du lieu";

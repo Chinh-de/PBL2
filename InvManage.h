@@ -1,9 +1,10 @@
+#include <iomanip>
 #include "invoice.h"
 #include "list.cpp"
 #include "Manage.h"
 #include "CusManage.h"
 #include "ProdManage.h"
-#include "Employee.h"
+#include "EmpManage.h"
 #pragma once
 
 class InvManage : public Manage<invoice> {
@@ -21,10 +22,10 @@ class InvManage : public Manage<invoice> {
         list<invoice> find(int&);
         Node<invoice>* findID(int&);
         void statistic(list<invoice>);
-        //void printInvoice(int&, CusManage CustomerM, Employee user);
+        void printInvoice(int&, CusManage, EmpManage);
         int getNewID();
-        void sell(int, CusManage&, ProdManage&);
-        void updateCart(invoice&, ProdManage&, CusManage);
+        void sell(int, CusManage&, ProdManage&, EmpManage&);
+        void updateCart(invoice&, ProdManage&, CusManage& ,EmpManage&);
         void readfromfile(string, string);
         void writetofile(string, string);
 };

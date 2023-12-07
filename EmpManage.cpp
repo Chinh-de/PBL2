@@ -36,7 +36,6 @@ void EmpManage::readfromfile(string file){
             else pos = salesperson;
             getline(iss, pass, '|');
             Employee newemp(ID, name, phone, email, gender, address, salary, pos, pass);
-            cout << newemp;  system("pause");
             this->Emp.addAtEnd(newemp);
         }
         inputFile.close();
