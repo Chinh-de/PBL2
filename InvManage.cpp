@@ -83,46 +83,46 @@ void InvManage::statistic(list<invoice> List){
     delete tempNode;
 }
 
-// invoice InvManage::printInvoice(int& ID, list<Customer>& cusList)
+// void InvManage::printInvoice(int&, CusManage CustomerM, Employee user)
 // {
-//     //in hoa don ra man hinh
-//     //in hoa don ra file trong folder hoa don
-//     Node<invoice>* tempInv;
-//     tempInv = this->Inv.getHead();
-//     while (tempInv != nullptr){
-//         if(tempInv->data.getInvoiceID() == ID)
-//             break;
-//         else tempInv = tempInv->next;
-//     }
-//     if (tempInv == nullptr) return tempInv->data;
-//     Node<Customer>* tempCus;
-//     tempCus = cusList.getHead();
-//     while (tempCus != nullptr){
-//         if(tempCus->data.getID() == tempInv->data.getCustomerID())
-//             break;
-//         else tempCus = tempCus->next;
-//     }
-//     if (tempCus == nullptr) return tempInv->data;
-//     cout << "Ten khach hang: " << tempCus->data.getName() << endl
-//     << "So dien thoai: " <<tempCus->data.getPhone() << endl;
-//     Node<order>* tempOrder;
-//     Node<string>* tempSerial;
-//     tempOrder = tempInv->data.getOrder().getHead();
-//     tempSerial = tempOrder->data.get.getHead();
-//     while (tempOrder != nullptr){
-//         cout << "Ten hang: " << tempOrder->data.getName() << endl
-//         << "So luong: " << tempOrder->data.getQuantity() << endl
-//         << "Don gia: " << tempOrder->data.getPrice() << endl
-//         << "Thanh tien: " << tempOrder->data.getTotal() << endl;
-//         while (tempSerial != nullptr){
-//             if (tempSerial->next == nullptr)
-//                 cout << tempSerial->data << endl;
-//             else 
-//                 cout << tempSerial->data << ", ";
-//         }
-//         cout << "Tong cong: " << tempInv->data.getTotal() << endl;
-//     }
-//     return tempInv->data;
+    
+
+//     // Node<invoice>* tempInv;
+//     // tempInv = this->Inv.getHead();
+//     // while (tempInv != nullptr){
+//     //     if(tempInv->data.getInvoiceID() == ID)
+//     //         break;
+//     //     else tempInv = tempInv->next;
+//     // }
+//     // if (tempInv == nullptr) return tempInv->data;
+//     // Node<Customer>* tempCus;
+//     // tempCus = cusList.getHead();
+//     // while (tempCus != nullptr){
+//     //     if(tempCus->data.getID() == tempInv->data.getCustomerID())
+//     //         break;
+//     //     else tempCus = tempCus->next;
+//     // }
+//     // if (tempCus == nullptr) return tempInv->data;
+//     // cout << "Ten khach hang: " << tempCus->data.getName() << endl
+//     // << "So dien thoai: " <<tempCus->data.getPhone() << endl;
+//     // Node<order>* tempOrder;
+//     // Node<string>* tempSerial;
+//     // tempOrder = tempInv->data.getOrder().getHead();
+//     // tempSerial = tempOrder->data.get.getHead();
+//     // while (tempOrder != nullptr){
+//     //     cout << "Ten hang: " << tempOrder->data.getName() << endl
+//     //     << "So luong: " << tempOrder->data.getQuantity() << endl
+//     //     << "Don gia: " << tempOrder->data.getPrice() << endl
+//     //     << "Thanh tien: " << tempOrder->data.getTotal() << endl;
+//     //     while (tempSerial != nullptr){
+//     //         if (tempSerial->next == nullptr)
+//     //             cout << tempSerial->data << endl;
+//     //         else 
+//     //             cout << tempSerial->data << ", ";
+//     //     }
+//     //     cout << "Tong cong: " << tempInv->data.getTotal() << endl;
+//     // }
+//     // return tempInv->data;
 // }
 
 int InvManage::getNewID()
@@ -384,17 +384,17 @@ void InvManage::readfromfile(string file, string detail_file)
         while (getline(inputFileOrder, line))
         {
             istringstream iss(line);
-            getline(iss, temp, '|');
-            ID = stoi(temp);
+            iss >> ID;
+            iss.ignore(); 
             getline(iss, productID, '|');
             getline(iss, name, '|');
-            getline(iss, temp, '|');
-            price = stoul(temp);
-            getline(iss, temp, '|');
-            total = stoul(temp);
+            iss >> price;
+            iss.ignore(); 
+            iss >> total;
+            iss.ignore(); 
             order neworder(productID, name, price, total);
-            getline(iss, temp, '|');
-            quantity= stoi(temp);
+            iss >> quantity;
+            iss.ignore(); 
             for(int i = 0; i < quantity; i++)
             {
                 getline(iss, serial, ',');
@@ -420,8 +420,8 @@ void InvManage::readfromfile(string file, string detail_file)
 
 void InvManage::writetofile(string file, string detail_file)
 {
-    ofstream outputInvoice(file);
-    ofstream outputOrderDetail(detail_file);
+    ofstream outputInvoice(file, ios::out | ios::trunc);
+    ofstream outputOrderDetail(detail_file, ios::out | ios::trunc);
     if (outputInvoice.is_open() && outputOrderDetail.is_open())
     {
         for (Node<invoice>* current = this->Inv.getHead(); current != nullptr; current = current->next) 

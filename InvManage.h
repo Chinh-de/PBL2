@@ -3,6 +3,7 @@
 #include "Manage.h"
 #include "CusManage.h"
 #include "ProdManage.h"
+#include "Employee.h"
 #pragma once
 
 class InvManage : public Manage<invoice> {
@@ -20,7 +21,7 @@ class InvManage : public Manage<invoice> {
         list<invoice> find(int&);
         Node<invoice>* findID(int&);
         void statistic(list<invoice>);
-        invoice printInvoice(int&, list<Customer>&);
+        //void printInvoice(int&, CusManage CustomerM, Employee user);
         int getNewID();
         void sell(int, CusManage&, ProdManage&);
         void updateCart(invoice&, ProdManage&, CusManage);

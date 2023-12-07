@@ -24,8 +24,8 @@ void MenuEmployee();
 int main()
 {
     int Close;
-    lg1:;
     Database::readData();
+    lg1:;
     employeeManage.display();
     system("cls");
     Close = 0;

@@ -8,42 +8,45 @@ void EmpManage::add(const Employee& e) {
     this->Emp.add(e);
 }
 void EmpManage::readfromfile(string file){
-    ifstream input(file);
-    int n = 0, value;
-    string info[10];
-    while(!input.eof()){
-        n = 0;
-        Employee tempEmp;
-        do {
-            char c;
-            string Data = "";
-            input.get(c);
-            while (c != '|' && c != '\n' && !input.eof()){
-                Data += c;
-                input.get(c);
-            }
-            info[n] = Data;
-            n++;
-        } while(n <= 8);
-        if (isdigit(info[0][0]) && isdigit(info[6][0])){
-            value = stoi(info[0]); tempEmp.setID(value);
-            value = stoi(info[6]); tempEmp.setSalary(value);
+    ifstream inputFile(file);
+    int ID; 
+    bool gender;
+    string temp, name, phone, email, address, pass;
+    unsigned int salary;
+    Position pos;
+    if (inputFile.is_open()) 
+    {
+        string line;
+        while (getline(inputFile, line))
+        {
+            istringstream iss(line);
+            iss >> ID;
+            iss.ignore(); 
+            getline(iss, name, '|');
+            getline(iss, phone, '|');
+            getline(iss, email, '|');
+            getline(iss, temp, '|');
+            if(temp == "Nu") gender = true;
+            else gender = false;
+            getline(iss, address, '|');
+            iss >> salary;
+            iss.ignore();
+            getline(iss, temp, '|');
+            if(temp == "manager") pos = manager;
+            else pos = salesperson;
+            getline(iss, pass, '|');
+            Employee newemp(ID, name, phone, email, gender, address, salary, pos, pass);
+            cout << newemp;  system("pause");
+            this->Emp.addAtEnd(newemp);
         }
-        
-        tempEmp.setName(info[1]);
-        tempEmp.setPhone(info[2]);
-        tempEmp.setEmail(info[3]);
-        tempEmp.setGender((info[4] == "Nu"));
-        tempEmp.setAddress(info[5]);
-        tempEmp.setPositon(info[7] == "manager" ? manager : salesperson);
-        tempEmp.setPassword(info[8]);
-        this->Emp.addAtEnd(tempEmp);
+        inputFile.close();
+    } else {
+        cerr << "Khong the mo file" << file << endl; //bao loi
     }
-    input.close();
 }
 void EmpManage::writetofile(string file)
 {
-    ofstream outputFile(file);
+    ofstream outputFile(file, ios::out | ios::trunc);
     if (outputFile.is_open()) {
         for (Node<Employee>* current = this->Emp.getHead(); current != nullptr; current = current->next) {
             Employee currentEmp = current->data;
@@ -57,7 +60,7 @@ void EmpManage::writetofile(string file)
             outputFile << currentEmp.getSalary() << "|";
             if (currentEmp.getPosition() == manager ) outputFile << "manager|";
             else if (currentEmp.getPosition() == salesperson ) outputFile << "salesperson|";
-            outputFile << currentEmp.getPassword();
+            outputFile << currentEmp.getPassword() << "|";
             outputFile << endl;
         }
         outputFile.close();

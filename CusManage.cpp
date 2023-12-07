@@ -15,8 +15,8 @@ void CusManage::readfromfile(string file)
         while (getline(inputFile, line))
         {
             istringstream iss(line);
-            getline(iss, temp, '|');
-            ID = stoi(temp);
+            iss >> ID;
+            iss.ignore(); 
             getline(iss, name, '|');
             getline(iss, phone, '|');
             getline(iss, email, '|');
@@ -35,8 +35,9 @@ void CusManage::readfromfile(string file)
 
 void CusManage::writetofile(string file)
 {
-    ofstream outputFile(file);
-    if (outputFile.is_open()) {
+    ofstream outputFile(file, ios::out | ios::trunc);
+    if (outputFile.is_open()) 
+    {
         for (Node<Customer>* current = this->Cus.getHead(); current != nullptr; current = current->next) {
             Customer currentCus = current->data;
             outputFile << currentCus.getID() << "|";

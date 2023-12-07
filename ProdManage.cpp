@@ -52,9 +52,9 @@ void ProdManage::readfromfile(string file)
 }
 
 void ProdManage::writetofile(string file) {
-    ofstream outputFile(file);
-
-    if (outputFile.is_open()) {
+    ofstream outputFile(file, ios::out | ios::trunc);
+    if (outputFile.is_open())
+    {
         for (Node<product>* current = this->Prod.getHead(); current != nullptr; current = current->next) {
             product currentProd = current->data;
             outputFile << currentProd.getID() << "|"

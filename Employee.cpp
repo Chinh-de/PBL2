@@ -1,5 +1,5 @@
 #include "Employee.h"
-Employee::Employee(int ID, string name, string phoneNumber, string email, bool gender, string address, unsigned int salary, Position positon, string password)
+Employee::Employee(int ID, string name, string phoneNumber, string email, bool gender, string address, unsigned int salary, Position position, string password)
     :Person(ID, name, phoneNumber, email, gender, address), salary(salary), position(position), password(password)
 { }
 Employee::~Employee()
