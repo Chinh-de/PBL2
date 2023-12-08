@@ -119,6 +119,7 @@ void InvManage::printInvoice(int invID, CusManage CustomerM, EmpManage EmployeeM
     outfile << "|Ma nhan vien: " << setw(136) << left << emp.getID() << "|" << endl;
     outfile << "|Ten nhan vien: " << setw(135) << left << emp.getName() << "|" << endl;
     outfile << "|" << setw(150) << " " << "|"  << endl;
+    outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     outfile << "|" << setw(3) << left << "STT";
     outfile << setw(18) << left << "|Ma san pham";
     outfile << setw(51) << left << "|Ten san pham";
@@ -168,7 +169,7 @@ void InvManage::printInvoice(int invID, CusManage CustomerM, EmpManage EmployeeM
 int InvManage::getNewID()
 {
     Node<invoice>* Ninv = this->Inv.getHead();
-    if(Ninv == nullptr) return 10000000;
+    if(Ninv == nullptr) return 100000;
     return Ninv->data.getInvoiceID() + 1;
 }
 
@@ -231,7 +232,8 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                     break;
                 // default: cout << "Loi du lieu";
             };
-    } while(over != true);    
+    } while(over != true);   
+    newInvoice.setCustomerID(newcus.getID());
     newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
     //Tuong tac voi gio hang
     this->updateCart(newInvoice,productM,customerM,EmployeeM);
@@ -367,8 +369,11 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                     cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: " << endl;
                     cin >> pay;
                     newInv.setPayment(pay);
+                    system("pause"); cout << "qua 1";
                     newInv.complete();
+                    system("pause"); cout << "qua 2";
                     this->add(newInv);
+                    system("pause"); cout << "qua 3";
                     this->printInvoice(newInv.getInvoiceID(),CustomerM,EmployeeM);
                     cout << endl;
                     system("pause");
@@ -460,7 +465,7 @@ void InvManage::readfromfile(string file, string detail_file)
             Node<invoice>* found = this->findID(ID);
             if(found != nullptr) 
             {
-                found->data.addOrder(neworder);
+                found->data.getOrder().addAtEnd(neworder);
             }
             else cout << endl << "Loi du lieu! Khong tim thay hoa don so " << ID << endl;
         }
@@ -472,7 +477,6 @@ void InvManage::readfromfile(string file, string detail_file)
     } else {
         cerr << "Khong the mo file" << file << endl; //bao loi
     }
-
 }
 
 void InvManage::writetofile(string file, string detail_file)

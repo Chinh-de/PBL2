@@ -257,13 +257,7 @@ void ProdManage::sort(bool type)
     //type = false sap xep tu giam, = true tang 
     
     //tao ban sao cua danh sach san pham
-    list<product> sortprice;
-    Node<product>* tempNode = this->Prod.getHead();
-    while (tempNode != nullptr) 
-    {
-        sortprice.add(tempNode->data);
-        tempNode = tempNode->next;
-    }    
+    list<product> sortprice = this->Prod;
     sortprice.mergeSort(sortprice.getHead(),type);
     sortprice.display();
 }

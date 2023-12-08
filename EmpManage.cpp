@@ -72,8 +72,9 @@ void EmpManage::add(){
     string name, phone, email, address, password, pos;
     bool gender;
     Position position;
-    cout << "Nhap thong tin: " << endl
-    << "Ma nhan vien: "; cin >> ID;
+    cout << "Nhap thong tin: " << endl;
+    ID = this->getNewID();
+    cout << "Ma nhan vien moi: " << ID << endl;
     cout << "Ten nhan vien: "; cin >> name;
     cout << "So dien thoai: "; cin >> phone;
     cout << "Email: "; cin >> email;
@@ -83,7 +84,7 @@ void EmpManage::add(){
     cout << "Vi tri cong viec: "; cin >> pos;
     if (pos == "manager") position = manager;
     if (pos == "salesperson") position = salesperson;  
-    cout << "Dat mat khau tai khoan nhan vien: "; cin >> password;
+    cout << "Dat mat khau tai khoan nay: "; cin >> password;
     Employee e(ID, name, phone, email, gender, address, salary, position, password);
     this->Emp.add(e);
 }
@@ -182,4 +183,11 @@ list<Employee> EmpManage::find(string& name, string& phone)
         tempNode = tempNode->next;
     }
     return Found;
+}
+
+int EmpManage::getNewID()
+{
+    Node<Employee>* Nemp = this->Emp.getHead();
+    if(Nemp == nullptr) return 100;
+    return Nemp->data.getID() + 1;
 }
