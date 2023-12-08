@@ -11,5 +11,5 @@ class Manage{
         virtual void add(const T&) = 0;
         virtual void display() = 0;
         virtual void update(T&) = 0;
-        virtual void remove(const T&) = 0;
+        virtual void remove(T&) = 0;
 };

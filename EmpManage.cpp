@@ -73,21 +73,21 @@ void EmpManage::add(){
     bool gender;
     Position position;
     cout << "Nhap thong tin: " << endl
-    << "Ma nhan vien: "; cin >> ID;
-    cout << "Ten nhan vien: "; cin >> name;
-    cout << "So dien thoai: "; cin >> phone;
-    cout << "Email: "; cin >> email;
-    cout << "Gioi tinh(Nam = 0, Nu = 1): "; cin >> gender;
-    cout << "Dia chi: "; cin >> address;
-    cout << "Luong: "; cin >> salary;
-    cout << "Vi tri cong viec: "; cin >> pos;
+    << "Ma nhan vien: "; cin >> ID; cin.ignore();
+    cout << "Ten nhan vien: "; getline(cin, name);
+    cout << "So dien thoai: "; getline(cin, phone);
+    cout << "Email: "; getline(cin, email);
+    cout << "Gioi tinh(Nam = 0, Nu = 1): "; cin >> gender; cin.ignore();
+    cout << "Dia chi: "; getline(cin, address);
+    cout << "Luong: "; cin >> salary; cin.ignore();
+    cout << "Vi tri cong viec: "; getline(cin, pos);
     if (pos == "manager") position = manager;
     if (pos == "salesperson") position = salesperson;  
-    cout << "Dat mat khau tai khoan nhan vien: "; cin >> password;
+    cout << "Dat mat khau tai khoan nhan vien: "; getline(cin, password);
     Employee e(ID, name, phone, email, gender, address, salary, position, password);
     this->Emp.add(e);
 }
-void EmpManage::remove(const Employee& e){
+void EmpManage::remove(Employee& e){
     this->Emp.remove(e);
 }
 void EmpManage::display(){

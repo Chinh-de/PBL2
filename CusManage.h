@@ -12,7 +12,7 @@ class CusManage : public Manage<Customer> {
         void readfromfile(string);
         void writetofile(string);
         void add(const Customer&);
-        void remove(const Customer&);
+        void remove(Customer&);
         void update(Customer&);
         void display();
         Node<Customer>* find(int&);

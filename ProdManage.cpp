@@ -96,20 +96,20 @@ void ProdManage::add(){
     string id, name, CPU, Screen, GPU, OS, brand; 
     unsigned int price, imprice; 
     cout << "Nhap thong tin san pham:" << endl
-    << "Ma san pham: "; cin >> id; p.setID(id);
-    cout << "Ten san pham: "; cin >> name; p.setName(name);
-    cout << "Hang: "; cin >> brand; p.setBrand(brand);
-    cout << "Gia ban: "; cin >> price; p.setPrice(price);
-    cout << "Gia nhap: "; cin >> imprice; p.setImportPrice(imprice);
-    cout << "CPU: "; cin >> CPU; p.setCPU(CPU);
-    cout << "Ram: "; cin >> RAM; p.setRAM(RAM);
-    cout << "Man hinh: "; cin >> Screen; p.setScreen(Screen);
-    cout << "O cung: "; cin >> Disk; p.setHardDisk(Disk);
-    cout << "GPU: "; cin >> GPU; p.setGPU(GPU);
-    cout << "He dieu hanh: "; cin >> OS; p.setOS(OS);
+    << "Ma san pham: "; cin >> id; p.setID(id); cin.ignore();
+    cout << "Ten san pham: "; getline(cin, name); p.setName(name);
+    cout << "Hang: "; getline(cin, brand); p.setBrand(brand);
+    cout << "Gia ban: "; cin >> price; p.setPrice(price); cin.ignore();
+    cout << "Gia nhap: "; cin >> imprice; p.setImportPrice(imprice); cin.ignore();
+    cout << "CPU: "; getline(cin, CPU); p.setCPU(CPU);
+    cout << "Ram: "; cin >> RAM; p.setRAM(RAM); cin.ignore();
+    cout << "Man hinh: "; getline(cin, Screen); p.setScreen(Screen);
+    cout << "O cung: "; cin >> Disk; p.setHardDisk(Disk); cin.ignore();
+    cout << "GPU: "; getline(cin, GPU); p.setGPU(GPU);
+    cout << "He dieu hanh: "; getline(cin, OS); p.setOS(OS);
     this->Prod.add(p);
 }
-void ProdManage::remove(const product& p){
+void ProdManage::remove(product& p){
     this->Prod.remove(p);
 }
 void ProdManage::display(){

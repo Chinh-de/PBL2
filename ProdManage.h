@@ -13,7 +13,7 @@ class ProdManage : public Manage<product> {
         void writetofile(string file);
         void add(const product&);
         void add();
-        void remove(const product&);
+        void remove(product&);
         void update(product&);
         void display();
         void sort(bool);

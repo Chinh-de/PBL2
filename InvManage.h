@@ -14,7 +14,7 @@ class InvManage : public Manage<invoice> {
         InvManage();
         ~InvManage();
         void add(const invoice&);
-        void remove(const invoice&);
+        void remove(invoice&);
         void update(invoice&);
         void display();
         list<invoice> find(int&, int&, int&);

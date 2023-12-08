@@ -58,7 +58,7 @@ void CusManage::writetofile(string file)
 void CusManage::add(const Customer& c) {
     this->Cus.add(c);
 }
-void CusManage::remove(const Customer& c){
+void CusManage::remove(Customer& c){
     this->Cus.remove(c); 
 }
 void CusManage::display(){

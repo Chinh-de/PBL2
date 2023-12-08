@@ -6,7 +6,7 @@ InvManage::~InvManage()
 void InvManage::add(const invoice& c) {
     this->Inv.add(c);
 }
-void InvManage::remove(const invoice& c){
+void InvManage::remove(invoice& c){
     //this->Inv.remove(c);
     cout << endl << "Khong the xoa hoa don!" << endl;
 }

@@ -13,7 +13,7 @@ class EmpManage : public Manage<Employee> {
         void writetofile(string);
         void add(const Employee&);
         void add();
-        void remove(const Employee&);
+        void remove(Employee&);
         void update(Employee&);
         void display();
         Node<Employee>* find(int&);
