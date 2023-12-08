@@ -143,8 +143,10 @@ void ProdManage::displayOption(){
     else this->display(false);
 }
 
- void ProdManage::update(product& _product)
+ void ProdManage::update(product& _prod)
  {
+    string ID = _prod.getID();
+    product _product = this->find(ID)->data;
     bool over = false;
     int input, option = 1, MaxOption = 11;
     do{

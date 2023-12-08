@@ -24,6 +24,10 @@ int main()
 {
     int Close;
     Database::readData();
+
+    // int lid = 10000;
+    // customerManage.update(customerManage.find(lid)->data);
+    
     lg1:;
     Close = 0;
     if(login()){

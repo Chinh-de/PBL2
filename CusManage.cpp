@@ -64,7 +64,10 @@ void CusManage::remove(Customer& c){
 void CusManage::display(){
     this->Cus.display();
 }
-void CusManage::update(Customer& _customer) {
+void CusManage::update(Customer& _cus) {
+
+    int ID = _cus.getID();
+    Customer& _customer = this->find(ID)->data;
     int input;
     int choice = 1;
     int MaxChoice = 6;
@@ -75,7 +78,7 @@ void CusManage::update(Customer& _customer) {
         cout << (choice == 1 ? "->" : "  ") << "Ten: " << _customer.getName() << endl;
         cout << (choice == 2 ? "->" : "  ") << "SDT: " << _customer.getPhone() << endl;
         cout << (choice == 3 ? "->" : "  ") << "Email: " << _customer.getEmail() << endl;
-        cout << (choice == 4 ? "->" : "  ") << "Gioi tinh: " << (_customer.getGender() ? "Nam" : "Nu") << endl;
+        cout << (choice == 4 ? "->" : "  ") << "Gioi tinh: " << (_customer.getGender() ? "Nu" : "Nam") << endl;
         cout << (choice == 5 ? "->" : "  ") << "Dia chi: " << _customer.getAddress() << endl;
         cout << (choice == 6 ? "->" : "  ") << "Thoat" << endl;
         input = getch();
@@ -110,6 +113,7 @@ void CusManage::update(Customer& _customer) {
                 case 4:
                     cout << "Nhap gioi tinh (1: Nu, 0: Nam): ";
                     cin >> gender;
+                    cin.ignore(); 
                     _customer.setGender(gender);
                     break;
                  case 5:
