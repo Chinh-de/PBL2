@@ -135,7 +135,7 @@ Node<Customer>* CusManage::find(int& ID)
 }
 Node<Customer>* CusManage::find(string& name, string& phone)
 {
-    Node<Customer>* Found;
+    Node<Customer>* Found = nullptr;
     if( name == "x" && phone == "x" ) return Found;
     Node<Customer>* tempNode;
     tempNode = this->Cus.getHead();
@@ -145,7 +145,7 @@ Node<Customer>* CusManage::find(string& name, string& phone)
             Found = tempNode;
         tempNode = tempNode->next;
     }
-    if ( Found == nullptr ) cout << "khong tim thay!";
+    //if ( Found == nullptr ) khong tim thay;
     return Found;
 }
 

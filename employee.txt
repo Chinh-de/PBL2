@@ -1,2 +1,2 @@
-200|Tuan|113|a@gmail|Nam|Da Nang|100|manager|admin|
-201|Tuan|113|a@gmail|Nam|Da Nang|100|salesperson|admin|
+200|Nguyen Che Dinh|035388xxxx|dinh@itf.vn|Nam|Hoa Minh, Lien Chieu,Da Nang|19000000|manager|admin|
+201|Nguyen Trieu Huy|036xxxxxxx|huy@itf.vn|Nam|Hoa Khanh, Lien Chieu, Da Nang|11000000|salesperson|sale|

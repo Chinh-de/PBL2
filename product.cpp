@@ -72,9 +72,9 @@ ostream& operator<<(ostream& o,const product& p){
     << "Gia ban: " << p.price << endl
     << "Thong so:" << endl
     << "CPU: " << p.CPU << endl
-    << "RAM: " << p.RAM << endl
+    << "RAM: " << p.RAM << "GB" << endl
     << "Man hinh: " << p.screen << endl
-    << "O cung: " << p.hard_disk << endl
+    << "O cung: " << p.hard_disk << "GB" << endl
     << "GPU: " << p.GPU << endl
     << "He dieu hang: " << p.OS << endl
     << "so luong con: " << p.quantity << " may" << endl;

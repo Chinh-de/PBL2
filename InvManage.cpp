@@ -214,7 +214,7 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                     Ncus = customerM.find(x,cusphone);
                     if(Ncus == nullptr)
                     {
-                        cout << endl << "Khong tim thay khach hang nao co so dien thoai nay!";
+                        cout << endl << "Khong tim thay khach hang nao co so dien thoai nay!" << endl << endl << endl;
                         system("pause");
                         break;
                     }
@@ -368,13 +368,11 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                     system("cls");
                     newInv.updateTotal();
                     cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: " << endl;
-                    cin >> pay;
+                    cin.ignore();
+                    getline(cin, pay);
                     newInv.setPayment(pay);
-                    system("pause"); cout << "qua 1";
                     newInv.complete();
-                    system("pause"); cout << "qua 2";
                     this->add(newInv);
-                    system("pause"); cout << "qua 3";
                     this->printInvoice(newInv.getInvoiceID(),CustomerM,EmployeeM);
                     cout << endl;
                     system("pause");
