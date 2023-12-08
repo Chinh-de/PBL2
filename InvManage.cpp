@@ -83,7 +83,7 @@ void InvManage::statistic(list<invoice> List){
     delete tempNode;
 }
 
-void InvManage::printInvoice(int& invID, CusManage CustomerM, EmpManage EmployeeM)
+void InvManage::printInvoice(int invID, CusManage CustomerM, EmpManage EmployeeM)
 {
     string filePath = "invoice/";
     filePath += "invoice_" + to_string(invID) + ".txt";
@@ -240,7 +240,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
 {
     int input;
     int option = 1;
-    int MaxOption = 4;
+    int MaxOption = 3;
     list<order> cart = newInv.getOrder();
     do 
     {
@@ -249,7 +249,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
         cout << endl << "Lua chon: " << endl; 
             cout << (option == 1 ? "->":"  ") << "Them san pham " << endl;
             cout << (option == 2 ? "->":"  ") << "Xoa san pham " << endl;
-            cout << (option == 4 ? "->":"  ") << "Xuat hoa don" << endl;
+            cout << (option == 3 ? "->":"  ") << "Xuat hoa don" << endl;
             input = getch();
 
             if (input == 80) //phim mui ten xuong
@@ -281,7 +281,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                         Nprod = productM.find(prodID);
                         if(Nprod == nullptr) cout << endl << "Khong tim thay san pham. Vui long nhap dung ma san pham: ";
                         if(Nprod->data.getQuantity() < 1) cout << endl << "San pham nay da het hang. Vui long chon san pham khac: ";
-                    } while(Nprod == nullptr && Nprod->data.getQuantity() < 1);
+                    } while(Nprod == nullptr || Nprod->data.getQuantity() < 1);
                     Norder = newInv.findOrder(prodID);
                     //neu loai san pham chua co trong hoa don thi tao neworder
                     if(Norder == nullptr)
@@ -363,7 +363,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                 case 3:
                     system("cls");
                     newInv.updateTotal();
-                    cout << "Tong gia tri don hang la :" <<newInv.getTotal() <<"Vui long chon phuong thuc thanh toan: " << endl;
+                    cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: " << endl;
                     cin >> pay;
                     newInv.setPayment(pay);
                     newInv.complete();

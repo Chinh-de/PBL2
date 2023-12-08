@@ -448,7 +448,7 @@ void MenuManager()
                 }
                 break;
             case 6:
-                invoiceManage.sell(user->getID(), customerManage, productManage);
+                invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
                 cout << "Het hang roi";
                 system("pause");
                 break;
