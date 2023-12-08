@@ -16,7 +16,6 @@ ProdManage& productManage = myDatabase.getProdManage();
 InvManage& invoiceManage = myDatabase.getInvManage();
 Employee* user;
 
-void read();
 bool login();
 bool check_userID(string);
 void MenuManager();
@@ -25,9 +24,6 @@ int main()
 {
     int Close;
     Database::readData();
-    int ak47 = 100000;
-    invoiceManage.printInvoice(ak47,customerManage, employeeManage);
-    system("pause");
     lg1:;
     Close = 0;
     if(login()){
@@ -470,7 +466,7 @@ void MenuManager()
                 switch (next_option){
                     case 1:
                         cout << "Nhap ma hoa don: "; cin >> id;
-                        invoiceManage.find(id).display();
+                        invoiceManage.findtoShow(id);
                         system("pause");
                         break;
                     case 2:

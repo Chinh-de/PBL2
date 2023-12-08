@@ -1,3 +1,4 @@
-HX5020|laptop lenovo ideapad 3|lenovo|11000000|9000000|i5 12500|16|16inch|256|rtx 3050|window|5|1,2,3,4,5,
-HX5021|laptop lenovo ideapad 4|lenovo|13000000|9000000|i5 12500|16|16inch|256|rtx 3050|window|6|1,2,3,4,5,6,
-HX5022|laptop lenovo ideapad 4|lenovo|12000000|9000000|i5 12500|16|16inch|256|rtx 3050|window|0|
+HX5020|laptop lenovo slim 3|lenovo|11000000|9000000|i5 12500|16|16inch|256|rtx 3050|window|5|1,2,3,4,5,
+82K2027PVN|Laptop Lenovo Ideapad Gaming 3 15ACH6|lenovo|15990000|15000000|Ryzen 5 5500H|16|15.6"Full HD (1920 x 1080)144Hz|512|RTX 2050 4GB|window 11|5|MP27A27J,MP27A2J1,MP27A2J2,MP27A2J3,MP27A2J4,
+HX5021|laptop lenovo slim 3|lenovo|12000000|9000000|i5 12500|16|16inch|256|rtx 3050|window|5|1,2,3,4,5,
+HX5022|laptop lenovo slim 3|lenovo|13000000|9000000|i5 12500|16|16inch|256|rtx 3050|window|5|1,2,3,4,5,

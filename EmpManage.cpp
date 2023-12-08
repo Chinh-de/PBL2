@@ -72,8 +72,8 @@ void EmpManage::add(){
     string name, phone, email, address, password, pos;
     bool gender;
     Position position;
-    cout << "Nhap thong tin: " << endl
-    << "Ma nhan vien: "; cin >> ID; cin.ignore();
+    cout << "Nhap thong tin: " << endl;
+    ID = this->getNewID(); cin.ignore();
     cout << "Ten nhan vien: "; getline(cin, name);
     cout << "So dien thoai: "; getline(cin, phone);
     cout << "Email: "; getline(cin, email);
@@ -182,4 +182,11 @@ list<Employee> EmpManage::find(string& name, string& phone)
         tempNode = tempNode->next;
     }
     return Found;
+}
+
+int EmpManage::getNewID()
+{
+    Node<Employee>* Nemp = this->Emp.getHead();
+    if(Nemp == nullptr) return 100;
+    return Nemp->data.getID() + 1;
 }

@@ -35,7 +35,7 @@ void Database::readData()
 {
     instance.customerM.readfromfile("customer.txt");
     instance.employeeM.readfromfile("employee.txt");
-    instance.productM.readfromfile("product.txt");
+    instance.productM.readfromfile("product.txt");    
     instance.invoiceM.readfromfile("invoice.txt", "invoice_detail.txt");
 }
 

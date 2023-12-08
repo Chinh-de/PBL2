@@ -18,4 +18,5 @@ class EmpManage : public Manage<Employee> {
         void display();
         Node<Employee>* find(int&);
         list<Employee> find(string&, string&);
+        int getNewID();
 };
