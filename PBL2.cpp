@@ -220,7 +220,7 @@ void MenuEmployee()
                 switch (next_option){
                     case 1:
                         cout << "Nhap ma hoa don: "; cin >> id;
-                        invoiceManage.find(id).display();
+                        invoiceManage.findtoShow(id);
                         system("pause");
                         break;
                     case 2:
@@ -448,7 +448,7 @@ void MenuManager()
                 }
                 break;
             case 6:
-                invoiceManage.sell(user->getID(), customerManage, productManage);
+                invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
                 cout << "Het hang roi";
                 system("pause");
                 break;

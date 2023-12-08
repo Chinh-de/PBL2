@@ -51,7 +51,7 @@ list<invoice> InvManage::find(int& y){
         if (tempNode->data.getDate().getYear() == y)   
             tempList.add(tempNode->data);
         else if (tempNode->data.getInvoiceID() == y)   
-            tempList.add(tempNode->data);
+            tempList.add(tempNode->data); //có findid roi
         tempNode = tempNode->next;
     }
     if ( tempList.getHead() == nullptr ) cout << "khong tim thay!";
@@ -83,7 +83,7 @@ void InvManage::statistic(list<invoice> List){
     delete tempNode;
 }
 
-void InvManage::printInvoice(int& invID, CusManage CustomerM, EmpManage EmployeeM)
+void InvManage::printInvoice(int invID, CusManage CustomerM, EmpManage EmployeeM)
 {
     string filePath = "invoice/";
     filePath += "invoice_" + to_string(invID) + ".txt";
@@ -126,7 +126,7 @@ void InvManage::printInvoice(int& invID, CusManage CustomerM, EmpManage Employee
     outfile << setw(49) << left << "|So serial";
     outfile << setw(13) << left << "|Don gia";
     outfile << setw(13) << left << "|Thanh tien" << "|"<< endl;
-    outfile << "|" << setfill('_') << setw(151) << right << "|" << endl << setfill(' ') ;
+    outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     int i = 0;
     string serial = "";
     for (Node<order>* Norder = inv.getOrder().getHead(); Norder != nullptr; Norder = Norder->next)
@@ -144,13 +144,14 @@ void InvManage::printInvoice(int& invID, CusManage CustomerM, EmpManage Employee
         outfile << "|"<< setw(48) << left << serial;
         outfile << "|" << setw(12) << left << Norder->data.getPrice();
         outfile << "|" << setw(12) << left << Norder->data.getTotal() << "|"<< endl;
-        outfile << "|" << setfill('_') << setw(151) << right << "|" << endl << setfill(' ') ;
+        outfile << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
     }
     outfile << "|" << setw(138) << right << "Tong tien: " << setw(12) << left << inv.getTotal() << "|"<< endl;
     outfile << "|" << "Thanh toan: " << setw(138) << left << inv.getPayment() << "|" << endl;
     outfile << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
     outfile.close();
     //in hoa don ra ma hinh
+    system("cls");
     ifstream inFile(filePath);
     if (!inFile.is_open()) {
         cerr << "Khong the mo file de doc" << endl;
@@ -378,7 +379,22 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
         }
     } while(input != '0');
 } 
-
+void InvManage::findtoShow(int& ID)
+{
+    string filePath = "invoice/";
+    filePath += "invoice_" + to_string(ID) + ".txt";
+    system("cls");
+    ifstream inFile(filePath);
+    if (!inFile.is_open()) {
+        cerr << "Khong tim thay Hoa don!" << endl;
+        return;
+    }
+    string line;
+    while (getline(inFile, line)) {
+        cout << line << endl;
+    }
+    inFile.close();
+}
 void InvManage::readfromfile(string file, string detail_file)
 {
     ifstream inputFile(file);
