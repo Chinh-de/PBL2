@@ -138,7 +138,7 @@ void list<T>::display()
     //duyet qua mang
     while(tempNode != nullptr)
     {
-        cout << tempNode->data << endl;
+        cout << tempNode->data << endl << endl;
         tempNode = tempNode->next;
     }
 }
@@ -159,6 +159,28 @@ Node<T>* list<T>::find(const T& FindData) {
 }
 
 template <typename T>
+Node<T>* list<T>::merge(Node<T>* left, Node<T>* right, bool type) {
+    Node<T>* result = nullptr;
+
+    if (left == nullptr) {
+        return right;
+    }
+    if (right == nullptr) {
+        return left;
+    }
+
+    if (type ? (left->data < right->data) : (left->data > right->data)) {
+        result = left;
+        result->next = merge(left->next, right, type);
+    } else {
+        result = right;
+        result->next = merge(left, right->next, type);
+    }
+
+    return result;
+}
+
+template <typename T>
 Node<T>* list<T>::findMiddle(Node<T>* head) {
     if (head == nullptr) {
         return nullptr;
@@ -176,7 +198,7 @@ Node<T>* list<T>::findMiddle(Node<T>* head) {
 }
 
 template <typename T>
-Node<T>* list<T>::mergeSort(Node<T>* head, bool ascending) {
+Node<T>* list<T>::mergeSortRec(Node<T>* head, bool type) {
     if (head == nullptr || head->next == nullptr) {
         return head;
     }
@@ -185,26 +207,14 @@ Node<T>* list<T>::mergeSort(Node<T>* head, bool ascending) {
     Node<T>* nextToMiddle = middle->next;
     middle->next = nullptr;
 
-    head = mergeSort(head, ascending);
-    nextToMiddle = mergeSort(nextToMiddle, ascending);
+    head = mergeSortRec(head, type);
+    nextToMiddle = mergeSortRec(nextToMiddle, type);
 
-    return merge(head, nextToMiddle, ascending);
+    return merge(head, nextToMiddle, type);
 }
 
 template <typename T>
-Node<T>* list<T>::merge(Node<T>* left, Node<T>* right, bool type) {
-    if (left == nullptr) {
-        return right;
-    }
-    if (right == nullptr) {
-        return left;
-    }
-
-    if (type ? (left->data < right->data) : (left->data > right->data)) {
-        left->next = merge(left->next, right, type);
-        return left;
-    } else {
-        right->next = merge(left, right->next, type);
-        return right;
-    }
+void list<T>::mergeSort(bool type) {
+    head = mergeSortRec(head, type);
 }
+

@@ -93,7 +93,10 @@ void EmpManage::remove(Employee& e){
 void EmpManage::display(){
     this->Emp.display();
 }
-void EmpManage::update(Employee& _employee) {
+void EmpManage::update(Employee& _emp) 
+{
+    int ID = _emp.getID();
+    Employee& _employee = this->find(ID)->data;
     int input;
     int choice = 1;
     int MaxChoice = 7;
@@ -104,7 +107,7 @@ void EmpManage::update(Employee& _employee) {
         cout << (choice == 1 ? "->" : "  ") << "Ten: " << _employee.getName() << endl;
         cout << (choice == 2 ? "->" : "  ") << "SDT: " << _employee.getPhone() << endl;
         cout << (choice == 3 ? "->" : "  ") << "Email: " << _employee.getEmail() << endl;
-        cout << (choice == 4 ? "->" : "  ") << "Gioi tinh: " << (_employee.getGender() ? "Nam" : "Nu") << endl;
+        cout << (choice == 4 ? "->" : "  ") << "Gioi tinh: " << (_employee.getGender() ? "Nu" : "Nam") << endl;
         cout << (choice == 5 ? "->" : "  ") << "Dia chi: " << _employee.getAddress() << endl;
         cout << (choice == 6 ? "->" : "  ") << "Luong: " << _employee.getSalary() << endl;
         cout << (choice == 7 ? "->" : "  ") << "Thoat" << endl;
@@ -139,8 +142,9 @@ void EmpManage::update(Employee& _employee) {
                     _employee.setEmail(mail);
                     break;
                 case 4:
-                    cout << "Nhap gioi tinh (1: Nam, 0: Nu): ";
+                    cout << "Nhap gioi tinh (1: Nu, 0: Nam): ";
                     cin >> gender;
+                    cin.ignore(); 
                     _employee.setGender(gender);
                     break;
                 case 5:

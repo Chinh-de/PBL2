@@ -30,7 +30,9 @@ class list
         void remove(const T&);
         void display();
         Node<T>* find(const T& findData);
-        Node<T>* findMiddle(Node<T>*);
-        Node<T>* mergeSort(Node<T>*, bool = true);
-        Node<T>* merge(Node<T>*, Node<T>*, bool);
+        void mergeSort(bool type);
+    private:    
+        Node<T>* merge(Node<T>* left, Node<T>* right, bool type);
+        Node<T>* findMiddle(Node<T>* head);
+        Node<T>* mergeSortRec(Node<T>* head, bool type);
 };

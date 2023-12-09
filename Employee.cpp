@@ -8,7 +8,7 @@ void Employee::Show()
 {
     cout<< "Ma Nhan vien: " << this->ID << "; ";
     cout << "Chuc vu: ";
-    if (this->position == manager) cout << "quan li";
+    if (this->position == manager) cout << "quan li; ";
     if (this->position == salesperson) cout << "nhan vien; ";   
     this->Person::Show();
     cout<< "; Luong: " << this->salary << endl;

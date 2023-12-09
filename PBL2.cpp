@@ -24,6 +24,10 @@ int main()
 {
     int Close;
     Database::readData();
+
+    // int lid = 10000;
+    // customerManage.update(customerManage.find(lid)->data);
+    
     lg1:;
     Close = 0;
     if(login()){
@@ -195,6 +199,10 @@ void MenuEmployee()
                 break;
             case 4:
                 invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
+<<<<<<< HEAD
+=======
+                system("pause");
+>>>>>>> 6933b0ca649d09783f1347de876cd2c2a6a27971
                 break;                
             case 5:
                 next_option = 1;
@@ -313,8 +321,8 @@ void MenuManager()
                     cout << ((next_option == 2) ? "->" : "  ") << "Tim san pham" << endl;
                     cout << ((next_option == 3) ? "->" : "  ") << "Them loai san pham moi" << endl;
                     cout << ((next_option == 4) ? "->" : "  ") << "Cap nhat thong tin san pham" << endl;
-                    cout << ((next_option == 5) ? "->" : "  ") << "Xoa san pham" << endl;
-                    cout << ((next_option == 6) ? "->" : "  ") << "Them so seri san pham" << endl;
+                    cout << ((next_option == 5) ? "->" : "  ") << "Xoa loai san pham" << endl;
+                    cout << ((next_option == 6) ? "->" : "  ") << "Them san pham moi" << endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
@@ -344,16 +352,31 @@ void MenuManager()
                         break;
                     case 5:
                         system("cls");
-                        cout << "Nhap ID san pham can xoa: "; cin >> sid;
+                        cout << "Nhap ID loai san pham can xoa: "; cin >> sid;
                         productManage.remove(productManage.find(sid)->data);
                         system("pause");
                         break;
                     case 6:
                         system("cls");
                         string seri;
-                        cout << "Nhap ID san pham can them so seri: "; cin >> sid;
-                        cout << "Nhap so serial: "; cin >> seri;
-                        productManage.find(sid)->data.addSerial(seri);
+                        int count;
+                        Node<product>* prod = productManage.find(sid);
+                        cout << "Nhap ID loai san pham can them: "; cin >> sid;
+                        if (prod == nullptr)
+                        {
+                            cout << "Ma san pham nhap vao khong ton tai!" << endl;
+                        }
+                        else
+                        {
+                            cout << "Nhap so luong can them: "; cin >> count;
+                            for (int i = 0; i < count; i++)
+                            {
+                                cout << "Nhap so serial thu " << i << ": "; cin >> seri;
+                                prod->data.addSerial(seri);
+                                cout << endl << "Them thanh cong san pham co so serial:" << seri << endl;
+                            }
+                        }
+                        cout << endl << endl << endl;
                         system("pause");
                         break;
                 }
@@ -443,6 +466,10 @@ void MenuManager()
                 break;
             case 6:
                 invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
+<<<<<<< HEAD
+=======
+                system("pause");
+>>>>>>> 6933b0ca649d09783f1347de876cd2c2a6a27971
                 break;
             case 7:
                 next_option = 1;

@@ -118,15 +118,9 @@ void ProdManage::display(){
 
 void ProdManage::display(bool type)
 {
-    //type = false sap xep tu giam, = true tang 
-    list<product> sortprice;
-    Node<product>* tempNode = this->Prod.getHead();
-    while (tempNode != nullptr) 
-    {
-        sortprice.add(tempNode->data);
-        tempNode = tempNode->next;
-    }    
-    sortprice.mergeSort(sortprice.getHead(),type);
+    //type = false sap xep giam, = true tang 
+    list<product> sortprice = this->Prod; 
+    sortprice.mergeSort(type);
     sortprice.display();
 }
 
@@ -149,8 +143,10 @@ void ProdManage::displayOption(){
     else this->display(false);
 }
 
- void ProdManage::update(product& _product)
+ void ProdManage::update(product& _prod)
  {
+    string ID = _prod.getID();
+    product _product = this->find(ID)->data;
     bool over = false;
     int input, option = 1, MaxOption = 11;
     do{
@@ -250,16 +246,6 @@ void ProdManage::displayOption(){
             }
         }
     }while (over != true);
-}
-
-void ProdManage::sort(bool type)
-{
-    //type = false sap xep tu giam, = true tang 
-    
-    //tao ban sao cua danh sach san pham
-    list<product> sortprice = this->Prod;
-    sortprice.mergeSort(sortprice.getHead(),type);
-    sortprice.display();
 }
 
 Node<product>* ProdManage::find(string &ID)

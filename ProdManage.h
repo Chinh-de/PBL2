@@ -16,7 +16,6 @@ class ProdManage : public Manage<product> {
         void remove(product&);
         void update(product&);
         void display();
-        void sort(bool);
         Node<product>* find(string&);
         void display(bool);
         void displayOption();

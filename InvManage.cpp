@@ -214,7 +214,7 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                     Ncus = customerM.find(x,cusphone);
                     if(Ncus == nullptr)
                     {
-                        cout << endl << "Khong tim thay khach hang nao co so dien thoai nay!";
+                        cout << endl << "Khong tim thay khach hang nao co so dien thoai nay!" << endl << endl << endl;
                         system("pause");
                         break;
                     }
@@ -227,13 +227,13 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                 case 2:
                     newcus.setID(customerM.getNewID());
                     customerM.add(newcus);
+                    cusID = newcus.getID();
                     customerM.update(newcus);
                     over = true;
                     break;
                 // default: cout << "Loi du lieu";
             };
     } while(over != true);
-    cusID = newcus.getID();
     newInvoice.setCustomerID(cusID);
     newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
     //Tuong tac voi gio hang
@@ -279,13 +279,20 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
             {
                 case 1:
                     cout << "Nhap vao ma san pham: ";
-                    do
+                    cin >> prodID;
+                    Nprod = productM.find(prodID);
+                    if(Nprod == nullptr)
                     {
-                        cin >> prodID;
-                        Nprod = productM.find(prodID);
-                        if(Nprod == nullptr) cout << endl << "Khong tim thay san pham. Vui long nhap dung ma san pham: ";
-                        if(Nprod->data.getQuantity() < 1) cout << endl << "San pham nay da het hang. Vui long chon san pham khac: ";
-                    } while(Nprod == nullptr || Nprod->data.getQuantity() < 1);
+                        cout << endl << "Khong tim thay san pham. Vui long nhap dung ma san pham! " << endl << endl;
+                        system("pause");
+                        break;
+                    }
+                    if(Nprod->data.getQuantity() < 1) 
+                    {
+                        cout << endl << "San pham nay da het hang. Vui long chon san pham khac! "<< endl << endl;
+                        system("pause");
+                        break;
+                    } 
                     Norder = newInv.findOrder(prodID);
                     //neu loai san pham chua co trong hoa don thi tao neworder
                     if(Norder == nullptr)
@@ -338,7 +345,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                         break;
                     }
                     Nprod = productM.find(prodID);
-                    cout << endl << "Nhap 0 đe xoa tat ca san pham: "<< Norder->data.getName()
+                    cout << endl << "Nhap 0 de xoa tat ca san pham: "<< Norder->data.getName()
                          << endl << "Hoac Nhap vao so serial cua san pham can xoa: ";
                     cin >> newSerial;
                     if (newSerial == "0") 
@@ -353,28 +360,36 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                         }
                         newInv.getOrder().remove(Norder->data);
                     }    
-                    else if(Norder->data.isSerial(newSerial))
-                         {
+                    else 
+                        if(Norder->data.isSerial(newSerial))
+                        {
                             Norder->data.removeSerial(newSerial);
                             Nprod->data.addSerial(newSerial);
-                         }
-                         else
-                         {
+                        }
+                        else
+                        {
                             cout << endl << "Khong co san pham mang so serial " << newSerial << " trong gio hang!";
                             system("pause");
-                         }   
+                        }   
+                        if(Norder->data.getQuantity() == 0) newInv.getOrder().remove(Norder->data);
+
                     break;
                 case 3:
                     system("cls");
-                    newInv.updateTotal();
-                    cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: " << endl;
-                    cin >> pay;
-                    newInv.setPayment(pay);
-                    newInv.complete();
-                    this->add(newInv);
-                    this->printInvoice(newInv.getInvoiceID(),CustomerM,EmployeeM);
-                    cout << endl;
-                    system("pause");
+                    if(newInv.getOrder().getHead() == nullptr) cout << "Hoa Don Rong";
+                    else
+                    {
+                        newInv.updateTotal();
+                        cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: " << endl;
+                        cin.clear();
+                        cin.ignore(1000, '\n');
+                        getline(cin, pay);
+                        newInv.setPayment(pay);
+                        newInv.complete();
+                        this->add(newInv);
+                        this->printInvoice(newInv.getInvoiceID(),CustomerM,EmployeeM);
+                    }
+                    cout << endl << endl;
                     input = '0';
                     break;
                 default: cout << "Loi du lieu";
