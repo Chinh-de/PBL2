@@ -380,7 +380,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                     else
                     {
                         newInv.updateTotal();
-                        cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: " << endl;
+                        cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: ";
                         cin.clear();
                         cin.ignore(1000, '\n');
                         getline(cin, pay);

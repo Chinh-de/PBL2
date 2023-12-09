@@ -6,12 +6,16 @@ Employee::~Employee()
 { }
 void Employee::Show()
 {
-    cout<< "Ma Nhan vien: " << this->ID << "; ";
+    cout<< "Ma Nhan vien: " << this->ID << endl;
     cout << "Chuc vu: ";
-    if (this->position == manager) cout << "quan li; ";
-    if (this->position == salesperson) cout << "nhan vien; ";   
-    this->Person::Show();
-    cout<< "; Luong: " << this->salary << endl;
+    if (this->position == manager) cout << "quan li" << endl;
+    if (this->position == salesperson) cout << "nhan vien" << endl;
+    cout << "Ten: " << this->Name << endl << "So Dien Thoai: " << this->Phone << endl;
+    cout << "Gioi tinh: ";
+    if(this->Gender) cout << "Nu";
+    else cout << "Nam";
+    cout << endl << "email: " << this->Email << endl << "Dia chi: " << this->Address << endl;
+    cout<< "Luong: " << this->salary << endl;
 }
 ostream& operator<<(ostream& o, const Employee& e){
     Person *p = new Employee();
@@ -58,10 +62,14 @@ bool Employee::changePassword(){
     } while (old_pass != this->password && old_pass != "x");
     if (old_pass == "x")
         return false;
-    cout << "Nhap mat khau moi: "; cin >> new_pass;
+    cout << "Nhap mat khau moi: ";
+    do
+    {
+        cin >> new_pass;
+        if(new_pass.length() < 6) cout << "Mat khau phai co tren 6 ki tu!" << endl << "Nhap mat khau moi: ";
+    } while (new_pass.length() < 6);
     this->setPassword(new_pass);
     cout << "Doi mat khau thanh cong" << endl;
-    system("pause");
     return true;
 }
 
