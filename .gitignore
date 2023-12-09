@@ -2,3 +2,4 @@ note.txt
 bin/
 test.cpp
 a.exe
+*.txt
