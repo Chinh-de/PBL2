@@ -370,11 +370,8 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                     cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: " << endl;
                     cin >> pay;
                     newInv.setPayment(pay);
-                    system("pause"); cout << "qua 1";
                     newInv.complete();
-                    system("pause"); cout << "qua 2";
                     this->add(newInv);
-                    system("pause"); cout << "qua 3";
                     this->printInvoice(newInv.getInvoiceID(),CustomerM,EmployeeM);
                     cout << endl;
                     system("pause");

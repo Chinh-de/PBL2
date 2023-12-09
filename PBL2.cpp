@@ -194,9 +194,7 @@ void MenuEmployee()
                 }
                 break;
             case 4:
-                // user.sell(customerManage, productManage, invoiceManage);
-                cout << "Het hang roi";
-                system("pause");
+                invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
                 break;                
             case 5:
                 next_option = 1;
@@ -445,8 +443,6 @@ void MenuManager()
                 break;
             case 6:
                 invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
-                cout << "Het hang roi";
-                system("pause");
                 break;
             case 7:
                 next_option = 1;
