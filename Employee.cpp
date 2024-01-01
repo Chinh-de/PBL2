@@ -22,7 +22,7 @@ ostream& operator<<(ostream& o, const Employee& e){
     *p = e;
     o << "Ma Nhan vien: " << e.ID << "; ";
     o << "Chuc vu: ";
-    if (e.position == manager) o << "quan li";
+    if (e.position == manager) o << "quan li; ";
     if (e.position == salesperson) o << "nhan vien; ";
     p->Person::Show();
     o << "; Luong: " << e.salary << "; ";

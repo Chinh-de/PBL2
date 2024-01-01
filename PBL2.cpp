@@ -215,10 +215,6 @@ void MenuEmployee()
                 break;
             case 4:
                 invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
-<<<<<<< HEAD
-=======
-                system("pause");
->>>>>>> 6933b0ca649d09783f1347de876cd2c2a6a27971
                 break;                
             case 5:
                 next_option = 1;
@@ -498,10 +494,6 @@ void MenuManager()
                 break;
             case 6:
                 invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
-<<<<<<< HEAD
-=======
-                system("pause");
->>>>>>> 6933b0ca649d09783f1347de876cd2c2a6a27971
                 break;
             case 7:
                 next_option = 1;
