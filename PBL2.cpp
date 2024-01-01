@@ -184,7 +184,15 @@ void MenuEmployee()
                     if (find_option == 1) {
                         system("cls");
                         cout << "Nhap ma khach hang: "; cin >> id;
-                        customerManage.find(id)->data.Show();
+                        Node<Customer>* fcus = customerManage.find(id);
+                        if(fcus!= nullptr)
+                        {
+                            fcus->data.Show();
+                        }
+                        else
+                        {
+                            cout << "Khong tim thay khach hang nay!" << endl;
+                        }
                         system("pause");
                     }
                     else {
@@ -192,17 +200,21 @@ void MenuEmployee()
                         string name, phone;
                         cout << "Ten khach hang: "; cin >> name;
                         cout << "So dien thoai: "; cin >> phone;
-                        customerManage.find(name, phone)->data.Show();
+                        Node<Customer>* fcus = customerManage.find(name, phone);
+                        if(fcus!= nullptr)
+                        {
+                            fcus->data.Show();
+                        }
+                        else
+                        {
+                            cout << "Khong tim thay khach hang nay! " << endl;
+                        }
                         system("pause");
                     }
                 }
                 break;
             case 4:
                 invoiceManage.sell(user->getID(), customerManage, productManage, employeeManage);
-<<<<<<< HEAD
-=======
-                system("pause");
->>>>>>> 6933b0ca649d09783f1347de876cd2c2a6a27971
                 break;                
             case 5:
                 next_option = 1;
@@ -451,7 +463,15 @@ void MenuManager()
                     if (find_option == 1) {
                         system("cls");
                         cout << "Nhap ma khach hang: "; cin >> id;
-                        customerManage.find(id)->data.Show();
+                        Node<Customer>* fcus = customerManage.find(id);
+                        if(fcus!= nullptr)
+                        {
+                            fcus->data.Show();
+                        }
+                        else
+                        {
+                            cout << "Khong tim thay khach hang nay!" << endl;
+                        }
                         system("pause");
                     }
                     else {
@@ -459,7 +479,15 @@ void MenuManager()
                         string name, phone;
                         cout << "Ten khach hang: "; cin >> name;
                         cout << "So dien thoai: "; cin >> phone;
-                        customerManage.find(name, phone)->data.Show();
+                        Node<Customer>* fcus = customerManage.find(name, phone);
+                        if(fcus!= nullptr)
+                        {
+                            fcus->data.Show();
+                        }
+                        else
+                        {
+                            cout << "Khong tim thay khach hang nay!" << endl;
+                        }
                         system("pause");
                     }
                 }
