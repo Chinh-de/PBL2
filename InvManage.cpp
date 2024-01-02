@@ -165,7 +165,64 @@ void InvManage::printInvoice(int invID, CusManage CustomerM, EmpManage EmployeeM
     inFile.close();
 
 }
-
+void InvManage::printInvoice(invoice& inv, CusManage CustomerM, EmpManage EmployeeM)
+{
+    int cusID = inv.getCustomerID();
+    Customer cus = CustomerM.find(cusID)->data;
+    int empID = inv.getEmployeeID(); 
+    Employee emp = EmployeeM.find(empID)->data;
+	cout << setfill('_') << setw(152) << "" << endl << setfill(' ') ;
+    cout << "|" << setw(151) << right << "ITF Store|" << endl;
+    cout << "|" << setw(151) << right << "Dia chi: Lien Chieu, Da Nang|" << endl;
+    cout << "|" << setw(151) << right << "Website: ITFstore.dut|" << endl;
+    cout << "|" << setw(151) << right << "So dien thoai: 0123456xxx|" << endl;
+	cout << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+	cout << "|" << setw(83) << right << "HOA DON BAN HANG" << setw(68) << right << "|" << endl;
+    
+    cout << "|Ma hoa don: " << setw(138) << left << inv.getInvoiceID() << "|" << endl;
+    string date = to_string(inv.getDate().getDay()) + "/" + to_string(inv.getDate().getMonth()) + "/" + to_string(inv.getDate().getYear());
+    cout << "|Ngay ban: " << setw(140) << date <<"|" << endl;
+    cout << "|Ma khach hang: " << setw(135) << left << inv.getCustomerID() << "|" << endl;
+    cout << "|Ten khach hang: " << setw(134) << left << cus.getName() << "|" << endl;
+    cout << "|So dien thoai: " << setw(135) << left << cus.getPhone() << "|" << endl;
+    cout << "|Email: " << setw(143) << left << cus.getEmail() << "|" << endl;
+    cout << "|Dia chi: " << setw(141) << left << cus.getAddress() << "|" << endl;
+    cout << "|Nhan vien ban: " << setw(135) << " " << "|"  << endl;
+    cout << "|Ma nhan vien: " << setw(136) << left << emp.getID() << "|" << endl;
+    cout << "|Ten nhan vien: " << setw(135) << left << emp.getName() << "|" << endl;
+    cout << "|" << setw(150) << " " << "|"  << endl;
+    cout << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+    cout << "|" << setw(3) << left << "STT";
+    cout << setw(18) << left << "|Ma san pham";
+    cout << setw(51) << left << "|Ten san pham";
+    cout << setw(3) << left << "|SL";
+    cout << setw(49) << left << "|So serial";
+    cout << setw(13) << left << "|Don gia";
+    cout << setw(13) << left << "|Thanh tien" << "|"<< endl;
+    cout << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+    int i = 0;
+    string serial = "";
+    for (Node<order>* Norder = inv.getOrder().getHead(); Norder != nullptr; Norder = Norder->next)
+    {
+        cout << "|" << setw(3) << left << ++i;
+        cout << "|" << setw(17) << left << Norder->data.getID();
+        cout << "|" << setw(50) << left << Norder->data.getName();
+        cout << "|" << setw(2) << left << Norder->data.getQuantity();
+        serial = "";
+        for (Node<string>* Nstring = Norder->data.getSerial().getHead(); Nstring != nullptr; Nstring = Nstring->next)
+        {
+            serial += Nstring->data;
+            serial += ",";
+        }
+        cout << "|"<< setw(48) << left << serial;
+        cout << "|" << setw(12) << left << Norder->data.getPrice();
+        cout << "|" << setw(12) << left << Norder->data.getTotal() << "|"<< endl;
+        cout << "|" << setfill('-') << setw(151) << right << "|" << endl << setfill(' ') ;
+    }
+    cout << "|" << setw(138) << right << "Tong tien: " << setw(12) << left << inv.getTotal() << "|"<< endl;
+    cout << "|" << "Thanh toan: " << setw(138) << left << "Chua thanh toan" << "|" << endl;
+    cout << setfill('*') << setw(152) << "" << endl << setfill(' ') ;
+}
 int InvManage::getNewID()
 {
     Node<invoice>* Ninv = this->Inv.getHead();
@@ -220,6 +277,7 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                     }
                     newcus = Ncus->data;
                     cout << newcus << endl;
+                    cout << endl << endl << endl;
                     system("pause");
                     cusID = newcus.getID();
                     over = true;
@@ -244,7 +302,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
 {
     int input;
     int option = 1;
-    int MaxOption = 3;
+    int MaxOption = 4;
     list<order> cart = newInv.getOrder();
     do 
     {
@@ -254,6 +312,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
             cout << (option == 1 ? "->":"  ") << "Them san pham " << endl;
             cout << (option == 2 ? "->":"  ") << "Xoa san pham " << endl;
             cout << (option == 3 ? "->":"  ") << "Xuat hoa don" << endl;
+            cout << (option == 4 ? "->":"  ") << "Huy" << endl;
             input = getch();
 
             if (input == 80) //phim mui ten xuong
@@ -270,7 +329,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
         Node<order>* Norder;
         Node<string>* Nstring;
         order newOrder;
-        int newQuantity, i;
+        int newQuantity, i, next_option;
         bool isSerial;
         string newSerial;
         if(input == 13)  //phim enter
@@ -349,10 +408,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                          << endl << "Hoac Nhap vao so serial cua san pham can xoa: ";
                     cin >> newSerial;
                     if (newSerial == "0") 
-                    {
-                        newQuantity = newInv.getOrder().find(Norder->data)->data.getQuantity();
-                        list<string> serials = newInv.getOrder().find(Norder->data)->data.getSerial();
-                        
+                    {   
                         Nstring = Norder->data.getSerial().getHead();
                         while (Nstring != nullptr) {
                             Nprod->data.addSerial(Nstring->data);
@@ -376,20 +432,59 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                     break;
                 case 3:
                     system("cls");
-                    if(newInv.getOrder().getHead() == nullptr) cout << "Hoa Don Rong";
+                    if(newInv.getOrder().getHead() == nullptr) 
+                    {
+                        cout << "Hoa Don Rong"; 
+                        cout << endl << endl << endl;
+                        system("pause");
+                    }
                     else
                     {
                         newInv.updateTotal();
-                        cout << "Tong gia tri don hang la :" <<newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: ";
-                        cin.clear();
-                        cin.ignore(1000, '\n');
-                        getline(cin, pay);
-                        newInv.setPayment(pay);
-                        newInv.complete();
-                        this->add(newInv);
-                        this->printInvoice(newInv.getInvoiceID(),CustomerM,EmployeeM);
+                        this->printInvoice(newInv, CustomerM, EmployeeM);
+                        cout << endl << endl << endl;
+                        system("pause");
+                        next_option = 1;
+                        do{
+                            system("cls");
+                            cout << ((next_option == 1) ? "->" : "  ") << "Xac nhan thanh toan" << endl;
+                            cout << ((next_option == 2) ? "->" : "  ") << "Tro ve" << endl;
+                            input = getch();
+                            if (input == 72) next_option--;
+                            else if (input == 80) next_option++;
+                            if (next_option < 1) next_option = 2;
+                            if (next_option > 2) next_option = 1;
+                        }while(input != 13);
+                        if(next_option == 1)
+                        {
+                            cout << "Tong gia tri don hang la :" << newInv.getTotal() << endl << "Vui long chon phuong thuc thanh toan: ";
+                            cin.clear();
+                            cin.ignore(1000, '\n');
+                            getline(cin, pay);
+                            newInv.setPayment(pay);
+                            newInv.complete();
+                            this->add(newInv);
+                            this->printInvoice(newInv.getInvoiceID(),CustomerM,EmployeeM);
+                            input = '0';
+                            system("pause");
+                            cout << endl << endl;
+                        }
                     }
-                    cout << endl << endl;
+                    break;
+                case 4:
+                    Norder = newInv.getOrder().getHead();
+                    while (Norder != nullptr)
+                    {
+                        prodID = Norder->data.getID();
+                        Nprod = productM.find(prodID);
+                        Nstring = Norder->data.getSerial().getHead();
+                        while (Nstring != nullptr) {
+                            Nprod->data.addSerial(Nstring->data);
+                            Nstring = Nstring->next;
+                        }
+                        newInv.removeOrder(Norder->data.getID());
+                        Norder = newInv.getOrder().getHead();
+                    }
                     input = '0';
                     break;
                 default: cout << "Loi du lieu";

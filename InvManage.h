@@ -23,6 +23,7 @@ class InvManage : public Manage<invoice> {
         Node<invoice>* findID(int&);
         void statistic(list<invoice>);
         void printInvoice(int, CusManage, EmpManage);
+        void printInvoice(invoice&, CusManage, EmpManage);
         void findtoShow(int& ID);
         int getNewID();
         void sell(int, CusManage&, ProdManage&, EmpManage&);
