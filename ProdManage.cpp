@@ -132,15 +132,24 @@ void ProdManage::displayOption(){
         cout << ((display_option == 1) ? "->" : "  ") << "Tat ca san pham" << endl;
         cout << ((display_option == 2) ? "->" : "  ") << "Xem theo gia tang" << endl;
         cout << ((display_option == 3) ? "->" : "  ") << "Xem theo gia giam" << endl;
+        cout << ((display_option == 4) ? "->" : "  ") << "Huy" << endl;
         input = getch();
         if (input == 72) display_option--;
         else if (input == 80) display_option++;
-        if (display_option < 1) display_option = 3;
-        if (display_option > 3) display_option = 1;
+        if (display_option < 1) display_option = 4;
+        if (display_option > 4) display_option = 1;
     }while(input != 13);
-    if (display_option == 1) this->display();
-    else if (display_option == 2) this->display(true);
-    else this->display(false);
+    switch (display_option){
+        case 1: 
+            this->display();
+            break;
+        case 2:
+            this->display(true);
+            break;
+        case 3:
+            this->display(false);
+            break;
+    }
 }
 
  void ProdManage::update(product& _prod)

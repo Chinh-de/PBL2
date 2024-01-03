@@ -137,18 +137,25 @@ void MenuEmployee()
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach san pham" << endl;
                     cout << ((next_option == 2) ? "->" : "  ") << "Tim san pham" << endl;
+                    cout << ((next_option == 3) ? "->" : "  ") << "Quay lai" << endl;
+                    t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 2;
-                    if (next_option > 2) next_option = 1;
+                    if (next_option < 1) next_option = 3;
+                    if (next_option > 3) next_option = 1;
                 }while(t != 13);
-                if (next_option == 1)
-                    productManage.displayOption();
-                else {
-                    system("cls");
-                    sid;
-                    cout << "Nhap ID san pham: "; cin >> sid;
-                    productManage.find(sid)->data.show();
+                switch (next_option){
+                    case 1:
+                        productManage.displayOption();
+                        break;
+                    case 2:
+                        system("cls");
+                        sid;
+                        cout << "Nhap ID san pham: "; cin >> sid;
+                        productManage.find(sid)->data.show();
+                        break;
+                    case 3:
+                        break;
                 }
                 system("pause");
                 break;
@@ -158,28 +165,30 @@ void MenuEmployee()
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach khach hang" << endl;
                     cout << ((next_option == 2) ? "->" : "  ") << "Tim khach hang" << endl;
+                    cout << ((next_option == 3) ? "->" : "  ") << "Quay lai" << endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 2;
-                    if (next_option > 2) next_option = 1;
+                    if (next_option < 1) next_option = 3;
+                    if (next_option > 3) next_option = 1;
                 }while(t != 13);
                 if(next_option == 1){
                     system("cls");
                     customerManage.display();
                     system("pause");
                 }
-                else {
+                else if (next_option == 2){
                     int find_option = 1;
                     do {
                         system("cls");
                         cout << ((find_option == 1) ? "->" : "  ") << "Tim theo ma khach hang" << endl;
                         cout << ((find_option == 2) ? "->" : "  ") << "Tim theo ten va so dien thoai" << endl;
+                        cout << ((find_option == 3) ? "->" : "  ") << "Huy" << endl;
                         t = getch();
                         if (t == 72) find_option--;
                         else if (t == 80) find_option++;
-                        if (find_option < 1) find_option = 2;
-                        if (find_option > 2) find_option = 1;
+                        if (find_option < 1) find_option = 3;
+                        if (find_option > 3) find_option = 1;
                     } while (t != 13);
                     if (find_option == 1) {
                         system("cls");
@@ -195,7 +204,7 @@ void MenuEmployee()
                         }
                         system("pause");
                     }
-                    else {
+                    else if (find_option == 2){
                         system("cls");
                         string name, phone;
                         cout << "Ten khach hang: "; cin >> name;
@@ -225,11 +234,12 @@ void MenuEmployee()
                     cout << ((next_option == 2) ? "->" : "  ") << "Theo nam" << endl;
                     cout << ((next_option == 3) ? "->" : "  ") << "Theo thang" << endl;
                     cout << ((next_option == 4) ? "->" : "  ") << "Theo ngay" << endl;
+                    cout << ((next_option == 5) ? "->" : "  ") << "Quay lai" << endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 4;
-                    if (next_option > 4) next_option = 1;
+                    if (next_option < 1) next_option = 5;
+                    if (next_option > 5) next_option = 1;
                 }while(t != 13);
                 switch (next_option){
                     case 1:
@@ -251,6 +261,8 @@ void MenuEmployee()
                         cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
                         invoiceManage.find(d, m, y).display();
                         system("pause");
+                        break;
+                    case 5:
                         break;
                 }
                 break;
@@ -303,26 +315,31 @@ void MenuManager()
                     cout << ((next_option == 1) ? "->" : "  ") << "Hien thi theo nam: " <<endl;
                     cout << ((next_option == 2) ? "->" : "  ") << "Hien thi theo thang: " <<endl;
                     cout << ((next_option == 3) ? "->" : "  ") << "Hien thi theo ngay: " <<endl;
+                    cout << ((next_option == 4) ? "->" : "  ") << "Quay lai" <<endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 3;
-                    if (next_option > 3) next_option = 1;
+                    if (next_option < 1) next_option = 4;
+                    if (next_option > 4) next_option = 1;
                 }while(t != 13);
-                if (next_option == 1){
-                    cout << "Nhap nam: "; cin >> y;
-                    invoiceManage.statistic(invoiceManage.find(y));
-                    system("pause");
-                }
-                else if (next_option == 2){
-                    cout << "Nhap lan luot thang, nam: "; cin >> y;
-                    invoiceManage.statistic(invoiceManage.find(m, y));
-                    system("pause");
-                }
-                else {
-                    cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
-                    invoiceManage.statistic(invoiceManage.find(d, m, y));
-                    system("pause");
+                switch (next_option){
+                    case 1:
+                        cout << "Nhap nam: "; cin >> y;
+                        invoiceManage.statistic(invoiceManage.find(y));
+                        system("pause");
+                        break;
+                    case 2:
+                        cout << "Nhap lan luot thang, nam: "; cin >> y;
+                        invoiceManage.statistic(invoiceManage.find(m, y));
+                        system("pause");
+                        break;
+                    case 3:
+                        cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
+                        invoiceManage.statistic(invoiceManage.find(d, m, y));
+                        system("pause");
+                        break;
+                    case 4:
+                        break;
                 }
                 break;
             case 3:
@@ -335,11 +352,12 @@ void MenuManager()
                     cout << ((next_option == 4) ? "->" : "  ") << "Cap nhat thong tin san pham" << endl;
                     cout << ((next_option == 5) ? "->" : "  ") << "Xoa loai san pham" << endl;
                     cout << ((next_option == 6) ? "->" : "  ") << "Them san pham moi" << endl;
+                    cout << ((next_option == 7) ? "->" : "  ") << "Quay lai" << endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 6;
-                    if (next_option > 6) next_option = 1;
+                    if (next_option < 1) next_option = 7;
+                    if (next_option > 7) next_option = 1;
                 }while(t != 13);
                 switch(next_option){
                     case 1:
@@ -401,11 +419,12 @@ void MenuManager()
                     cout << ((next_option == 2) ? "->" : "  ") << "Them nhan vien moi" << endl;
                     cout << ((next_option == 3) ? "->" : "  ") << "Cap nhat thong tin nhan vien" << endl;
                     cout << ((next_option == 4) ? "->" : "  ") << "Xoa nhan vien" << endl;
+                    cout << ((next_option == 5) ? "->" : "  ") << "Quay lai" << endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 4;
-                    if (next_option > 4) next_option = 1;
+                    if (next_option < 1) next_option = 5;
+                    if (next_option > 5) next_option = 1;
                 }while(t != 13);
                 switch (next_option){
                     case 1:
@@ -430,6 +449,8 @@ void MenuManager()
                         employeeManage.remove(employeeManage.find(id)->data);
                         system("pause");
                         break;
+                    case 5:
+                        break;
                 }
                 break;
             case 5:
@@ -438,58 +459,61 @@ void MenuManager()
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach khach hang" << endl;
                     cout << ((next_option == 2) ? "->" : "  ") << "Tim khach hang" << endl;
+                    cout << ((next_option == 3) ? "->" : "  ") << "Quay lai" << endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 2;
-                    if (next_option > 2) next_option = 1;
+                    if (next_option < 1) next_option = 3;
+                    if (next_option > 3) next_option = 1;
                 }while(t != 13);
-                if(next_option == 1){
-                    customerManage.display();
-                    system("pause");
-                } 
-                else {
-                    int find_option = 1;
-                    do {
-                        system("cls");
-                        cout << ((find_option == 1) ? "->" : "  ") << "Tim theo ma khach hang" << endl;
-                        cout << ((find_option == 2) ? "->" : "  ") << "Tim theo ten va so dien thoai" << endl;
-                        t = getch();
-                        if (t == 72) find_option--;
-                        else if (t == 80) find_option++;
-                        if (find_option < 1) find_option = 2;
-                        if (find_option > 2) find_option = 1;
-                    } while (t != 13);
-                    if (find_option == 1) {
-                        system("cls");
-                        cout << "Nhap ma khach hang: "; cin >> id;
-                        Node<Customer>* fcus = customerManage.find(id);
-                        if(fcus!= nullptr)
-                        {
-                            fcus->data.Show();
-                        }
-                        else
-                        {
-                            cout << "Khong tim thay khach hang nay!" << endl;
-                        }
+                switch (next_option){
+                    case 1:
+                        customerManage.display();
                         system("pause");
-                    }
-                    else {
-                        system("cls");
-                        string name, phone;
-                        cout << "Ten khach hang: "; cin >> name;
-                        cout << "So dien thoai: "; cin >> phone;
-                        Node<Customer>* fcus = customerManage.find(name, phone);
-                        if(fcus!= nullptr)
-                        {
-                            fcus->data.Show();
+                        break;
+                    case 2:
+                        int find_option = 1;
+                        do {
+                            system("cls");
+                            cout << ((find_option == 1) ? "->" : "  ") << "Tim theo ma khach hang" << endl;
+                            cout << ((find_option == 2) ? "->" : "  ") << "Tim theo ten va so dien thoai" << endl;
+                            t = getch();
+                            if (t == 72) find_option--;
+                            else if (t == 80) find_option++;
+                            if (find_option < 1) find_option = 2;
+                            if (find_option > 2) find_option = 1;
+                        } while (t != 13);
+                        if (find_option == 1) {
+                            system("cls");
+                            cout << "Nhap ma khach hang: "; cin >> id;
+                            Node<Customer>* fcus = customerManage.find(id);
+                            if(fcus!= nullptr)
+                            {
+                                fcus->data.Show();
+                            }
+                            else
+                            {
+                                cout << "Khong tim thay khach hang nay!" << endl;
+                            }
+                            system("pause");
                         }
-                        else
-                        {
-                            cout << "Khong tim thay khach hang nay!" << endl;
+                        else {
+                            system("cls");
+                            string name, phone;
+                            cout << "Ten khach hang: "; cin >> name;
+                            cout << "So dien thoai: "; cin >> phone;
+                            Node<Customer>* fcus = customerManage.find(name, phone);
+                            if(fcus!= nullptr)
+                            {
+                                fcus->data.Show();
+                            }
+                            else
+                            {
+                                cout << "Khong tim thay khach hang nay!" << endl;
+                            }
+                            system("pause");
                         }
-                        system("pause");
-                    }
+                        break;
                 }
                 break;
             case 6:
@@ -504,11 +528,12 @@ void MenuManager()
                     cout << ((next_option == 2) ? "->" : "  ") << "Theo nam" << endl;
                     cout << ((next_option == 3) ? "->" : "  ") << "Theo thang" << endl;
                     cout << ((next_option == 4) ? "->" : "  ") << "Theo ngay" << endl;
+                    cout << ((next_option == 5) ? "->" : "  ") << "Quay lai" << endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 4;
-                    if (next_option > 4) next_option = 1;
+                    if (next_option < 1) next_option = 5;
+                    if (next_option > 5) next_option = 1;
                 }while(t != 13);
                 switch (next_option){
                     case 1:
@@ -530,6 +555,8 @@ void MenuManager()
                         cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
                         invoiceManage.find(d, m, y).display();
                         system("pause");
+                        break;
+                    case 5:
                         break;
                 }
                 break;
