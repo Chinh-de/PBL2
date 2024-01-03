@@ -240,7 +240,7 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
 
     //lay thong tin khach hang
     bool over = false;
-    int input, option = 1, next_option =1, MaxOption = 3, check;
+    int input, option = 1, next_option =1, MaxOption = 3;
 
     Customer newcus;
     string cusphone, x = "x";
@@ -311,10 +311,12 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                 default: cout << "Loi du lieu";
             };
     } while(over != true);
-    newInvoice.setCustomerID(cusID);
-    newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
-    //Tuong tac voi gio hang
-    this->updateCart(newInvoice,productM,customerM,EmployeeM);
+    if (option != 3){
+        newInvoice.setCustomerID(cusID);
+        newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
+        //Tuong tac voi gio hang
+        this->updateCart(newInvoice,productM,customerM,EmployeeM);
+    }
 }
 
 void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& CustomerM, EmpManage& EmployeeM)
