@@ -240,7 +240,7 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
 
     //lay thong tin khach hang
     bool over = false;
-    int input , option = 1, MaxOption = 2;
+    int input, option = 1, next_option =1, MaxOption = 3, check;
 
     Customer newcus;
     string cusphone, x = "x";
@@ -251,6 +251,7 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
         cout<<"Khach hang da mua hang truoc day chua:"<< endl;
         cout << (option == 1 ? "->":"  ") << "Khach hang cu " << endl;
         cout << (option == 2 ? "->":"  ") << "Khach hang moi " << endl;
+        cout << (option == 3 ? "->":"  ") << "Tro lai " << endl;
         input = getch();
 
         if (input == 80) //phim mui ten xuong
@@ -276,20 +277,38 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                         break;
                     }
                     newcus = Ncus->data;
-                    cout << newcus << endl;
-                    cout << endl << endl << endl;
-                    system("pause");
-                    cusID = newcus.getID();
-                    over = true;
+                    do
+                    {
+                        system("cls");
+                        cout << newcus << endl;
+                        cout << "Xac nhan thong tin: " << endl;
+                        cout << (next_option == 1 ? "->":"  ") << "Xac nhan " << endl;
+                        cout << (next_option == 2 ? "->":"  ") << "Tro ve " << endl;
+                        input = getch();
+                        if (input == 72) next_option--;
+                        else if (input == 80) next_option++;
+                        if (next_option < 1) next_option = 2;
+                        if (next_option > 2) next_option = 1;
+                    } while(input != 13);
+                    switch (next_option)
+                    {
+                        case 1: cusID = newcus.getID();
+                                over = true;
+                                break;
+                        case 2: over = false; break;
+                    }
                     break;
                 case 2:
+                    newcus = Customer(); //lam moi gia tri cua newcus
                     newcus.setID(customerM.getNewID());
                     customerM.add(newcus);
                     cusID = newcus.getID();
                     customerM.update(newcus);
                     over = true;
                     break;
-                // default: cout << "Loi du lieu";
+                case 3:  
+                    return;  
+                default: cout << "Loi du lieu";
             };
     } while(over != true);
     newInvoice.setCustomerID(cusID);
@@ -369,7 +388,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                     
                     for (int i = 1; i <= newQuantity ; i++)
                     {
-                        cout << "Nhap serial san pham thu: " << i << ": ";
+                        cout << endl << "Nhap serial san pham thu: " << i << ": ";
                         //kiem tra serial co ton tai trong database khong?
                         do
                         {
@@ -390,6 +409,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                             Norder->data.updateTotal();
                         }
                         cout << endl <<"Them thanh cong " << newSerial << endl;
+                        cout << "_____________________________________________________________" << endl;
                     }
                     if(Norder == nullptr) newInv.addOrder(newOrder);
                     break;

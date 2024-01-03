@@ -348,9 +348,9 @@ void MenuManager()
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach san pham" << endl;
                     cout << ((next_option == 2) ? "->" : "  ") << "Tim san pham" << endl;
-                    cout << ((next_option == 3) ? "->" : "  ") << "Them loai san pham moi" << endl;
+                    cout << ((next_option == 3) ? "->" : "  ") << "Them mau san pham moi" << endl;
                     cout << ((next_option == 4) ? "->" : "  ") << "Cap nhat thong tin san pham" << endl;
-                    cout << ((next_option == 5) ? "->" : "  ") << "Xoa loai san pham" << endl;
+                    cout << ((next_option == 5) ? "->" : "  ") << "Xoa mau san pham" << endl;
                     cout << ((next_option == 6) ? "->" : "  ") << "Them san pham moi" << endl;
                     cout << ((next_option == 7) ? "->" : "  ") << "Quay lai" << endl;
                     t = getch();
@@ -367,7 +367,8 @@ void MenuManager()
                     case 2:
                         system("cls");
                         cout << "Nhap ID san pham: "; cin >> sid;
-                        productManage.find(sid)->data.show();
+                        if(productManage.find(sid) == nullptr) cout << endl << "Khong tim thay san pham nay" << endl;
+                        else productManage.find(sid)->data.show();
                         system("pause");
                         break;
                     case 3:
@@ -382,7 +383,7 @@ void MenuManager()
                         break;
                     case 5:
                         system("cls");
-                        cout << "Nhap ID loai san pham can xoa: "; cin >> sid;
+                        cout << "Nhap ID mau san pham can xoa: "; cin >> sid;
                         productManage.remove(productManage.find(sid)->data);
                         system("pause");
                         break;
@@ -391,7 +392,7 @@ void MenuManager()
                         string seri;
                         int count;
                         Node<product>* prod = productManage.find(sid);
-                        cout << "Nhap ID loai san pham can them: "; cin >> sid;
+                        cout << "Nhap ID mau san pham can them: "; cin >> sid;
                         if (prod == nullptr)
                         {
                             cout << "Ma san pham nhap vao khong ton tai!" << endl;
@@ -500,7 +501,8 @@ void MenuManager()
                         else {
                             system("cls");
                             string name, phone;
-                            cout << "Ten khach hang: "; cin >> name;
+                            cin.ignore();
+                            cout << "Ten khach hang: "; getline(cin, name);
                             cout << "So dien thoai: "; cin >> phone;
                             Node<Customer>* fcus = customerManage.find(name, phone);
                             if(fcus!= nullptr)
