@@ -240,7 +240,7 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
 
     //lay thong tin khach hang
     bool over = false;
-    int input , option = 1, MaxOption = 2;
+    int input , option = 1, MaxOption = 3;
 
     Customer newcus;
     string cusphone, x = "x";
@@ -251,6 +251,7 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
         cout<<"Khach hang da mua hang truoc day chua:"<< endl;
         cout << (option == 1 ? "->":"  ") << "Khach hang cu " << endl;
         cout << (option == 2 ? "->":"  ") << "Khach hang moi " << endl;
+        cout << (option == 3 ? "->":"  ") << "Huy" << endl;
         input = getch();
 
         if (input == 80) //phim mui ten xuong
@@ -289,13 +290,18 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                     customerM.update(newcus);
                     over = true;
                     break;
+                case 3:
+                    over = true;
+                    break;
                 // default: cout << "Loi du lieu";
             };
     } while(over != true);
-    newInvoice.setCustomerID(cusID);
-    newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
-    //Tuong tac voi gio hang
-    this->updateCart(newInvoice,productM,customerM,EmployeeM);
+    if (option != 3){
+        newInvoice.setCustomerID(cusID);
+        newInvoice.updateDate(); //cap nhat thoi gian cho hoa don
+        //Tuong tac voi gio hang
+        this->updateCart(newInvoice,productM,customerM,EmployeeM);
+    }
 }
 
 void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& CustomerM, EmpManage& EmployeeM)
