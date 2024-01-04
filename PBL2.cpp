@@ -466,6 +466,7 @@ void MenuManager()
                         if (find_option == 1) {
                             system("cls");
                             cout << "Nhap ma nhan vien: "; cin >> id;
+                            cout << endl;
                             Node<Employee>* femp = employeeManage.find(id);
                             if(femp!= nullptr)
                                 femp->data.Show();
@@ -480,6 +481,7 @@ void MenuManager()
                             cout << "Ten khach hang: "; getline(cin, name);
                             cout << "So dien thoai: "; cin >> phone;
                             Node<Employee>* femp = employeeManage.find(id);
+                            cout << endl;
                             if(femp!= nullptr)
                                 femp->data.Show();
                             else
