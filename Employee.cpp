@@ -15,7 +15,8 @@ void Employee::Show()
     if(this->Gender) cout << "Nu";
     else cout << "Nam";
     cout << endl << "email: " << this->Email << endl << "Dia chi: " << this->Address << endl;
-    cout<< "Luong: " << this->salary << endl;
+    cout << "Luong: " << this->salary << endl;
+    cout << "\t\t\t *******" << endl;
 }
 ostream& operator<<(ostream& o, const Employee& e){
     Person *p = new Employee();

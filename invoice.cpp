@@ -53,6 +53,7 @@ ostream& operator<<(ostream& o, const invoice& i)
     invoice *temp = new invoice();
     *temp = i;
     temp->listOfOrder.display();
+    cout << "\t\t\t__________________________________________________" << endl;
     delete temp;
     return o;
 }

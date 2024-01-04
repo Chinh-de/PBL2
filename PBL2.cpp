@@ -49,6 +49,7 @@ int main()
     return 0;
 }
 void title() {
+    system("cls");
     cout << "\t\t\t\tTRUONG DAI HOC BACH KHOA - DAI HOC DA NANG\n";
     cout << "\t\t\t\t\t KHOA CONG NGHE THONG TIN\n\n";
     cout << "\t\t\t\t\tDU AN CO SO LAP TRINH\n";
@@ -199,8 +200,9 @@ void MenuEmployee()
                         Node<Customer>* fcus = customerManage.find(id);
                         if(fcus!= nullptr)
                         {
+                            cout << "__________________________________________________________________________" << endl;
                             fcus->data.Show();
-                            cout << endl << "Lich su mua hang: " << endl;
+                            cout << endl << "Lich su mua hang: " << endl << endl;
                             invoiceManage.find(fcus->data).display();
                         }
                         else
@@ -217,8 +219,9 @@ void MenuEmployee()
                         Node<Customer>* fcus = customerManage.find(name, phone);
                         if(fcus!= nullptr)
                         {
+                            cout << "__________________________________________________________________________" << endl;
                             fcus->data.Show();
-                            cout << endl << "Lich su mua hang: " << endl;
+                            cout << endl << "Lich su mua hang: " << endl << endl;
                             invoiceManage.find(fcus->data).display();
                         }
                         else
@@ -542,8 +545,9 @@ void MenuManager()
                             Node<Customer>* fcus = customerManage.find(id);
                             if(fcus!= nullptr)
                             {
+                                cout << "__________________________________________________________________________" << endl;
                                 fcus->data.Show();
-                                cout << endl << "Lich su mua hang: " << endl;
+                                cout << endl << "Lich su mua hang: " << endl << endl;
                                 invoiceManage.find(fcus->data).display();
                             }
                             else
@@ -561,8 +565,9 @@ void MenuManager()
                             Node<Customer>* fcus = customerManage.find(name, phone);
                             if(fcus!= nullptr)
                             {
+                                cout << "__________________________________________________________________________" << endl;
                                 fcus->data.Show();
-                                cout << endl << "Lich su mua hang: " << endl;
+                                cout << endl << "Lich su mua hang: " << endl << endl;
                                 invoiceManage.find(fcus->data).display();
                             }
                             else
