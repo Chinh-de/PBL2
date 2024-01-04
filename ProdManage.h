@@ -19,5 +19,4 @@ class ProdManage : public Manage<product> {
         Node<product>* find(string&);
         void display(bool);
         void displayOption();
-        list<product> filter(); 
 };

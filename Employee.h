@@ -8,7 +8,7 @@ enum Position
 
 class Employee : public Person
 {
-    protected:
+    private:
         unsigned int salary;
         Position position;
         string password;
