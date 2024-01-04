@@ -399,8 +399,9 @@ void MenuManager()
                         system("cls");
                         string seri;
                         int count;
+                        cout << "Nhap ma san pham can them: "; 
+                        cin >> sid;
                         Node<product>* prod = productManage.find(sid);
-                        cout << "Nhap ID mau san pham can them: "; cin >> sid;
                         if (prod == nullptr)
                         {
                             cout << "Ma san pham nhap vao khong ton tai!" << endl;
@@ -410,9 +411,9 @@ void MenuManager()
                             cout << "Nhap so luong can them: "; cin >> count;
                             for (int i = 0; i < count; i++)
                             {
-                                cout << "Nhap so serial thu " << i << ": "; cin >> seri;
+                                cout << "Nhap so serial thu " << i+1 << ": "; cin >> seri;
                                 prod->data.addSerial(seri);
-                                cout << endl << "Them thanh cong san pham co so serial:" << seri << endl;
+                                cout << endl << "Them thanh cong san pham co so serial: " << seri << endl;
                             }
                         }
                         cout << endl << endl << endl;
