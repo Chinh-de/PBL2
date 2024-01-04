@@ -411,7 +411,7 @@ void InvManage::updateCart(invoice& newInv, ProdManage& productM, CusManage& Cus
                             if(!isSerial) cout << "Serial nhap vao khong ton tai. " << "Nhap lai serial san pham thu: " << i << ": ";
                         } while(!isSerial);
                         //dua serial tu san pham ra gio hang
-                        Nprod->data.removeSerial(newSerial); //loi o day
+                        Nprod->data.removeSerial(newSerial); 
                         if(Norder == nullptr) 
                         {
                             newOrder.addSerial(newSerial);

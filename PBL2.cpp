@@ -8,7 +8,6 @@
 #include "ProdManage.h"
 #include "Database.h"
 using namespace std;
-// khai bao them tai nguyen
 Database& myDatabase = Database::DB_Instance();
 CusManage& customerManage = myDatabase.getCusManage();
 EmpManage& employeeManage = myDatabase.getEmpManage();
@@ -20,14 +19,12 @@ bool login();
 bool check_userID(string);
 void MenuManager();
 void MenuEmployee();
+void title();
 int main()
 {
+    title();
     int Close;
     Database::readData();
-
-    // int lid = 10000;
-    // customerManage.update(customerManage.find(lid)->data);
-    
     lg1:;
     Close = 0;
     if(login()){
@@ -50,6 +47,20 @@ int main()
     if (Close == 1) return 1;
     else goto lg1;
     return 0;
+}
+void title() {
+    cout << "\t\t\t\tTRUONG DAI HOC BACH KHOA - DAI HOC DA NANG\n";
+    cout << "\t\t\t\t\t KHOA CONG NGHE THONG TIN\n\n";
+    cout << "\t\t\t\t\tDU AN CO SO LAP TRINH\n";
+    cout << "\t\t\t XAY DUNG HE THONG QUAN LI KINH DOANH LAPTOP\n\n";
+    cout << "\tNguoi huong dan: ThS. Mai Van Ha\n\n";
+    cout << "\tSinh vien thuc hien:\n";
+    cout << "\tTen: Nguyen Che Dinh\tMa sinh vien: 102220223\tLop: 22T_DT5\tNhom:22Nh14a\n";
+    cout << "\tTen: Nguyen Trieu Huy\tMa sinh vien: 102220233\tLop: 22T_DT5\tNhom:22Nh14a\n";
+    cout << "\t\t\t\t\t ***copyright by Dinh & Huy***\n";
+    cout << "\n\n\t\t\t\t~~~~~~ NHAN PHIM BAT KI DE TIEP TUC ~~~~~~";
+    _getch();
+    system("cls");
 }
 bool login(){
     int userID;
@@ -95,14 +106,6 @@ bool check_userID(string id){
 }
 void MenuEmployee()
 {
-    //swichcase
-    /*
-    1. Cá nhân -> gọi show() thông tin nhân viên;
-    2. sản phẩm-> gọi hàm show danh sách sản phẩm từ qlsp  -> 1.sắp xếp theo giá tăng 2. giá giảm 3. tìm kiếm 4. trở lại
-    3. Bán hàng -> qlđơnhàng.new gọi đến qlkh.new or .tìm để thêm khách hàng. nhập sp+sl, gọi quản lí sản phẩm để kiểm tra còn hàng ko. tính tiền , nhập phương thức thanh toán, lấy giờ , in hóa đơn, giảm số lượng sp.  
-    4. khách hàng: 1.xem danh sách qlkh.show()   2.tìm khách hàng qlsh.tim ->show ra thông tin kh.show + lịch sử mua hàng qldonhang.tim 3. thêm kh
-    5.đổi mk//code sau
-    */
     int option, t;
     bool over = false;
     int id, next_option, d, m, y;
