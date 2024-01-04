@@ -93,11 +93,19 @@ bool login(){
     char ch;
     while (true) {
         ch = _getch();
-        if (ch == 13) 
-            break;
 
-        password.push_back(ch);
-        cout << '*';
+        if (ch == 13) // Enter 
+            break;
+        else if (ch == 8) { // Backspace 
+            if (!password.empty()) {
+                cout << "\b \b"; //xoa bot *
+                password.pop_back();
+            }
+        }
+        else {
+            password.push_back(ch);
+            cout << '*';
+        }
     }
     while (temp->data.getPassword() != password){
         system("cls"); 
@@ -105,13 +113,22 @@ bool login(){
         cout << "Sai mat khau, vui long nhap lai: ";
         ch = 0; password = ""; 
         while (true) {
-        ch = _getch();
-        if (ch == 13) 
-            break;
+            ch = _getch();
 
-        password.push_back(ch);
-        cout << '*';
-    }
+            if (ch == 13) // Enter 
+                break;
+            else if (ch == 8) { // Backspace 
+                if (!password.empty()) {
+                    cout << "\b \b"; //xoa bot *
+                    password.pop_back();
+                }
+            }
+            else {
+                password.push_back(ch);
+                cout << '*';
+            }
+        }
+
     }
     user = &(temp->data);
     return true;
