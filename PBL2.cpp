@@ -88,12 +88,30 @@ bool login(){
             else break;
         }
     } 
-    cout << "Mat khau: "; cin >> password;
+    cout << "Mat khau: ";
+    password = "";
+    char ch;
+    while (true) {
+        ch = _getch();
+        if (ch == 13) 
+            break;
+
+        password.push_back(ch);
+        cout << '*';
+    }
     while (temp->data.getPassword() != password){
         system("cls"); 
         if (password == "x") return false;               
         cout << "Sai mat khau, vui long nhap lai: ";
-        cin >> password;
+        ch = 0; password = ""; 
+        while (true) {
+        ch = _getch();
+        if (ch == 13) 
+            break;
+
+        password.push_back(ch);
+        cout << '*';
+    }
     }
     user = &(temp->data);
     return true;
