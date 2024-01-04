@@ -25,6 +25,7 @@ order::order(const order& other)
     this->price = other.price;
     this->quantity = other.quantity;
     this->serial = other.serial;
+    this->total = other.total;
 }
 order::~order()
 {   }
@@ -37,6 +38,7 @@ order& order::operator=(const order& other)
         this->price = other.price;
         this->quantity = other.quantity;
         this->serial = other.serial;
+        this->total = other.total;
     }
     return *this;
 }
@@ -54,7 +56,7 @@ unsigned int order::getTotal()
 
 ostream& operator<<(ostream& o, const order& _order)
 {
-    o << _order.productID << ",  " << _order.name << ",   " << _order.price << ",  " << _order.quantity << "  " << endl;
+    o << "Ma San Pham: " << _order.productID << "; Ten san Pham: " << _order.name << endl << "Don gia: " << _order.price << "; So Luong " << _order.quantity << "; Tong Tien " << _order.total << endl;
     o << "So serial: ";
     Node<string>* currentNode = _order.serial.getHead();
     while (currentNode != nullptr) 

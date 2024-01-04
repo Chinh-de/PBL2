@@ -197,6 +197,8 @@ void MenuEmployee()
                         if(fcus!= nullptr)
                         {
                             fcus->data.Show();
+                            cout << endl << "Lich su mua hang: " << endl;
+                            invoiceManage.find(fcus->data).display();
                         }
                         else
                         {
@@ -213,6 +215,8 @@ void MenuEmployee()
                         if(fcus!= nullptr)
                         {
                             fcus->data.Show();
+                            cout << endl << "Lich su mua hang: " << endl;
+                            invoiceManage.find(fcus->data).display();
                         }
                         else
                         {
@@ -244,21 +248,25 @@ void MenuEmployee()
                 switch (next_option){
                     case 1:
                         cout << "Nhap ma hoa don: "; cin >> id;
+                        cout << "_________________________________________________________________________________" << endl;
                         invoiceManage.findtoShow(id);
                         system("pause");
                         break;
                     case 2:
                         cout << "Nhap nam: "; cin >> y;
+                        cout << "_________________________________________________________________________________" << endl;
                         invoiceManage.find(y).display();
                         system("pause");
                         break;
                     case 3:
                         cout << "Nhap lan luot thang, nam: "; cin >> m >> y;
+                        cout << "_________________________________________________________________________________" << endl;
                         invoiceManage.find(m, y).display();
                         system("pause");
                         break;
                     case 4:
                         cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
+                        cout << "_________________________________________________________________________________" << endl;
                         invoiceManage.find(d, m, y).display();
                         system("pause");
                         break;
@@ -491,6 +499,8 @@ void MenuManager()
                             if(fcus!= nullptr)
                             {
                                 fcus->data.Show();
+                                cout << endl << "Lich su mua hang: " << endl;
+                                invoiceManage.find(fcus->data).display();
                             }
                             else
                             {
@@ -508,6 +518,8 @@ void MenuManager()
                             if(fcus!= nullptr)
                             {
                                 fcus->data.Show();
+                                cout << endl << "Lich su mua hang: " << endl;
+                                invoiceManage.find(fcus->data).display();
                             }
                             else
                             {
@@ -540,21 +552,25 @@ void MenuManager()
                 switch (next_option){
                     case 1:
                         cout << "Nhap ma hoa don: "; cin >> id;
+                        cout << "_________________________________________________________________________________" << endl;
                         invoiceManage.findtoShow(id);
                         system("pause");
                         break;
                     case 2:
                         cout << "Nhap nam: "; cin >> y;
+                        cout << "_________________________________________________________________________________" << endl;
                         invoiceManage.find(y).display();
                         system("pause");
                         break;
                     case 3:
                         cout << "Nhap lan luot thang, nam: "; cin >> m >> y;
+                        cout << "_________________________________________________________________________________" << endl;
                         invoiceManage.find(m, y).display();
                         system("pause");
                         break;
                     case 4:
                         cout << "Nhap lan luot ngay, thang, nam: "; cin >> d >> m >> y;
+                        cout << "_________________________________________________________________________________" << endl;
                         invoiceManage.find(d, m, y).display();
                         system("pause");
                         break;

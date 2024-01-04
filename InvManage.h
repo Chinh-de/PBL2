@@ -20,10 +20,11 @@ class InvManage : public Manage<invoice> {
         list<invoice> find(int&, int&, int&);
         list<invoice> find(int&, int&);
         list<invoice> find(int&);
+        list<invoice> find(Customer&); //lich su mua hang
         Node<invoice>* findID(int&);
         void statistic(list<invoice>);
-        void printInvoice(int, CusManage, EmpManage);
-        void printInvoice(invoice&, CusManage, EmpManage);
+        void printInvoice(int, CusManage, EmpManage); //in hoa don ra file
+        void printInvoice(invoice&, CusManage, EmpManage); //in ra man hinh hoa don demo
         void findtoShow(int& ID);
         int getNewID();
         void sell(int, CusManage&, ProdManage&, EmpManage&);

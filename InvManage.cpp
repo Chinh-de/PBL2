@@ -26,7 +26,7 @@ list<invoice> InvManage::find(int& d, int& m, int& y){
             tempList.add(tempNode->data);
         tempNode = tempNode->next;
     }
-    if ( tempList.getHead() == nullptr ) cout << "khong tim thay!";
+    if ( tempList.getHead() == nullptr ) cout << "khong tim thay!" << endl;
     return tempList;
 }
 list<invoice> InvManage::find(int& m, int& y){
@@ -39,7 +39,7 @@ list<invoice> InvManage::find(int& m, int& y){
             tempList.add(tempNode->data);
         tempNode = tempNode->next;
     }
-    if ( tempList.getHead() == nullptr ) cout << "khong tim thay!";
+    if ( tempList.getHead() == nullptr ) cout << "khong tim thay!" << endl;
     return tempList;
 }
 list<invoice> InvManage::find(int& y){
@@ -50,11 +50,23 @@ list<invoice> InvManage::find(int& y){
     {
         if (tempNode->data.getDate().getYear() == y)   
             tempList.add(tempNode->data);
-        else if (tempNode->data.getInvoiceID() == y)   
-            tempList.add(tempNode->data); //có findid roi
         tempNode = tempNode->next;
     }
-    if ( tempList.getHead() == nullptr ) cout << "khong tim thay!";
+    if ( tempList.getHead() == nullptr ) cout << "khong tim thay!" << endl;
+    return tempList;
+}
+list<invoice> InvManage::find(Customer& cus){
+    list<invoice> tempList;
+    Node<invoice>* tempNode;
+    int cusID = cus.getID();
+    tempNode = this->Inv.getHead();
+    while (tempNode != nullptr) 
+    {
+        if (tempNode->data.getCustomerID() == cusID)   
+            tempList.add(tempNode->data);
+        tempNode = tempNode->next;
+    }
+    if ( tempList.getHead() == nullptr ) cout << "khong tim thay lich su mua hang!" << endl;
     return tempList;
 }
 Node<invoice>* InvManage::findID(int& ID)
