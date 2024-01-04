@@ -425,15 +425,16 @@ void MenuManager()
                 do{
                     system("cls");
                     cout << ((next_option == 1) ? "->" : "  ") << "Danh sach nhan vien" << endl;
-                    cout << ((next_option == 2) ? "->" : "  ") << "Them nhan vien moi" << endl;
-                    cout << ((next_option == 3) ? "->" : "  ") << "Cap nhat thong tin nhan vien" << endl;
-                    cout << ((next_option == 4) ? "->" : "  ") << "Xoa nhan vien" << endl;
-                    cout << ((next_option == 5) ? "->" : "  ") << "Quay lai" << endl;
+                    cout << ((next_option == 2) ? "->" : "  ") << "Tim nhan vien" << endl;
+                    cout << ((next_option == 3) ? "->" : "  ") << "Them nhan vien moi" << endl;
+                    cout << ((next_option == 4) ? "->" : "  ") << "Cap nhat thong tin nhan vien" << endl;
+                    cout << ((next_option == 5) ? "->" : "  ") << "Xoa nhan vien" << endl;
+                    cout << ((next_option == 6) ? "->" : "  ") << "Quay lai" << endl;
                     t = getch();
                     if (t == 72) next_option--;
                     else if (t == 80) next_option++;
-                    if (next_option < 1) next_option = 5;
-                    if (next_option > 5) next_option = 1;
+                    if (next_option < 1) next_option = 6;
+                    if (next_option > 6) next_option = 1;
                 }while(t != 13);
                 switch (next_option){
                     case 1:
@@ -442,23 +443,62 @@ void MenuManager()
                         system("pause");
                         break;
                     case 2:
+                    {
                         system("cls");
-                        employeeManage.add();
-                        system("pause");
+                        int find_option = 1;
+                        do {
+                            system("cls");
+                            cout << ((find_option == 1) ? "->" : "  ") << "Tim theo ma nhan vien" << endl;
+                            cout << ((find_option == 2) ? "->" : "  ") << "Tim theo ten va so dien thoai" << endl;
+                            t = getch();
+                            if (t == 72) find_option--;
+                            else if (t == 80) find_option++;
+                            if (find_option < 1) find_option = 2;
+                            if (find_option > 2) find_option = 1;
+                        } while (t != 13);
+                        if (find_option == 1) {
+                            system("cls");
+                            cout << "Nhap ma nhan vien: "; cin >> id;
+                            Node<Employee>* femp = employeeManage.find(id);
+                            if(femp!= nullptr)
+                                femp->data.Show();
+                            else
+                                cout << "Khong tim thay nhan vien nay!" << endl;
+                            system("pause");
+                        }
+                        else{
+                            system("cls");
+                            string name, phone;
+                            cin.ignore();
+                            cout << "Ten khach hang: "; getline(cin, name);
+                            cout << "So dien thoai: "; cin >> phone;
+                            Node<Employee>* femp = employeeManage.find(id);
+                            if(femp!= nullptr)
+                                femp->data.Show();
+                            else
+                                cout << "Khong tim thay nhan vien nay!" << endl;
+                            system("pause");
+                        }
                         break;
+                    }
                     case 3:
                         system("cls");
-                        cout << "Nhap ID nhan vien: "; cin >> id;
-                        employeeManage.update(employeeManage.find(id)->data);
+                        employeeManage.add();
                         system("pause");
                         break;
                     case 4:
                         system("cls");
                         cout << "Nhap ID nhan vien: "; cin >> id;
-                        employeeManage.remove(employeeManage.find(id)->data);
+                        employeeManage.update(employeeManage.find(id)->data);
                         system("pause");
                         break;
                     case 5:
+                        system("cls");
+                        cout << "Nhap ID nhan vien: "; cin >> id;
+                        employeeManage.remove(employeeManage.find(id)->data);
+                        system("pause");
+                        break;
+                    case 6:
                         break;
                 }
                 break;

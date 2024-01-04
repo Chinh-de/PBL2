@@ -173,16 +173,16 @@ Node<Employee>* EmpManage::find(int& ID)
     tempEmp.setID(ID);
     return this->Emp.find(tempEmp);
 }
-list<Employee> EmpManage::find(string& name, string& phone)
+Node<Employee>* EmpManage::find(string& name, string& phone)
 {
-    list<Employee> Found;
+    Node<Employee>* Found;
     if( name == "x" && phone == "x" ) return Found;
     Node<Employee>* tempNode;
     tempNode = this->Emp.getHead();
     while (tempNode != nullptr) 
     {
         if ( ( tempNode->data.getName() == name || name == "x" ) && ( tempNode->data.getPhone() == phone || phone == "x" ) ) 
-            Found.add(tempNode->data);
+            Found = tempNode;
         tempNode = tempNode->next;
     }
     return Found;
