@@ -54,7 +54,8 @@ product& product::operator=(const product& other)
 }
 
 void product::show(){
-    cout << "Ten san pham: " << this->name << endl
+    cout << "Ma san pham: " << this->productID << endl
+    << "Ten san pham: " << this->name << endl
     << "Hang: " << this->brand << endl
     << "Gia ban: " << this->price << endl
     << "Thong so:" << endl
@@ -63,11 +64,12 @@ void product::show(){
     << "Man hinh: " << this->screen << endl
     << "O cung: " << this->hard_disk << "GB" << endl
     << "GPU: " << this->GPU << endl
-    << "He dieu hang: " << this->OS << endl
+    << "He dieu hanh: " << this->OS << endl
     << "so luong con: " << this->quantity << " may";
 }
 ostream& operator<<(ostream& o,const product& p){
-    o << "Ten san pham: " << p.name << endl
+    o << "Ma san pham: " << p.productID << endl
+    << "Ten san pham: " << p.name << endl
     << "Hang: " << p.brand << endl
     << "Gia ban: " << p.price << endl
     << "Thong so:" << endl
@@ -76,7 +78,7 @@ ostream& operator<<(ostream& o,const product& p){
     << "Man hinh: " << p.screen << endl
     << "O cung: " << p.hard_disk << "GB" << endl
     << "GPU: " << p.GPU << endl
-    << "He dieu hang: " << p.OS << endl
+    << "He dieu hanh: " << p.OS << endl
     << "so luong con: " << p.quantity << " may" << endl;
     o << "So serial: ";
     Node<string>* currentNode = p.serial.getHead();
@@ -85,6 +87,7 @@ ostream& operator<<(ostream& o,const product& p){
         o << currentNode->data << ", ";
         currentNode = currentNode->next;
     }
+    cout << "\n\t\t _______________________________";
     o << endl;
     return o;
 }

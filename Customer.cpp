@@ -17,6 +17,7 @@ void Customer::Show()
 ostream& operator<<(ostream& o, const Customer& e){
     Person *p = new Customer();
     *p = e;
+    cout << "Ma khach hang: " << e.ID << "; ";
     p->Person::Show();
     delete p;
     return o;

@@ -1,7 +1,7 @@
 # Dự án Xây dựng hệ thống quản lí kinh doanh laptop
 
 ## Tài khoản đăng nhập mặc định: 
-- quản lý: mã nhhân viên: 200; mật khẩu: admin
+- quản lý: mã nhân viên: 200; mật khẩu: admin
 - nhân viên: mã nhân viên 201; mật khẩu: sale
 
 ## Mô tả dự án: “Xây dựng hệ thống quản lí kinh doanh laptop”.

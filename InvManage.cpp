@@ -316,7 +316,13 @@ void InvManage::sell(int userID, CusManage& customerM, ProdManage& productM, Emp
                     customerM.add(newcus);
                     cusID = newcus.getID();
                     customerM.update(newcus);
-                    over = true;
+                    newcus = customerM.find(cusID)->data;
+                    if(newcus.getName() == "" || newcus.getPhone() == "") 
+                    {
+                        customerM.remove(newcus);
+                        over = false;
+                    }
+                    else over = true;
                     break;
                 case 3:  
                     return;  

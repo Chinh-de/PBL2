@@ -80,7 +80,7 @@ void EmpManage::add(){
     cout << "Gioi tinh(Nam = 0, Nu = 1): "; cin >> gender; cin.ignore();
     cout << "Dia chi: "; getline(cin, address);
     cout << "Luong: "; cin >> salary; cin.ignore();
-    cout << "Vi tri cong viec: "; getline(cin, pos);
+    cout << "Vi tri cong viec (manager hoac salesperson): "; getline(cin, pos);
     if (pos == "manager") position = manager;
     if (pos == "salesperson") position = salesperson;  
     cout << "Dat mat khau tai khoan nhan vien: "; getline(cin, password);

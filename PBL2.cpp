@@ -191,7 +191,8 @@ void MenuEmployee()
                         system("cls");
                         sid;
                         cout << "Nhap ID san pham: "; cin >> sid;
-                        productManage.find(sid)->data.show();
+                        if(productManage.find(sid) == nullptr) cout << endl << "Khong tim thay san pham nay" << endl;
+                        else productManage.find(sid)->data.show();
                         break;
                     case 3:
                         break;
@@ -378,7 +379,7 @@ void MenuManager()
                         system("pause");
                         break;
                     case 2:
-                        cout << "Nhap lan luot thang, nam: "; cin >> y;
+                        cout << "Nhap lan luot thang, nam: "; cin >> m >> y;
                         invoiceManage.statistic(invoiceManage.find(m, y));
                         system("pause");
                         break;
